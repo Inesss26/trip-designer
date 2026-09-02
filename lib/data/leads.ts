@@ -1,6 +1,13 @@
 import { demoId, demoStore, demoTimestamp } from "@/lib/data/demo-store";
 import type { Lead } from "@/lib/data/types";
-import { DataError, requireWriteClient, toNumber } from "@/lib/data/utils";
+import {
+  adminReadClient,
+  DataError,
+  isSchemaMissingError,
+  requireWriteClient,
+  toNumber,
+  writeErrorMessage,
+} from "@/lib/data/utils";
 import { getReadClient } from "@/lib/supabase/client";
 import type {
   LeadInput,
@@ -54,7 +61,7 @@ function mapLead(row: LeadRow): Lead {
 export async function createLead(input: LeadInput): Promise<void> {
   const client = getReadClient();
 
-  if (!client) {
+  const storeInMemory = () => {
     const timestamp = demoTimestamp();
     demoStore().leads.unshift({
       id: demoId(),
@@ -64,6 +71,10 @@ export async function createLead(input: LeadInput): Promise<void> {
       createdAt: timestamp,
       updatedAt: timestamp,
     });
+  };
+
+  if (!client) {
+    storeInMemory();
     return;
   }
 
@@ -79,19 +90,30 @@ export async function createLead(input: LeadInput): Promise<void> {
   });
 
   if (error) {
+    // Tant que la migration n'est pas appliquée, la demande est conservée en
+    // mémoire plutôt que perdue : elle reste visible dans l'administration.
+    if (isSchemaMissingError(error)) {
+      storeInMemory();
+      return;
+    }
+
     throw new DataError(
       `Votre demande n'a pas pu être enregistrée : ${error.message}`,
     );
   }
 }
 
+function demoLeadsByDate(): Lead[] {
+  return [...demoStore().leads].sort((a, b) =>
+    b.createdAt.localeCompare(a.createdAt),
+  );
+}
+
 export async function listLeads(): Promise<Lead[]> {
-  const client = requireWriteClient();
+  const client = adminReadClient();
 
   if (!client) {
-    return [...demoStore().leads].sort((a, b) =>
-      b.createdAt.localeCompare(a.createdAt),
-    );
+    return demoLeadsByDate();
   }
 
   const { data, error } = await client
@@ -100,6 +122,10 @@ export async function listLeads(): Promise<Lead[]> {
     .order("created_at", { ascending: false });
 
   if (error) {
+    if (isSchemaMissingError(error)) {
+      return demoLeadsByDate();
+    }
+
     throw new DataError(`Lecture des demandes impossible : ${error.message}`);
   }
 
@@ -107,10 +133,12 @@ export async function listLeads(): Promise<Lead[]> {
 }
 
 export async function getLeadById(id: string): Promise<Lead | null> {
-  const client = requireWriteClient();
+  const client = adminReadClient();
+  const fromDemo = () =>
+    demoStore().leads.find((lead) => lead.id === id) ?? null;
 
   if (!client) {
-    return demoStore().leads.find((lead) => lead.id === id) ?? null;
+    return fromDemo();
   }
 
   const { data, error } = await client
@@ -120,6 +148,10 @@ export async function getLeadById(id: string): Promise<Lead | null> {
     .maybeSingle();
 
   if (error) {
+    if (isSchemaMissingError(error)) {
+      return fromDemo();
+    }
+
     throw new DataError(`Lecture de la demande impossible : ${error.message}`);
   }
 
@@ -155,7 +187,7 @@ export async function updateLead(
     .eq("id", id);
 
   if (error) {
-    throw new DataError(`Mise à jour impossible : ${error.message}`);
+    throw new DataError(writeErrorMessage(error, "Mise à jour impossible"));
   }
 }
 
@@ -171,6 +203,6 @@ export async function deleteLead(id: string): Promise<void> {
   const { error } = await client.from("leads").delete().eq("id", id);
 
   if (error) {
-    throw new DataError(`Suppression impossible : ${error.message}`);
+    throw new DataError(writeErrorMessage(error, "Suppression impossible"));
   }
 }

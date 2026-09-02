@@ -30,10 +30,11 @@ npm run dev
 Le site est servi sur [http://localhost:43127](http://localhost:43127).
 
 Sans configuration, l'application démarre en **mode démonstration** : les
-contenus viennent d'un jeu de données en mémoire (`lib/data/demo.ts`), et le mot
-de passe d'administration est `admin`. Les modifications faites dans
-l'administration fonctionnent, mais ne survivent pas au redémarrage du serveur.
-Un bandeau le rappelle sur chaque écran du back-office.
+contenus viennent d'un jeu de données en mémoire
+([lib/data/demo.ts](lib/data/demo.ts)), et le mot de passe d'administration est
+`admin` tant que `ADMIN_PASSWORD` n'est pas défini. Les modifications faites
+dans l'administration fonctionnent, mais ne survivent pas au redémarrage du
+serveur. Un bandeau le rappelle sur chaque écran du back-office.
 
 ## Variables d'environnement
 
@@ -42,10 +43,14 @@ Copiez `.env.example` vers `.env.local` et renseignez :
 | Variable | Rôle |
 | --- | --- |
 | `NEXT_PUBLIC_SUPABASE_URL` | URL du projet Supabase |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Clé publique, utilisée pour lire les contenus publiés et enregistrer une demande de contact |
-| `SUPABASE_SERVICE_ROLE_KEY` | Clé serveur, utilisée uniquement par l'administration. **Ne jamais l'exposer au navigateur** |
+| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Clé publique, utilisée pour lire les contenus publiés et enregistrer une demande de contact |
+| `SUPABASE_SECRET_KEY` | Clé serveur, utilisée uniquement par l'administration. **Ne jamais l'exposer au navigateur** |
 | `ADMIN_PASSWORD` | Mot de passe unique d'accès à `/admin` |
 | `ADMIN_SESSION_SECRET` | Secret de signature du cookie de session, 32 caractères minimum (`openssl rand -base64 32`) |
+
+Supabase a renommé ses clés d'API : les anciens noms
+`NEXT_PUBLIC_SUPABASE_ANON_KEY` et `SUPABASE_SERVICE_ROLE_KEY` restent acceptés
+si votre projet les utilise encore.
 
 En production, l'absence de `ADMIN_SESSION_SECRET` fait échouer le démarrage de
 la session, et l'absence de `ADMIN_PASSWORD` rend l'administration inaccessible :
@@ -66,6 +71,18 @@ c'est volontaire, pour ne jamais déployer un back-office ouvert.
 
 Avec la CLI Supabase, les étapes 2 et 3 se résument à `supabase db push` puis
 `supabase db seed`.
+
+### États intermédiaires
+
+La configuration se fait souvent en plusieurs fois. Le site reste utilisable
+entre-temps, et l'administration affiche en haut de page ce qui manque :
+
+| Situation | Comportement |
+| --- | --- |
+| Aucune clé Supabase | Mode démonstration : contenus en mémoire, modifications perdues au redémarrage |
+| Clés présentes, migration non appliquée | Le site affiche les contenus de démonstration, les demandes de contact reçues sont gardées en mémoire, l'administration indique la migration à exécuter |
+| Clé publique seule, sans clé secrète | Lecture normale des contenus publiés, mais aucun enregistrement possible (les brouillons et les demandes restent invisibles, RLS faisant son travail) |
+| Tout configuré | Fonctionnement normal |
 
 ### Modèle de données
 

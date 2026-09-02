@@ -3,10 +3,11 @@ import Link from "next/link";
 
 import { logout } from "@/app/admin/login/actions";
 import { AdminNav } from "@/components/admin/admin-nav";
-import { DemoNotice } from "@/components/admin/demo-notice";
+import { StatusNotice } from "@/components/admin/status-notice";
 import { Button } from "@/components/ui/button";
 import { requireAdminSession } from "@/lib/auth/guard";
-import { isDemoMode } from "@/lib/env";
+import { getSchemaStatus } from "@/lib/data/schema-status";
+import { isSupabaseWritable } from "@/lib/env";
 
 export const metadata: Metadata = {
   title: "Administration",
@@ -18,6 +19,8 @@ export default async function AdminLayout({
 }: LayoutProps<"/admin">) {
   // Contrôle qui fait autorité : le proxy ne sert qu'au confort de navigation.
   await requireAdminSession();
+
+  const schemaStatus = await getSchemaStatus();
 
   return (
     <div className="flex min-h-full flex-1 flex-col">
@@ -41,7 +44,7 @@ export default async function AdminLayout({
       </header>
 
       <main className="mx-auto w-full max-w-6xl flex-1 space-y-6 px-4 py-8">
-        {isDemoMode() ? <DemoNotice /> : null}
+        <StatusNotice status={schemaStatus} canWrite={isSupabaseWritable()} />
         {children}
       </main>
     </div>

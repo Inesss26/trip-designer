@@ -1,7 +1,12 @@
 import { demoContent } from "@/lib/data/demo";
 import { demoStore, demoTimestamp } from "@/lib/data/demo-store";
 import type { SiteContentEntry, SiteContentMap } from "@/lib/data/types";
-import { DataError, requireWriteClient } from "@/lib/data/utils";
+import {
+  DataError,
+  isSchemaMissingError,
+  requireWriteClient,
+  writeErrorMessage,
+} from "@/lib/data/utils";
 import { getReadClient } from "@/lib/supabase/client";
 import type { ContentKind } from "@/lib/validation/schemas";
 
@@ -48,6 +53,10 @@ export async function listContentEntries(): Promise<SiteContentEntry[]> {
     .order("sort_order", { ascending: true });
 
   if (error) {
+    if (isSchemaMissingError(error)) {
+      return [...demoContent].sort((a, b) => a.sortOrder - b.sortOrder);
+    }
+
     throw new DataError(`Lecture des contenus impossible : ${error.message}`);
   }
 
@@ -127,6 +136,6 @@ export async function updateContentValue(
   );
 
   if (error) {
-    throw new DataError(`Enregistrement impossible : ${error.message}`);
+    throw new DataError(writeErrorMessage(error));
   }
 }

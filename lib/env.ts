@@ -12,8 +12,18 @@ function read(name: string): string | null {
 }
 
 export const supabaseUrl = read("NEXT_PUBLIC_SUPABASE_URL");
-export const supabaseAnonKey = read("NEXT_PUBLIC_SUPABASE_ANON_KEY");
-export const supabaseServiceRoleKey = read("SUPABASE_SERVICE_ROLE_KEY");
+
+/**
+ * Supabase a renommé ses clés d'API : `anon` devient « publishable »
+ * (`sb_publishable_…`) et `service_role` devient « secret » (`sb_secret_…`).
+ * Les deux jeux de noms sont acceptés, l'ancien restant valide.
+ */
+export const supabaseAnonKey =
+  read("NEXT_PUBLIC_SUPABASE_ANON_KEY") ??
+  read("NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY");
+
+export const supabaseServiceRoleKey =
+  read("SUPABASE_SERVICE_ROLE_KEY") ?? read("SUPABASE_SECRET_KEY");
 
 /** Le site peut-il lire ses contenus dans Supabase ? */
 export function isSupabaseConfigured(): boolean {
@@ -25,31 +35,34 @@ export function isSupabaseWritable(): boolean {
   return Boolean(supabaseUrl && supabaseServiceRoleKey);
 }
 
-/** Aucune persistance disponible : les écritures ne sont pas enregistrées. */
-export function isDemoMode(): boolean {
-  return !isSupabaseWritable();
-}
-
 export const adminPassword = read("ADMIN_PASSWORD");
 export const adminSessionSecret = read("ADMIN_SESSION_SECRET");
 
+const DEVELOPMENT_SESSION_SECRET =
+  "mytripdesigner-secret-de-developpement-uniquement";
+
 /**
- * En développement, un secret par défaut évite de bloquer le démarrage. En
- * production l'absence de secret est une erreur : on refuse de signer une
- * session avec une valeur connue de tous.
+ * Le secret est-il réellement configuré ?
+ *
+ * Sert à refuser la connexion en production plutôt qu'à faire échouer la
+ * vérification du cookie : une exception levée pendant la vérification serait
+ * silencieusement interprétée comme « session invalide », et le message
+ * d'erreur n'atteindrait jamais l'écran.
+ */
+export function isSessionSecretConfigured(): boolean {
+  return Boolean(adminSessionSecret && adminSessionSecret.length >= 32);
+}
+
+/**
+ * En développement, un secret par défaut évite d'avoir à configurer quoi que ce
+ * soit. En production, la connexion est refusée en amont (voir l'action de
+ * connexion) : aucune session ne peut donc être signée avec cette valeur
+ * publique.
  */
 export function resolveSessionSecret(): string {
-  if (adminSessionSecret && adminSessionSecret.length >= 32) {
-    return adminSessionSecret;
-  }
-
-  if (process.env.NODE_ENV === "production") {
-    throw new Error(
-      "ADMIN_SESSION_SECRET est absent ou trop court (32 caractères minimum).",
-    );
-  }
-
-  return "mytripdesigner-secret-de-developpement-uniquement";
+  return isSessionSecretConfigured()
+    ? adminSessionSecret!
+    : DEVELOPMENT_SESSION_SECRET;
 }
 
 /** Mot de passe admin effectif, avec repli explicite en développement. */

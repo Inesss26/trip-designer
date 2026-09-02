@@ -1,11 +1,14 @@
 import { demoId, demoStore, demoTimestamp } from "@/lib/data/demo-store";
 import type { Trip } from "@/lib/data/types";
 import {
+  adminReadClient,
   byDisplayOrder,
   DataError,
+  isSchemaMissingError,
   requireWriteClient,
   toNumber,
   toStringArray,
+  writeErrorMessage,
 } from "@/lib/data/utils";
 import { getReadClient } from "@/lib/supabase/client";
 import type { PublicationStatus, TripInput } from "@/lib/validation/schemas";
@@ -78,13 +81,17 @@ function toRow(input: TripInput) {
 // Lecture publique
 // ---------------------------------------------------------------------------
 
+function demoPublishedTrips(): Trip[] {
+  return demoStore()
+    .trips.filter((trip) => trip.status === "published")
+    .sort(byDisplayOrder);
+}
+
 export async function listPublishedTrips(): Promise<Trip[]> {
   const client = getReadClient();
 
   if (!client) {
-    return demoStore()
-      .trips.filter((trip) => trip.status === "published")
-      .sort(byDisplayOrder);
+    return demoPublishedTrips();
   }
 
   const { data, error } = await client
@@ -95,6 +102,11 @@ export async function listPublishedTrips(): Promise<Trip[]> {
     .order("created_at", { ascending: false });
 
   if (error) {
+    // Le site reste lisible tant que la migration n'a pas été appliquée.
+    if (isSchemaMissingError(error)) {
+      return demoPublishedTrips();
+    }
+
     throw new DataError(`Lecture des voyages impossible : ${error.message}`);
   }
 
@@ -113,13 +125,11 @@ export async function getPublishedTripBySlug(
   slug: string,
 ): Promise<Trip | null> {
   const client = getReadClient();
+  const fromDemo = () =>
+    demoPublishedTrips().find((trip) => trip.slug === slug) ?? null;
 
   if (!client) {
-    return (
-      demoStore().trips.find(
-        (trip) => trip.slug === slug && trip.status === "published",
-      ) ?? null
-    );
+    return fromDemo();
   }
 
   const { data, error } = await client
@@ -130,6 +140,10 @@ export async function getPublishedTripBySlug(
     .maybeSingle();
 
   if (error) {
+    if (isSchemaMissingError(error)) {
+      return fromDemo();
+    }
+
     throw new DataError(`Lecture du voyage impossible : ${error.message}`);
   }
 
@@ -141,7 +155,7 @@ export async function getPublishedTripBySlug(
 // ---------------------------------------------------------------------------
 
 export async function listAllTrips(): Promise<Trip[]> {
-  const client = requireWriteClient();
+  const client = adminReadClient();
 
   if (!client) {
     return [...demoStore().trips].sort(byDisplayOrder);
@@ -154,6 +168,10 @@ export async function listAllTrips(): Promise<Trip[]> {
     .order("created_at", { ascending: false });
 
   if (error) {
+    if (isSchemaMissingError(error)) {
+      return [...demoStore().trips].sort(byDisplayOrder);
+    }
+
     throw new DataError(`Lecture des voyages impossible : ${error.message}`);
   }
 
@@ -161,10 +179,12 @@ export async function listAllTrips(): Promise<Trip[]> {
 }
 
 export async function getTripById(id: string): Promise<Trip | null> {
-  const client = requireWriteClient();
+  const client = adminReadClient();
+  const fromDemo = () =>
+    demoStore().trips.find((trip) => trip.id === id) ?? null;
 
   if (!client) {
-    return demoStore().trips.find((trip) => trip.id === id) ?? null;
+    return fromDemo();
   }
 
   const { data, error } = await client
@@ -174,6 +194,10 @@ export async function getTripById(id: string): Promise<Trip | null> {
     .maybeSingle();
 
   if (error) {
+    if (isSchemaMissingError(error)) {
+      return fromDemo();
+    }
+
     throw new DataError(`Lecture du voyage impossible : ${error.message}`);
   }
 
@@ -208,7 +232,7 @@ export async function createTrip(input: TripInput): Promise<Trip> {
     .single();
 
   if (error) {
-    throw new DataError(translateWriteError(error.message));
+    throw new DataError(translateWriteError(error));
   }
 
   return mapTrip(data as TripRow);
@@ -246,7 +270,7 @@ export async function updateTrip(id: string, input: TripInput): Promise<Trip> {
     .single();
 
   if (error) {
-    throw new DataError(translateWriteError(error.message));
+    throw new DataError(translateWriteError(error));
   }
 
   return mapTrip(data as TripRow);
@@ -267,14 +291,17 @@ export async function deleteTrip(id: string): Promise<void> {
   const { error } = await client.from("trips").delete().eq("id", id);
 
   if (error) {
-    throw new DataError(`Suppression impossible : ${error.message}`);
+    throw new DataError(writeErrorMessage(error, "Suppression impossible"));
   }
 }
 
-function translateWriteError(message: string): string {
-  if (message.includes("trips_slug_key")) {
+function translateWriteError(error: {
+  code?: string;
+  message: string;
+}): string {
+  if (error.message.includes("trips_slug_key")) {
     return "Un voyage utilise déjà cet identifiant d'URL.";
   }
 
-  return `Enregistrement impossible : ${message}`;
+  return writeErrorMessage(error);
 }

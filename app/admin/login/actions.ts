@@ -10,7 +10,7 @@ import {
   sessionCookieOptions,
 } from "@/lib/auth/session";
 import type { LoginState } from "@/app/admin/login/state";
-import { adminPassword } from "@/lib/env";
+import { adminPassword, isSessionSecretConfigured } from "@/lib/env";
 import { loginSchema } from "@/lib/validation/schemas";
 
 /** Ralentit les tentatives ratées, sans prétendre remplacer un vrai rate limit. */
@@ -42,11 +42,20 @@ export async function login(
     return { error: "Saisissez le mot de passe." };
   }
 
-  if (process.env.NODE_ENV === "production" && !adminPassword) {
-    return {
-      error:
-        "La variable ADMIN_PASSWORD n'est pas configurée sur ce déploiement : l'administration est inaccessible.",
-    };
+  if (process.env.NODE_ENV === "production") {
+    if (!adminPassword) {
+      return {
+        error:
+          "La variable ADMIN_PASSWORD n'est pas configurée sur ce déploiement : l'administration est inaccessible.",
+      };
+    }
+
+    if (!isSessionSecretConfigured()) {
+      return {
+        error:
+          "La variable ADMIN_SESSION_SECRET est absente ou trop courte (32 caractères minimum) : la session ne peut pas être signée.",
+      };
+    }
   }
 
   if (!isValidAdminPassword(parsed.data.password)) {

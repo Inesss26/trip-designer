@@ -1,10 +1,13 @@
 import { demoId, demoStore, demoTimestamp } from "@/lib/data/demo-store";
 import type { Service } from "@/lib/data/types";
 import {
+  adminReadClient,
   byDisplayOrder,
   DataError,
+  isSchemaMissingError,
   requireWriteClient,
   toNumber,
+  writeErrorMessage,
 } from "@/lib/data/utils";
 import { getReadClient } from "@/lib/supabase/client";
 import type { PublicationStatus, ServiceInput } from "@/lib/validation/schemas";
@@ -55,13 +58,17 @@ function toRow(input: ServiceInput) {
   };
 }
 
+function demoPublishedServices(): Service[] {
+  return demoStore()
+    .services.filter((service) => service.status === "published")
+    .sort(byDisplayOrder);
+}
+
 export async function listPublishedServices(): Promise<Service[]> {
   const client = getReadClient();
 
   if (!client) {
-    return demoStore()
-      .services.filter((service) => service.status === "published")
-      .sort(byDisplayOrder);
+    return demoPublishedServices();
   }
 
   const { data, error } = await client
@@ -71,6 +78,10 @@ export async function listPublishedServices(): Promise<Service[]> {
     .order("sort_order", { ascending: true });
 
   if (error) {
+    if (isSchemaMissingError(error)) {
+      return demoPublishedServices();
+    }
+
     throw new DataError(`Lecture des services impossible : ${error.message}`);
   }
 
@@ -78,7 +89,7 @@ export async function listPublishedServices(): Promise<Service[]> {
 }
 
 export async function listAllServices(): Promise<Service[]> {
-  const client = requireWriteClient();
+  const client = adminReadClient();
 
   if (!client) {
     return [...demoStore().services].sort(byDisplayOrder);
@@ -90,6 +101,10 @@ export async function listAllServices(): Promise<Service[]> {
     .order("sort_order", { ascending: true });
 
   if (error) {
+    if (isSchemaMissingError(error)) {
+      return [...demoStore().services].sort(byDisplayOrder);
+    }
+
     throw new DataError(`Lecture des services impossible : ${error.message}`);
   }
 
@@ -97,10 +112,12 @@ export async function listAllServices(): Promise<Service[]> {
 }
 
 export async function getServiceById(id: string): Promise<Service | null> {
-  const client = requireWriteClient();
+  const client = adminReadClient();
+  const fromDemo = () =>
+    demoStore().services.find((service) => service.id === id) ?? null;
 
   if (!client) {
-    return demoStore().services.find((service) => service.id === id) ?? null;
+    return fromDemo();
   }
 
   const { data, error } = await client
@@ -110,6 +127,10 @@ export async function getServiceById(id: string): Promise<Service | null> {
     .maybeSingle();
 
   if (error) {
+    if (isSchemaMissingError(error)) {
+      return fromDemo();
+    }
+
     throw new DataError(`Lecture du service impossible : ${error.message}`);
   }
 
@@ -144,7 +165,7 @@ export async function createService(input: ServiceInput): Promise<Service> {
     .single();
 
   if (error) {
-    throw new DataError(translateWriteError(error.message));
+    throw new DataError(translateWriteError(error));
   }
 
   return mapService(data as ServiceRow);
@@ -189,7 +210,7 @@ export async function updateService(
     .single();
 
   if (error) {
-    throw new DataError(translateWriteError(error.message));
+    throw new DataError(translateWriteError(error));
   }
 
   return mapService(data as ServiceRow);
@@ -207,14 +228,17 @@ export async function deleteService(id: string): Promise<void> {
   const { error } = await client.from("services").delete().eq("id", id);
 
   if (error) {
-    throw new DataError(`Suppression impossible : ${error.message}`);
+    throw new DataError(writeErrorMessage(error, "Suppression impossible"));
   }
 }
 
-function translateWriteError(message: string): string {
-  if (message.includes("services_slug_key")) {
+function translateWriteError(error: {
+  code?: string;
+  message: string;
+}): string {
+  if (error.message.includes("services_slug_key")) {
     return "Un service utilise déjà cet identifiant d'URL.";
   }
 
-  return `Enregistrement impossible : ${message}`;
+  return writeErrorMessage(error);
 }

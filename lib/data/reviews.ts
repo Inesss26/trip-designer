@@ -1,6 +1,13 @@
 import { demoId, demoStore, demoTimestamp } from "@/lib/data/demo-store";
 import type { Review } from "@/lib/data/types";
-import { byDisplayOrder, DataError, requireWriteClient } from "@/lib/data/utils";
+import {
+  adminReadClient,
+  byDisplayOrder,
+  DataError,
+  isSchemaMissingError,
+  requireWriteClient,
+  writeErrorMessage,
+} from "@/lib/data/utils";
 import { getReadClient } from "@/lib/supabase/client";
 import type { ReviewInput, ReviewStatus } from "@/lib/validation/schemas";
 
@@ -53,13 +60,17 @@ function toRow(input: ReviewInput) {
   };
 }
 
+function demoPublishedReviews(): Review[] {
+  return demoStore()
+    .reviews.filter((review) => review.status === "published")
+    .sort(byDisplayOrder);
+}
+
 export async function listPublishedReviews(): Promise<Review[]> {
   const client = getReadClient();
 
   if (!client) {
-    return demoStore()
-      .reviews.filter((review) => review.status === "published")
-      .sort(byDisplayOrder);
+    return demoPublishedReviews();
   }
 
   const { data, error } = await client
@@ -70,6 +81,10 @@ export async function listPublishedReviews(): Promise<Review[]> {
     .order("created_at", { ascending: false });
 
   if (error) {
+    if (isSchemaMissingError(error)) {
+      return demoPublishedReviews();
+    }
+
     throw new DataError(`Lecture des avis impossible : ${error.message}`);
   }
 
@@ -84,7 +99,7 @@ export async function listPublishedReviewsForTrip(
 }
 
 export async function listAllReviews(): Promise<Review[]> {
-  const client = requireWriteClient();
+  const client = adminReadClient();
 
   if (!client) {
     return [...demoStore().reviews].sort(byDisplayOrder);
@@ -97,6 +112,10 @@ export async function listAllReviews(): Promise<Review[]> {
     .order("created_at", { ascending: false });
 
   if (error) {
+    if (isSchemaMissingError(error)) {
+      return [...demoStore().reviews].sort(byDisplayOrder);
+    }
+
     throw new DataError(`Lecture des avis impossible : ${error.message}`);
   }
 
@@ -104,10 +123,12 @@ export async function listAllReviews(): Promise<Review[]> {
 }
 
 export async function getReviewById(id: string): Promise<Review | null> {
-  const client = requireWriteClient();
+  const client = adminReadClient();
+  const fromDemo = () =>
+    demoStore().reviews.find((review) => review.id === id) ?? null;
 
   if (!client) {
-    return demoStore().reviews.find((review) => review.id === id) ?? null;
+    return fromDemo();
   }
 
   const { data, error } = await client
@@ -117,6 +138,10 @@ export async function getReviewById(id: string): Promise<Review | null> {
     .maybeSingle();
 
   if (error) {
+    if (isSchemaMissingError(error)) {
+      return fromDemo();
+    }
+
     throw new DataError(`Lecture de l'avis impossible : ${error.message}`);
   }
 
@@ -146,7 +171,7 @@ export async function createReview(input: ReviewInput): Promise<Review> {
     .single();
 
   if (error) {
-    throw new DataError(`Enregistrement impossible : ${error.message}`);
+    throw new DataError(writeErrorMessage(error));
   }
 
   return mapReview(data as ReviewRow);
@@ -183,7 +208,7 @@ export async function updateReview(
     .single();
 
   if (error) {
-    throw new DataError(`Enregistrement impossible : ${error.message}`);
+    throw new DataError(writeErrorMessage(error));
   }
 
   return mapReview(data as ReviewRow);
@@ -217,7 +242,7 @@ export async function setReviewStatus(
     .eq("id", id);
 
   if (error) {
-    throw new DataError(`Mise à jour impossible : ${error.message}`);
+    throw new DataError(writeErrorMessage(error, "Mise à jour impossible"));
   }
 }
 
@@ -233,6 +258,6 @@ export async function deleteReview(id: string): Promise<void> {
   const { error } = await client.from("reviews").delete().eq("id", id);
 
   if (error) {
-    throw new DataError(`Suppression impossible : ${error.message}`);
+    throw new DataError(writeErrorMessage(error, "Suppression impossible"));
   }
 }
