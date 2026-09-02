@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useEffect, useRef, useState } from "react";
+import { useActionState, useEffect, useRef } from "react";
 
 import {
   contactInitialState,
@@ -26,13 +26,16 @@ export function ContactForm({
     submitContactRequest,
     contactInitialState,
   );
-  const [renderedAt, setRenderedAt] = useState(0);
   const errorRef = useRef<HTMLDivElement>(null);
+  const renderedAtRef = useRef<HTMLInputElement>(null);
 
-  // Le timestamp est posé côté client après hydratation : une valeur rendue par
-  // le serveur serait figée par le cache et casserait le filtre anti-spam.
+  // Le timestamp est écrit côté client après hydratation : une valeur rendue
+  // par le serveur serait figée par le cache et casserait le filtre anti-spam.
+  // Sans JavaScript, il reste à 0 et le contrôle de durée est ignoré.
   useEffect(() => {
-    setRenderedAt(Date.now());
+    if (renderedAtRef.current) {
+      renderedAtRef.current.value = String(Date.now());
+    }
   }, []);
 
   useEffect(() => {
@@ -64,7 +67,12 @@ export function ContactForm({
         </div>
       ) : null}
 
-      <input type="hidden" name="renderedAt" value={renderedAt} />
+      <input
+        ref={renderedAtRef}
+        type="hidden"
+        name="renderedAt"
+        defaultValue="0"
+      />
       <div aria-hidden="true" className="hidden">
         <label htmlFor="siteWeb">Site web</label>
         <input id="siteWeb" name="siteWeb" type="text" tabIndex={-1} autoComplete="off" />
