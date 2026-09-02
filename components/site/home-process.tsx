@@ -20,7 +20,7 @@ export function HomeProcess() {
         ))}
       </div>
       <p className="text-center font-heading text-[24px] leading-[30px] font-bold text-brand">
-        Vous n&apos;avez qu&apos;à vous occuper des réservations et des valises !
+        Vous n&apos;avez qu&apos;à vous occuper des réservations, des valises et des enfants !
       </p>
     </section>
   );
