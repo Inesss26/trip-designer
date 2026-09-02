@@ -26,7 +26,7 @@ export default async function HomePage() {
     listPublishedReviews(),
   ]);
 
-  const siteName = content["site.name"] ?? "MyTripDesigner";
+  const siteName = content["site.name"] || "MyTripDesigner";
 
   return (
     <>
@@ -46,7 +46,7 @@ export default async function HomePage() {
           <div className="mt-6 flex flex-wrap items-center gap-3">
             <Button asChild>
               <Link href="/contact">
-                {content["home.hero.cta"] ?? "Parlons de votre projet"}
+                {content["home.hero.cta"] || "Parlons de votre projet"}
               </Link>
             </Button>
             <Button asChild variant="outline">

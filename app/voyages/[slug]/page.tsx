@@ -54,7 +54,7 @@ export default async function TripPage({
 
   return (
     <>
-      <SiteHeader siteName={content["site.name"] ?? "MyTripDesigner"} />
+      <SiteHeader siteName={content["site.name"] || "MyTripDesigner"} />
 
       <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-12">
         <nav aria-label="Fil d'Ariane" className="text-sm text-muted-foreground">

@@ -29,7 +29,7 @@ export default async function ContactPage({
 
   return (
     <>
-      <SiteHeader siteName={content["site.name"] ?? "MyTripDesigner"} />
+      <SiteHeader siteName={content["site.name"] || "MyTripDesigner"} />
 
       <main className="mx-auto w-full max-w-2xl flex-1 px-4 py-12">
         <h1 className="text-3xl font-semibold tracking-tight">
@@ -47,7 +47,7 @@ export default async function ContactPage({
         <div className="mt-8">
           <ContactForm
             confirmationMessage={
-              content["contact.confirmation"] ??
+              content["contact.confirmation"] ||
               "Merci, votre demande est bien arrivée."
             }
             defaultDestination={requestedTrip?.destination ?? ""}

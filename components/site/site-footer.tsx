@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { SiteContentMap } from "@/lib/data/types";
 
 export function SiteFooter({ content }: { content: SiteContentMap }) {
-  const siteName = content["site.name"] ?? "MyTripDesigner";
+  const siteName = content["site.name"] || "MyTripDesigner";
   const email = content["site.email"];
   const phone = content["site.phone"];
   const instagram = content["site.instagram"];

@@ -75,7 +75,13 @@ Avec la CLI Supabase, les étapes 2 et 3 se résument à `supabase db push` puis
 | `services` | Formules proposées, avec ce qui est inclus |
 | `reviews` | Avis clients, avec modération (`pending` / `published`) |
 | `leads` | Demandes envoyées depuis le formulaire de contact, avec suivi et notes internes |
-| `site_content` | Textes éditables du site, identifiés par une clé (`home.hero.title`, …) |
+| `site_content` | Valeurs des textes éditables du site, identifiés par une clé (`home.hero.title`, …) |
+
+Le catalogue des textes éditables (clés, libellés affichés dans
+l'administration, type de champ) est défini dans le code, dans `demoContent`
+([lib/data/demo.ts](lib/data/demo.ts)) : la base ne stocke que les valeurs
+modifiées. Ajouter un bloc de texte ne demande donc aucune migration, et
+l'écran Contenus fonctionne même si le seed n'a pas été appliqué.
 
 ### Sécurité des accès
 
