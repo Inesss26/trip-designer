@@ -5,6 +5,9 @@ const supabaseHost = process.env.NEXT_PUBLIC_SUPABASE_URL
   : null;
 
 const nextConfig: NextConfig = {
+  // La prévisualisation se fait sur 127.0.0.1 : sans cette autorisation, le
+  // rechargement à chaud et l'overlay d'erreurs de `next dev` sont bloqués.
+  allowedDevOrigins: ["127.0.0.1"],
   images: {
     remotePatterns: [
       // Images de démonstration, à remplacer par les photos réelles.
