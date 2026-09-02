@@ -12,6 +12,8 @@ import { listPublishedReviewsForTrip } from "@/lib/data/reviews";
 import { getPublishedTripBySlug } from "@/lib/data/trips";
 import { formatDuration, formatPrice } from "@/lib/format";
 
+export const revalidate = 3600;
+
 export async function generateMetadata({
   params,
 }: PageProps<"/voyages/[slug]">): Promise<Metadata> {

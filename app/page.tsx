@@ -11,6 +11,13 @@ import { listPublishedServices } from "@/lib/data/services";
 import { listPublishedTrips } from "@/lib/data/trips";
 import { formatPrice } from "@/lib/format";
 
+/**
+ * La page est régénérée à la demande après chaque modification dans
+ * l'administration (voir lib/revalidate.ts). Ce délai n'est qu'un filet de
+ * sécurité si un contenu est modifié directement dans Supabase.
+ */
+export const revalidate = 3600;
+
 export default async function HomePage() {
   const [content, services, trips, reviews] = await Promise.all([
     getContentMap(),

@@ -9,14 +9,9 @@ import {
   SESSION_COOKIE,
   sessionCookieOptions,
 } from "@/lib/auth/session";
+import type { LoginState } from "@/app/admin/login/state";
 import { adminPassword } from "@/lib/env";
 import { loginSchema } from "@/lib/validation/schemas";
-
-export type LoginState = {
-  error: string | null;
-};
-
-export const loginInitialState: LoginState = { error: null };
 
 /** Ralentit les tentatives ratées, sans prétendre remplacer un vrai rate limit. */
 function delayFailure(): Promise<void> {

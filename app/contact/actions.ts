@@ -1,26 +1,9 @@
 "use server";
 
+import type { ContactFormState } from "@/app/contact/state";
 import { createLead } from "@/lib/data/leads";
 import { DataError } from "@/lib/data/utils";
-import {
-  leadInputSchema,
-  toFieldErrors,
-  type FieldErrors,
-} from "@/lib/validation/schemas";
-
-export type ContactFormState = {
-  status: "idle" | "error" | "success";
-  message: string | null;
-  fieldErrors: FieldErrors;
-  values: Record<string, string>;
-};
-
-export const contactInitialState: ContactFormState = {
-  status: "idle",
-  message: null,
-  fieldErrors: {},
-  values: {},
-};
+import { leadInputSchema, toFieldErrors } from "@/lib/validation/schemas";
 
 const FIELDS = [
   "name",

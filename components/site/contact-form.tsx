@@ -2,10 +2,8 @@
 
 import { useActionState, useEffect, useRef } from "react";
 
-import {
-  contactInitialState,
-  submitContactRequest,
-} from "@/app/contact/actions";
+import { submitContactRequest } from "@/app/contact/actions";
+import { contactInitialState } from "@/app/contact/state";
 import { FieldError } from "@/components/site/field-error";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
