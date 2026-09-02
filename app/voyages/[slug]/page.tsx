@@ -3,8 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { ReviewList } from "@/components/site/review-list";
-import { SiteFooter } from "@/components/site/site-footer";
-import { SiteHeader } from "@/components/site/site-header";
+import { SiteShell } from "@/components/site/site-shell";
 import { TripCover } from "@/components/site/trip-cover";
 import { Button } from "@/components/ui/button";
 import { getContentMap } from "@/lib/data/content";
@@ -53,9 +52,7 @@ export default async function TripPage({
     .filter(Boolean);
 
   return (
-    <>
-      <SiteHeader siteName={content["site.name"] || "MyTripDesigner"} />
-
+    <SiteShell content={content}>
       <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-12">
         <nav aria-label="Fil d'Ariane" className="text-sm text-muted-foreground">
           <Link href="/#voyages" className="hover:underline">
@@ -149,8 +146,6 @@ export default async function TripPage({
           </div>
         </section>
       </main>
-
-      <SiteFooter content={content} />
-    </>
+    </SiteShell>
   );
 }

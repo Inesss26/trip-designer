@@ -1,0 +1,9 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="43" height="40" viewBox="0 0 43 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Button - Suivant">
+<mask id="path-1-inside-1_0_326" fill="white">
+<path d="M0 0H43V40H0V0Z"/>
+</mask>
+<path d="M0 0V-1H-1V0H0ZM43 0H44V-1H43V0ZM43 40V41H44V40H43ZM0 40H-1V41H0V40ZM0 0V1H43V0V-1H0V0ZM43 0H42V40H43H44V0H43ZM43 40V39H0V40V41H43V40ZM0 40H1V0H0H-1V40H0Z" fill="#3D0000" fill-opacity="0.5" mask="url(#path-1-inside-1_0_326)"/>
+<path id="Vector" d="M19.5 24L23.5 20L19.5 16" stroke="#3D0000" stroke-opacity="0.5" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>

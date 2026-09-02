@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 
 import { ContactForm } from "@/components/site/contact-form";
-import { SiteFooter } from "@/components/site/site-footer";
-import { SiteHeader } from "@/components/site/site-header";
+import { SiteShell } from "@/components/site/site-shell";
 import { getContentMap } from "@/lib/data/content";
 import { listPublishedTrips } from "@/lib/data/trips";
 
@@ -28,17 +27,15 @@ export default async function ContactPage({
     : undefined;
 
   return (
-    <>
-      <SiteHeader siteName={content["site.name"] || "MyTripDesigner"} />
-
+    <SiteShell content={content}>
       <main className="mx-auto w-full max-w-2xl flex-1 px-4 py-12">
-        <h1 className="text-3xl font-semibold tracking-tight">
+        <h1 className="font-heading text-3xl font-semibold tracking-tight text-brand">
           {content["contact.title"]}
         </h1>
-        <p className="mt-3 text-muted-foreground">{content["contact.intro"]}</p>
+        <p className="mt-3 text-brand/50">{content["contact.intro"]}</p>
 
         {requestedTrip ? (
-          <p className="mt-4 rounded-md border px-4 py-3 text-sm">
+          <p className="mt-4 rounded-md border border-brand/20 bg-white px-4 py-3 text-sm">
             Votre demande porte sur le voyage «&nbsp;{requestedTrip.title}
             &nbsp;». Précisez ce que vous aimeriez changer.
           </p>
@@ -54,8 +51,6 @@ export default async function ContactPage({
           />
         </div>
       </main>
-
-      <SiteFooter content={content} />
-    </>
+    </SiteShell>
   );
 }

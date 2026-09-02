@@ -249,20 +249,20 @@ insert into public.site_content (key, label, kind, value, sort_order) values
 ('site.phone', 'Téléphone (optionnel)', 'text', '', 3),
 ('site.instagram', 'Compte Instagram (optionnel)', 'text', '@mytripdesigner', 4),
 ('home.hero.eyebrow', 'Accueil — surtitre', 'text', 'Créatrice de voyages sur mesure', 10),
-('home.hero.title', 'Accueil — titre principal', 'text', 'Des voyages construits pour vous, pas pour tout le monde', 11),
-('home.hero.subtitle', 'Accueil — sous-titre', 'richtext', 'Je conçois des itinéraires détaillés, testés et adaptés à votre rythme. Vous partez avec un carnet complet et l''assurance de ne rien avoir à improviser.', 12),
-('home.hero.cta', 'Accueil — libellé du bouton principal', 'text', 'Parlons de votre projet', 13),
-('home.services.title', 'Accueil — titre de la section services', 'text', 'Comment nous pouvons travailler ensemble', 20),
+('home.hero.title', 'Accueil — titre principal', 'text', 'Votre voyage sur-mesure, avec l''esprit Dolce Vita', 11),
+('home.hero.subtitle', 'Accueil — sous-titre', 'richtext', 'Spécialiste de l''Italie, je conçois des itinéraires uniques et immersifs en Europe et dans le monde entier. Confiez-moi votre projet et partez l''esprit léger.', 12),
+('home.hero.cta', 'Accueil — libellé du bouton principal', 'text', 'Réserver mon appel découverte', 13),
+('home.services.title', 'Accueil — titre de la section services', 'text', 'Choisissez votre façon de voyager', 20),
 ('home.services.intro', 'Accueil — introduction des services', 'richtext', 'Quatre formules, du simple appel de cadrage à la prise en charge complète des réservations.', 21),
 ('home.trips.title', 'Accueil — titre de la section voyages', 'text', 'Quelques voyages déjà conçus', 30),
 ('home.trips.intro', 'Accueil — introduction des voyages', 'richtext', 'Ces itinéraires ont été construits pour de vraies familles et de vrais couples. Ils servent de point de départ, jamais de catalogue figé.', 31),
 ('home.reviews.title', 'Accueil — titre de la section avis', 'text', 'Ce qu''en disent les voyageurs', 40),
-('home.about.title', 'Accueil — titre « à propos »', 'text', 'Pourquoi passer par une travel planner', 50),
-('home.about.body', 'Accueil — texte « à propos »', 'richtext', 'Organiser un voyage prend en moyenne une trentaine d''heures de recherche, et la fatigue arrive avant les bonnes décisions. Mon travail consiste à faire ces heures pour vous, puis à vous rendre un parcours lisible que vous pouvez encore modifier.', 51),
+('home.about.title', 'Accueil — titre « à propos »', 'text', 'Ciao, moi c''est Agathe !', 50),
+('home.about.body', 'Accueil — texte « à propos »', 'richtext', 'Franco-italienne installée à Rome, j''infuse l''esprit de la Dolce Vita dans chacun de vos voyages. Si l''Italie est mon terrain de jeu quotidien, mon expertise s''étend à l''Europe et au reste du monde pour concevoir des séjours uniques.' || E'\n\n' || 'Mon obsession ? Ne pas seulement vous faire visiter une destination, mais vous faire repartir avec des souvenirs plein la tête.', 51),
 ('contact.title', 'Contact — titre', 'text', 'Parlons de votre prochain voyage', 60),
 ('contact.intro', 'Contact — introduction', 'richtext', 'Décrivez votre projet en quelques lignes, même s''il est encore flou. Je réponds sous deux jours ouvrés avec une première piste et le tarif correspondant.', 61),
 ('contact.confirmation', 'Contact — message après envoi', 'richtext', 'Merci, votre demande est bien arrivée. Je vous réponds sous deux jours ouvrés à l''adresse indiquée.', 62),
-('footer.tagline', 'Pied de page — accroche', 'text', 'Itinéraires sur mesure, carnets de voyage et logistique gérée de bout en bout.', 70)
+('footer.tagline', 'Pied de page — accroche', 'text', 'Créatrice de souvenirs', 70)
 -- `value` est volontairement absent du update : relancer le seed ne réécrit pas
 -- les textes déjà modifiés depuis l'administration.
 on conflict (key) do update set
