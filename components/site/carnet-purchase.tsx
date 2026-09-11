@@ -1,0 +1,171 @@
+import Image from "next/image";
+import Link from "next/link";
+
+import { CarnetCard, CarnetMeta } from "@/components/site/carnet-card";
+import { CarnetFlipbook } from "@/components/site/carnet-flipbook";
+import { CarnetsBenefits } from "@/components/site/carnets-benefits";
+import { CarnetsCompare } from "@/components/site/carnets-compare";
+import { SiteIcon } from "@/components/site/site-icon";
+import { Button } from "@/components/ui/button";
+import {
+  carnetIncludes,
+  carnetRegionLabels,
+  formatCarnetPrice,
+  type Carnet,
+} from "@/lib/carnets-content";
+
+export function CarnetPurchase({
+  carnet,
+  related,
+}: {
+  carnet: Carnet;
+  related: Carnet[];
+}) {
+  const orderHref = `/contact?carnet=${carnet.slug}`;
+
+  return (
+    <>
+      <section className="relative h-[240px] w-full overflow-hidden sm:h-[350px]">
+        <Image
+          src={carnet.heroImage}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-gradient-to-b from-brand-navy/20 to-transparent"
+        />
+      </section>
+
+      <section className="mx-auto flex w-full max-w-[1440px] flex-col gap-16 px-4 py-12 sm:px-8 lg:flex-row lg:items-start lg:justify-between lg:gap-16 lg:px-11 lg:py-16">
+        <div className="flex min-w-0 flex-1 flex-col gap-11">
+          <div className="flex flex-col gap-8">
+            <nav
+              aria-label="Fil d'Ariane"
+              className="flex flex-wrap items-center gap-2 text-[10px] font-bold tracking-[1.7px] text-brand/30 uppercase"
+            >
+              <Link href="/carnets" className="hover:text-brand">
+                Carnets
+              </Link>
+              <span aria-hidden>/</span>
+              <span>{carnetRegionLabels[carnet.region]}</span>
+            </nav>
+            <CarnetMeta
+              location={carnet.location}
+              durationDays={carnet.durationDays}
+            />
+            <h1 className="font-heading text-[40px] leading-[44px] font-bold tracking-[-1.2px] text-brand sm:text-[64px] sm:leading-[68px] sm:tracking-[-1.92px]">
+              {carnet.title}
+            </h1>
+            <div className="flex flex-col gap-5 text-brand/50">
+              <p className="text-[15px] leading-5 font-semibold">
+                {carnet.tagline}
+              </p>
+              <p className="text-[14px] leading-[26.6px] font-light">
+                {carnet.description}
+              </p>
+            </div>
+          </div>
+
+          {carnet.gallery.length > 0 ? (
+            <div className="grid grid-cols-3 gap-2">
+              {carnet.gallery.map((src, index) => (
+                <div
+                  key={src}
+                  className="relative h-[96px] overflow-hidden bg-brand-cream sm:h-[144px]"
+                >
+                  <Image
+                    src={src}
+                    alt={`${carnet.title} — photo ${index + 1}`}
+                    fill
+                    sizes="(max-width: 1024px) 30vw, 220px"
+                    className="object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          ) : null}
+
+          <CarnetFlipbook />
+        </div>
+
+        <aside className="w-full shrink-0 lg:sticky lg:top-8 lg:w-[437px]">
+          <div className="flex flex-col gap-8 border-t-2 border-brand-teal bg-white px-8 pt-[34px] pb-8">
+            <div className="flex flex-col gap-4">
+              <p className="text-[10px] font-bold tracking-[1.7px] text-brand/30 uppercase">
+                Accès immédiat
+              </p>
+              <p className="font-heading text-[42px] leading-[48px] font-bold tracking-[-0.84px] text-brand">
+                {formatCarnetPrice()}
+              </p>
+              <p className="text-[12px] leading-[15px] font-medium text-brand/50">
+                Paiement unique
+              </p>
+            </div>
+            <div className="h-px w-[276px] max-w-full bg-brand/30" />
+            <ul className="flex flex-col gap-3">
+              {carnetIncludes.map((item) => (
+                <li key={item} className="flex items-center gap-2.5">
+                  <SiteIcon src="/icons/diamond.svg" size={8} />
+                  <p className="text-[15px] leading-5 font-light text-brand/50">
+                    {item}
+                  </p>
+                </li>
+              ))}
+            </ul>
+            <div className="flex flex-col gap-4">
+              <Button asChild variant="brandSecondary" size="cta" className="w-full">
+                <Link href={orderHref}>Commander ce carnet</Link>
+              </Button>
+              <p className="flex items-center justify-center gap-2 text-[12px] leading-[15px] font-medium text-brand/30">
+                <SiteIcon src="/icons/carnets/lock.svg" width={9} height={10} />
+                Paiement sécurisé
+              </p>
+            </div>
+          </div>
+          <div className="flex flex-col gap-6 bg-brand-rose/90 p-8">
+            <div className="flex items-center gap-3">
+              <SiteIcon src="/icons/carnets/sparkle.svg" size={20} />
+              <p className="text-[15px] leading-5 font-semibold text-brand">
+                Envie de cet itinéraire sur-mesure jour par jour ?
+              </p>
+            </div>
+            <p className="text-[15px] leading-5 font-light text-brand/50">
+              Dans la formule Far Niente, je réadapte ce carnet à vos dates
+              exactes avec votre carte Google My Maps (à partir de 40 €/j).
+            </p>
+            <Button asChild variant="brandOutline" size="cta" className="w-full bg-white">
+              <Link href="/contact">réserver mon Appel découverte</Link>
+            </Button>
+          </div>
+        </aside>
+      </section>
+
+      <CarnetsCompare />
+      <CarnetsBenefits />
+
+      {related.length > 0 ? (
+        <section className="bg-brand-sand px-4 py-16 sm:px-8 sm:py-16 lg:px-11">
+          <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-10">
+            <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
+              <h2 className="font-heading text-[32px] leading-10 font-bold tracking-[-0.84px] text-brand sm:text-[42px] sm:leading-[48px]">
+                Explorez d&apos;autres destinations
+              </h2>
+              <Button asChild variant="brandOutline" size="cta">
+                <Link href="/carnets">Voir les autres carnets</Link>
+              </Button>
+            </div>
+            <div className="grid gap-px bg-brand/30 lg:grid-cols-3">
+              {related.map((item) => (
+                <CarnetCard key={item.slug} carnet={item} />
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+    </>
+  );
+}

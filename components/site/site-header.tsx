@@ -14,7 +14,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { instagramUrl, siteNav } from "@/lib/site";
+import { instagramUrl, isNavActive, siteNav } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 function NavLink({
@@ -65,11 +65,7 @@ export function SiteHeader({ instagram }: { instagram?: string }) {
                 key={item.href}
                 href={item.href}
                 label={item.label}
-                active={
-                  item.href === "/"
-                    ? pathname === "/"
-                    : pathname === item.href
-                }
+                active={isNavActive(pathname, item.href)}
               />
             ))}
           </div>
@@ -130,7 +126,11 @@ export function SiteHeader({ instagram }: { instagram?: string }) {
               <nav className="flex flex-col gap-1 px-4">
                 {siteNav.map((item) => (
                   <SheetClose asChild key={item.href}>
-                    <NavLink href={item.href} label={item.label} />
+                    <NavLink
+                      href={item.href}
+                      label={item.label}
+                      active={isNavActive(pathname, item.href)}
+                    />
                   </SheetClose>
                 ))}
                 <SheetClose asChild>

@@ -52,7 +52,7 @@ export function HomeAbout() {
           ))}
         </div>
         <Button asChild variant="brandOutline" size="cta" className="w-full">
-          <Link href="/contact">découvrir mon histoire</Link>
+          <Link href="/a-propos">découvrir mon histoire</Link>
         </Button>
       </div>
     </section>

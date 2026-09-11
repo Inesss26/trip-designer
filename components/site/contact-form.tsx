@@ -10,11 +10,18 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { cn } from "@/lib/utils";
 
 type ContactFormProps = {
   confirmationMessage: string;
   defaultDestination?: string;
 };
+
+const fieldClass =
+  "h-[46px] rounded-[4px] border-brand/30 bg-white px-[17px] text-[12px] font-medium text-brand placeholder:text-brand/30 focus-visible:border-brand focus-visible:ring-brand/20";
+
+const labelClass =
+  "text-[10px] font-bold tracking-[1.7px] text-brand/50 uppercase";
 
 export function ContactForm({
   confirmationMessage,
@@ -27,9 +34,6 @@ export function ContactForm({
   const errorRef = useRef<HTMLDivElement>(null);
   const renderedAtRef = useRef<HTMLInputElement>(null);
 
-  // Le timestamp est écrit côté client après hydratation : une valeur rendue
-  // par le serveur serait figée par le cache et casserait le filtre anti-spam.
-  // Sans JavaScript, il reste à 0 et le contrôle de durée est ignoré.
   useEffect(() => {
     if (renderedAtRef.current) {
       renderedAtRef.current.value = String(Date.now());
@@ -55,7 +59,7 @@ export function ContactForm({
     state.values[name] ?? fallback;
 
   return (
-    <form action={formAction} className="space-y-6" noValidate>
+    <form action={formAction} className="flex w-full flex-col gap-8" noValidate>
       {state.message ? (
         <div ref={errorRef} tabIndex={-1} aria-live="polite">
           <Alert variant="destructive">
@@ -73,109 +77,86 @@ export function ContactForm({
       />
       <div aria-hidden="true" className="hidden">
         <label htmlFor="siteWeb">Site web</label>
-        <input id="siteWeb" name="siteWeb" type="text" tabIndex={-1} autoComplete="off" />
+        <input
+          id="siteWeb"
+          name="siteWeb"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+        />
       </div>
 
-      <div className="grid gap-6 sm:grid-cols-2">
-        <div className="space-y-2">
-          <Label htmlFor="name">Nom et prénom *</Label>
+      <div className="grid gap-5 sm:grid-cols-2">
+        <div className="flex flex-col gap-2">
+          <Label htmlFor="name" className={labelClass}>
+            Nom complet *
+          </Label>
           <Input
             id="name"
             name="name"
             required
             autoComplete="name"
+            placeholder="Camille Dupont"
             defaultValue={value("name")}
+            className={fieldClass}
+            aria-invalid={Boolean(state.fieldErrors.name)}
             aria-describedby={state.fieldErrors.name ? "name-error" : undefined}
           />
           <FieldError errors={state.fieldErrors} name="name" />
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="email">Adresse e-mail *</Label>
+        <div className="flex flex-col gap-2">
+          <Label htmlFor="email" className={labelClass}>
+            Adresse email *
+          </Label>
           <Input
             id="email"
             name="email"
             type="email"
             required
             autoComplete="email"
+            placeholder="camille@email.com"
             defaultValue={value("email")}
+            className={fieldClass}
+            aria-invalid={Boolean(state.fieldErrors.email)}
             aria-describedby={
               state.fieldErrors.email ? "email-error" : undefined
             }
           />
           <FieldError errors={state.fieldErrors} name="email" />
         </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="phone">Téléphone</Label>
-          <Input
-            id="phone"
-            name="phone"
-            type="tel"
-            autoComplete="tel"
-            defaultValue={value("phone")}
-          />
-          <FieldError errors={state.fieldErrors} name="phone" />
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="destination">Destination envisagée</Label>
-          <Input
-            id="destination"
-            name="destination"
-            placeholder="Japon, Islande, pas encore d'idée…"
-            defaultValue={value("destination", defaultDestination)}
-          />
-          <FieldError errors={state.fieldErrors} name="destination" />
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="travelPeriod">Période de voyage</Label>
-          <Input
-            id="travelPeriod"
-            name="travelPeriod"
-            placeholder="Printemps 2027, 2 semaines"
-            defaultValue={value("travelPeriod")}
-          />
-          <FieldError errors={state.fieldErrors} name="travelPeriod" />
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="partySize">Nombre de voyageurs</Label>
-          <Input
-            id="partySize"
-            name="partySize"
-            type="number"
-            min={1}
-            defaultValue={value("partySize")}
-            aria-describedby={
-              state.fieldErrors.partySize ? "partySize-error" : undefined
-            }
-          />
-          <FieldError errors={state.fieldErrors} name="partySize" />
-        </div>
-
-        <div className="space-y-2 sm:col-span-2">
-          <Label htmlFor="budgetRange">Budget approximatif</Label>
-          <Input
-            id="budgetRange"
-            name="budgetRange"
-            placeholder="3 000 à 5 000 € hors vols"
-            defaultValue={value("budgetRange")}
-          />
-          <FieldError errors={state.fieldErrors} name="budgetRange" />
-        </div>
       </div>
 
-      <div className="space-y-2">
-        <Label htmlFor="message">Votre projet *</Label>
+      <div className="flex flex-col gap-2">
+        <Label htmlFor="destination" className={labelClass}>
+          Destination / Type de projet
+        </Label>
+        <Input
+          id="destination"
+          name="destination"
+          placeholder="Italie, carnet sur-mesure, appel découverte…"
+          defaultValue={value("destination", defaultDestination)}
+          className={fieldClass}
+        />
+        <FieldError errors={state.fieldErrors} name="destination" />
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <Label htmlFor="message" className={labelClass}>
+          Votre message *
+        </Label>
         <Textarea
           id="message"
           name="message"
-          rows={7}
           required
-          placeholder="Qui part, ce que vous aimez, ce que vous voulez éviter, les contraintes de dates…"
+          rows={6}
+          placeholder="Décrivez votre projet, vos envies, vos dates…"
           defaultValue={value("message")}
+          className={cn(
+            fieldClass,
+            "h-[140px] min-h-[140px] py-[13px] field-sizing-fixed",
+          )}
+          aria-invalid={Boolean(state.fieldErrors.message)}
           aria-describedby={
             state.fieldErrors.message ? "message-error" : undefined
           }
@@ -183,12 +164,18 @@ export function ContactForm({
         <FieldError errors={state.fieldErrors} name="message" />
       </div>
 
-      <div className="flex flex-wrap items-center gap-3">
-        <Button type="submit" disabled={pending}>
-          {pending ? "Envoi en cours…" : "Envoyer ma demande"}
+      <div className="flex flex-col gap-5">
+        <Button
+          type="submit"
+          variant="brand"
+          size="cta"
+          className="w-full"
+          disabled={pending}
+        >
+          {pending ? "Envoi en cours…" : "Envoyer mon message"}
         </Button>
-        <p className="text-sm text-muted-foreground">
-          Les champs marqués d&apos;une astérisque sont obligatoires.
+        <p className="text-center text-[12px] leading-[15px] font-medium text-brand/30">
+          Toute donnée partagée est strictement confidentielle
         </p>
       </div>
     </form>

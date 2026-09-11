@@ -30,9 +30,7 @@ export function HomeFormulas() {
             Choisissez votre façon de voyager
           </h2>
           <Button asChild variant="brandSecondary" size="cta">
-            <Link href="#services-complementaires">
-              voir toutes les formules
-            </Link>
+            <Link href="/formules">voir toutes les formules</Link>
           </Button>
         </div>
       </div>

@@ -74,6 +74,14 @@ export function SiteFooter({ content }: { content: SiteContentMap }) {
                     Contact
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    href="/formules#faq"
+                    className="inline-block px-3 py-2 text-[12px] font-medium tracking-[0.72px] text-brand/50 uppercase transition-opacity hover:opacity-70"
+                  >
+                    FAQ
+                  </Link>
+                </li>
               </ul>
             </nav>
 

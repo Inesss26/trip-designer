@@ -55,8 +55,8 @@ export default async function TripPage({
     <SiteShell content={content}>
       <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-12">
         <nav aria-label="Fil d'Ariane" className="text-sm text-muted-foreground">
-          <Link href="/#voyages" className="hover:underline">
-            Retour aux voyages
+          <Link href="/carnets" className="hover:underline">
+            Retour aux carnets
           </Link>
         </nav>
 
