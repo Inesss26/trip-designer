@@ -27,7 +27,7 @@ export function SiteHeader({ instagram }: { instagram?: string }) {
       <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between px-4 py-5 sm:px-8 lg:px-11">
         <Link
           href="/"
-          className="type-subtitle leading-none text-brand-primary"
+          className="type-logo text-brand-primary"
         >
           MY TRIP DESIGNER
         </Link>
@@ -43,7 +43,6 @@ export function SiteHeader({ instagram }: { instagram?: string }) {
                   key={item.href}
                   href={item.href}
                   active={isNavActive(pathname, item.href)}
-                  className="p-3"
                 >
                   {item.label}
                 </SiteNavLink>
@@ -120,7 +119,6 @@ function MobileMenu({ pathname }: { pathname: string }) {
               <SiteNavLink
                 href={item.href}
                 active={isNavActive(pathname, item.href)}
-                className="p-3"
               >
                 {item.label}
               </SiteNavLink>

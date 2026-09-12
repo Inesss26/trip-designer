@@ -18,7 +18,7 @@ export function HomeHero() {
           aria-hidden
           className="absolute inset-0 bg-gradient-to-b from-accent-dark/5 to-brand-primary/30"
         />
-        <p className="absolute inset-x-4 bottom-24 text-center type-h1-display text-text-on-dark sm:bottom-32">
+        <p className="absolute inset-x-4 bottom-16 text-center type-h1-display text-text-on-dark sm:bottom-20">
           MY TRIP DESIGNER
         </p>
       </div>
@@ -36,12 +36,12 @@ export function HomeHero() {
         <h1 className="type-h3 text-text-brand">
           {homeHeroCopy.title}
         </h1>
-        <p className="max-w-2xl type-body text-brand/50 whitespace-pre-line">
+        <p className="max-w-xl type-body text-brand/50 whitespace-pre-line">
           {homeHeroCopy.subtitle}
         </p>
       </div>
 
-      <div className="grid w-full max-w-[1440px] grid-cols-1 gap-8 px-4 pb-8 text-center sm:grid-cols-3 sm:gap-[30px] sm:px-8 lg:px-[253px]">
+      <div className="grid w-full max-w-[1440px] grid-cols-1 gap-8 px-4 pb-8 text-center sm:grid-cols-3 sm:gap-16 sm:px-8 lg:gap-24 lg:px-16">
         {homeStats.map((stat) => (
           <div key={stat.label}>
             <p className="type-h1 leading-none text-text-brand">

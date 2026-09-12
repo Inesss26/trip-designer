@@ -6,11 +6,11 @@ import { cn } from "@/lib/utils";
 export function HomeEngagement() {
   return (
     <section className="mx-auto flex w-full max-w-[1440px] flex-col gap-[52px] px-4 sm:px-8 lg:px-11">
-      <div className="flex flex-col gap-6 lg:flex-row lg:gap-16">
-        <p className="shrink-0 type-tag text-brand">
+      <div className="grid gap-5 md:grid-cols-3">
+        <p className="type-tag text-brand">
           Mon engagement
         </p>
-        <div className="type-h3">
+        <div className="type-h3 md:col-span-2">
           <p className="text-brand">
             Vous créer un voyage immersif et sur-mesure, pensé comme une
             véritable expérience.

@@ -159,9 +159,7 @@ export function HomeExtras() {
               services à la carte
             </p>
             <h3 className="type-subtitle text-brand">
-              Un coup de main ciblé
-              <br />
-              ou un événement spécial
+              Un coup de main ciblé{"\u00A0"}ou un événement spécial
             </h3>
             <p className="type-body text-brand">
               Vous gérez votre voyage mais souhaitez déléguer une tâche précise
@@ -171,23 +169,27 @@ export function HomeExtras() {
           <div className="min-w-0 w-full">
             <p className="type-tag text-brand-primary-50">Tarif</p>
             <ul>
-              <li className="flex items-center justify-between border-b border-brand-primary-30 py-3 text-text-brand">
-                <span className="type-body">
+              <li className="flex items-center justify-between gap-5 border-b border-brand-primary-30 py-3 text-text-brand">
+                <span className="type-body min-w-0 flex-1">
                   Recherche de transports
                 </span>
-                <span className="type-subtitle">150 €</span>
+                <span className="type-subtitle shrink-0 text-right whitespace-nowrap">
+                  150 €
+                </span>
               </li>
-              <li className="flex items-center justify-between border-b border-brand-primary-30 py-3 text-text-brand">
-                <span className="type-body">
+              <li className="flex items-center justify-between gap-5 border-b border-brand-primary-30 py-3 text-text-brand">
+                <span className="type-body min-w-0 flex-1">
                   Recherche d&apos;hébergements
                 </span>
-                <span className="type-subtitle">150 €</span>
+                <span className="type-subtitle shrink-0 text-right whitespace-nowrap">
+                  150 €
+                </span>
               </li>
-              <li className="flex items-center justify-between py-3 text-text-brand">
-                <span className="type-body">
+              <li className="flex items-center justify-between gap-5 py-3 text-text-brand">
+                <span className="type-body min-w-0 flex-1">
                   Moments uniques (EVJF, Lune de miel)
                 </span>
-                <span className="type-subtitle">
+                <span className="type-subtitle shrink-0 text-right whitespace-nowrap">
                   Sur devis
                 </span>
               </li>

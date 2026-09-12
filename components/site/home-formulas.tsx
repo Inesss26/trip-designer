@@ -9,7 +9,7 @@ export function HomeFormulas() {
   return (
     <section
       id="formules"
-      className="relative mx-auto flex w-full max-w-[1440px] scroll-mt-8 flex-col gap-11 px-4 py-10 sm:px-8 sm:py-[52px] lg:px-11"
+      className="relative w-full scroll-mt-8 py-10 sm:py-[52px]"
     >
       <div aria-hidden className="absolute inset-0">
         <Image
@@ -22,21 +22,22 @@ export function HomeFormulas() {
         <div className="absolute inset-0 bg-gradient-to-b from-text-main/30 to-brand-primary/20" />
       </div>
 
-      <div className="relative flex flex-col gap-6">
-        <p className="type-tag text-brand-sand">
-          formules
-        </p>
-        <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
-          <h2 className="max-w-[450px] type-h2 text-text-on-dark">
-            Choisissez votre façon de voyager
-          </h2>
-          <Button asChild variant="dark" size="cta">
-            <Link href="/formules">voir toutes les formules</Link>
-          </Button>
+      <div className="relative mx-auto flex w-full max-w-[1440px] flex-col gap-11 px-4 sm:px-8 lg:px-11">
+        <div className="flex flex-col gap-6">
+          <p className="type-tag text-brand-sand">
+            formules
+          </p>
+          <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
+            <h2 className="max-w-[450px] type-h2 text-text-on-dark">
+              Choisissez votre façon de voyager
+            </h2>
+            <Button asChild variant="dark" size="cta">
+              <Link href="/formules">voir toutes les formules</Link>
+            </Button>
+          </div>
         </div>
-      </div>
 
-      <div className="relative grid items-center gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.12fr)_minmax(0,1fr)]">
+        <div className="relative grid items-center gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.12fr)_minmax(0,1fr)]">
         {homeFormulas.map((formula) => (
           <article
             key={formula.id}
@@ -106,6 +107,7 @@ export function HomeFormulas() {
             </Button>
           </article>
         ))}
+        </div>
       </div>
     </section>
   );

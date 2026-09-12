@@ -1,10 +1,11 @@
 import type { ComponentProps, ReactNode } from "react";
 import Link from "next/link";
 
+import { SiteIcon } from "@/components/site/site-icon";
 import { cn } from "@/lib/utils";
 
 const navLinkClass =
-  "inline-flex items-center gap-2.5 rounded-[10px] type-button text-brand-primary-50 transition-colors hover:text-brand-primary";
+  "group inline-flex items-center gap-[10px] rounded-[10px] p-3 type-nav-cta text-brand-primary-50 transition-colors hover:font-semibold hover:text-brand-primary";
 
 export function SiteNavLink({
   href,
@@ -22,8 +23,23 @@ export function SiteNavLink({
 } & Omit<ComponentProps<"a">, "href">) {
   const classes = cn(
     navLinkClass,
-    active && "text-brand-primary",
+    active
+      ? "font-semibold text-brand-primary"
+      : "font-medium",
     className,
+  );
+
+  const content = (
+    <>
+      {children}
+      {external ? (
+        <SiteIcon
+          src={active ? "/icons/external-hover.svg" : "/icons/external.svg"}
+          hoverSrc="/icons/external-hover.svg"
+          size={6}
+        />
+      ) : null}
+    </>
   );
 
   if (external) {
@@ -32,17 +48,17 @@ export function SiteNavLink({
         href={href}
         target="_blank"
         rel="noreferrer"
-        className={cn("group", classes)}
+        className={classes}
         {...props}
       >
-        {children}
+        {content}
       </a>
     );
   }
 
   return (
     <Link href={href} className={classes} {...props}>
-      {children}
+      {content}
     </Link>
   );
 }

@@ -11,6 +11,7 @@
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-roca), ui-serif, Georgia, serif;
   --font-body: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  /* Intended: 29LT Zarid Serif Regular. Files are not in the repo; Roca One Regular is the licensed fallback. */
   --font-logo: var(--font-roca), ui-serif, Georgia, serif;
 
   --color-brand-primary: #3d0000;
@@ -239,6 +240,14 @@
   letter-spacing: 0;
 }
 
+@utility type-logo {
+  font-family: var(--font-logo);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
 @utility type-body {
   font-family: var(--font-body);
   font-size: 15px;
@@ -276,8 +285,16 @@
   font-family: var(--font-body);
   font-size: 12px;
   font-weight: 700;
-  line-height: 18px;
-  letter-spacing: 0;
+  line-height: 15px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+@utility type-nav-cta {
+  font-family: var(--font-body);
+  font-size: 12px;
+  line-height: normal;
+  letter-spacing: 0.72px;
   text-transform: uppercase;
 }
 

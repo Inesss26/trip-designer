@@ -72,7 +72,7 @@ export function HomeCta() {
       />
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-b from-brand-navy/60 to-brand/30"
+        className="absolute inset-0 bg-gradient-to-b from-brand-navy/75 to-brand-navy/50"
       />
       <div className="relative flex max-w-[512px] flex-col items-center gap-6">
         <div className="relative size-[95px] opacity-80">
