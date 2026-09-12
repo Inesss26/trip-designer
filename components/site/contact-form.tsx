@@ -18,10 +18,10 @@ type ContactFormProps = {
 };
 
 const fieldClass =
-  "h-[46px] rounded-[4px] border-brand/30 bg-white px-[17px] text-[12px] font-medium text-brand placeholder:text-brand/30 focus-visible:border-brand focus-visible:ring-brand/20";
+  "h-[46px] rounded-[4px] border-brand-primary-30 bg-bg-default px-[17px] type-body-small text-text-brand placeholder:text-brand-primary-30 focus-visible:border-brand-primary focus-visible:ring-brand-primary/20";
 
 const labelClass =
-  "text-[10px] font-bold tracking-[1.7px] text-brand/50 uppercase";
+  "type-tag text-brand/50";
 
 export function ContactForm({
   confirmationMessage,
@@ -167,14 +167,14 @@ export function ContactForm({
       <div className="flex flex-col gap-5">
         <Button
           type="submit"
-          variant="brand"
+          variant="primary"
           size="cta"
           className="w-full"
           disabled={pending}
         >
           {pending ? "Envoi en cours…" : "Envoyer mon message"}
         </Button>
-        <p className="text-center text-[12px] leading-[15px] font-medium text-brand/30">
+        <p className="text-center type-body-small text-brand/30">
           Toute donnée partagée est strictement confidentielle
         </p>
       </div>

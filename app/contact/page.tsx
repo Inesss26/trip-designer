@@ -46,23 +46,23 @@ export default async function ContactPage({
           className="mx-auto flex w-full max-w-[1440px] scroll-mt-8 flex-col gap-8 px-4 sm:px-8 lg:px-[115px]"
         >
           <div className="flex max-w-[665px] flex-col gap-5">
-            <h2 className="font-heading text-[32px] leading-10 font-bold tracking-[-0.84px] text-brand sm:text-[42px] sm:leading-[48px]">
+            <h2 className="type-h2 text-text-brand">
               Parlez moi de
-              <span className="block italic text-brand-teal">votre projet.</span>
+              <span className="block type-h2-italic text-brand-secondary">votre projet.</span>
             </h2>
-            <p className="text-[15px] leading-5 font-light text-brand/50">
+            <p className="type-body text-brand/50">
               Pour toute demande générale, projet de voyage ou simple
               curiosité — je lis chaque message et réponds sous 48h.
             </p>
           </div>
 
           {requestedCarnet ? (
-            <p className="max-w-[665px] border border-brand/20 bg-white px-4 py-3 text-sm">
+            <p className="max-w-[665px] border border-brand-primary-30 bg-bg-default px-4 py-3 type-body">
               Votre demande porte sur le carnet «&nbsp;{requestedCarnet.title}
               &nbsp;».
             </p>
           ) : requestedTrip ? (
-            <p className="max-w-[665px] border border-brand/20 bg-white px-4 py-3 text-sm">
+            <p className="max-w-[665px] border border-brand-primary-30 bg-bg-default px-4 py-3 type-body">
               Votre demande porte sur le voyage «&nbsp;{requestedTrip.title}
               &nbsp;». Précisez ce que vous aimeriez changer.
             </p>
@@ -80,27 +80,27 @@ export default async function ContactPage({
                 }
               />
             </div>
-            <aside className="flex w-full flex-col gap-8 bg-brand-sand p-8 lg:max-w-[360px]">
-              <h3 className="font-heading text-[24px] leading-[30px] font-bold text-brand">
+            <aside className="card-muted flex w-full flex-col gap-8 p-8 lg:max-w-[360px]">
+              <h3 className="type-subtitle text-brand">
                 Contact direct & Infos
               </h3>
               <div className="flex flex-col gap-3">
-                <p className="text-[10px] font-bold tracking-[1.7px] text-brand/30 uppercase">
+                <p className="type-tag text-brand/30">
                   Par Email
                 </p>
                 <a
                   href={`mailto:${email}`}
-                  className="text-[15px] leading-5 font-light text-brand hover:opacity-70"
+                  className="type-body text-brand hover:opacity-70"
                 >
                   {email}
                 </a>
               </div>
               <div className="h-px w-full bg-brand/30" />
               <div className="flex flex-col gap-3">
-                <p className="text-[10px] font-bold tracking-[1.7px] text-brand/30 uppercase">
+                <p className="type-tag text-brand/30">
                   Délai de réponse
                 </p>
-                <p className="text-[15px] leading-5 font-light text-brand">
+                <p className="type-body text-brand">
                   Sous 48h maximum.
                 </p>
               </div>

@@ -6,13 +6,13 @@ export function CarnetsCompare() {
   return (
     <section className="mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-4 sm:px-8 lg:px-11">
       <div className="flex flex-col gap-2">
-        <p className="text-[10px] font-bold tracking-[1.7px] text-brand/30 uppercase">
+        <p className="type-tag text-brand/30">
           {carnetsCompare.kicker}
         </p>
-        <h2 className="font-heading text-[32px] leading-10 font-bold tracking-[-0.84px] text-brand sm:text-[42px] sm:leading-[48px]">
+        <h2 className="type-h2 text-text-brand">
           {carnetsCompare.title}
         </h2>
-        <p className="text-[15px] leading-5 font-light text-brand/50">
+        <p className="type-body text-brand/50">
           {carnetsCompare.subtitle}
         </p>
       </div>
@@ -31,19 +31,19 @@ export function CarnetsCompare() {
                   key={column.id}
                   className={cn(
                     "relative w-[215px] px-5 py-5 text-center",
-                    column.featured && "bg-brand-navy",
+                    column.featured && "bg-accent-dark",
                   )}
                 >
                   {column.featured ? (
-                    <span className="absolute top-[-10px] left-1/2 -translate-x-1/2 bg-brand px-3 py-1 text-[7px] font-bold tracking-[1.4px] text-white uppercase">
+                    <span className="absolute top-[-10px] left-1/2 -translate-x-1/2 bg-brand-primary px-3 py-1 type-tag text-text-on-dark">
                       ✦ Populaire
                     </span>
                   ) : null}
                   {column.kicker ? (
                     <p
                       className={cn(
-                        "text-[10px] font-bold tracking-[1.7px] uppercase",
-                        column.featured ? "text-white" : "text-brand-teal",
+                        "type-tag",
+                        column.featured ? "text-text-on-dark" : "text-brand-secondary",
                       )}
                     >
                       {column.kicker}
@@ -51,9 +51,9 @@ export function CarnetsCompare() {
                   ) : null}
                   <p
                     className={cn(
-                      "font-heading text-[24px] leading-[30px] font-bold",
+                      "type-subtitle",
                       column.kicker && "mt-2",
-                      column.featured ? "text-white" : "text-brand-navy",
+                      column.featured ? "text-text-on-dark" : "text-accent-dark",
                     )}
                   >
                     {column.name}
@@ -67,7 +67,7 @@ export function CarnetsCompare() {
               <tr key={feature}>
                 <th
                   scope="row"
-                  className="h-14 px-7 text-left text-[12px] leading-[15px] font-medium whitespace-nowrap text-brand/50"
+                  className="h-14 px-7 text-left type-body-small whitespace-nowrap text-brand/50"
                 >
                   {feature}
                 </th>
@@ -76,7 +76,7 @@ export function CarnetsCompare() {
                     key={column.id}
                     className={cn(
                       "h-14 px-5 text-center",
-                      column.featured && "bg-brand-navy",
+                      column.featured && "bg-accent-dark",
                     )}
                   >
                     <span className="flex items-center justify-center">
@@ -92,7 +92,7 @@ export function CarnetsCompare() {
                       ) : (
                         <span
                           className={cn(
-                            "text-[16px] font-light tracking-[-0.3px]",
+                            "type-body",
                             column.featured ? "text-brand-sand" : "text-brand/30",
                           )}
                         >
@@ -107,7 +107,7 @@ export function CarnetsCompare() {
             <tr>
               <th
                 scope="row"
-                className="bg-brand-sand px-7 py-5 text-left text-[10px] font-bold tracking-[1.7px] text-brand-navy uppercase"
+                className="bg-bg-muted px-7 py-5 text-left type-tag text-accent-dark"
               >
                 Tarif
               </th>
@@ -116,14 +116,13 @@ export function CarnetsCompare() {
                   key={column.id}
                   className={cn(
                     "px-5 py-5 text-center",
-                    column.featured ? "bg-brand-navy" : "bg-brand-sand",
+                    column.featured ? "bg-accent-dark" : "bg-bg-muted",
                   )}
                 >
                   <p
                     className={cn(
-                      "font-heading leading-[30px] font-bold",
-                      column.id === "sur-mesure" ? "text-[16px]" : "text-[20px]",
-                      column.featured ? "text-white" : "text-brand-navy",
+                      "type-subtitle",
+                      column.featured ? "text-text-on-dark" : "text-accent-dark",
                     )}
                   >
                     {column.price}

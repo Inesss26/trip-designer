@@ -6,14 +6,14 @@ export function AboutVision() {
   return (
     <section className="mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-4 sm:px-8 lg:px-11">
       <div className="flex max-w-[666px] flex-col gap-5">
-        <p className="text-[10px] font-bold tracking-[1.7px] text-brand/30 uppercase">
+        <p className="type-tag text-brand/30">
           {aboutVision.kicker}
         </p>
-        <h2 className="font-heading text-[32px] leading-10 font-bold tracking-[-0.84px] text-brand sm:text-[42px] sm:leading-[48px]">
+        <h2 className="type-h2 text-text-brand">
           {aboutVision.title}{" "}
-          <span className="italic text-brand-teal">{aboutVision.titleAccent}</span>
+          <span className="type-h2-italic text-brand-secondary">{aboutVision.titleAccent}</span>
         </h2>
-        <p className="text-[15px] leading-5 font-light text-brand/50">
+        <p className="type-body text-brand/50">
           {aboutVision.subtitle}
         </p>
       </div>
@@ -30,11 +30,11 @@ export function AboutVision() {
                 className="object-cover"
               />
             </div>
-            <div className="flex flex-1 flex-col gap-5 bg-brand-sand p-8 sm:p-10">
-              <p className="text-[10px] font-bold tracking-[1.7px] text-brand uppercase">
+            <div className="card-muted flex flex-1 flex-col gap-5 p-8 sm:p-10">
+              <p className="type-tag text-brand">
                 {pillar.kicker}
               </p>
-              <p className="text-[15px] leading-5 font-light text-brand">
+              <p className="type-body text-brand">
                 {pillar.text}
               </p>
             </div>

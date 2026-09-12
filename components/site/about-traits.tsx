@@ -20,10 +20,10 @@ function Trait({
     <div className="flex items-center gap-5 px-3">
       <SiteIcon src={icon} width={iconWidth} height={iconHeight} />
       <div className="flex flex-col gap-3">
-        <h3 className="font-heading text-[24px] leading-[30px] font-bold text-brand">
+        <h3 className="type-subtitle text-brand">
           {title}
         </h3>
-        <p className="text-[15px] leading-5 font-light text-brand/50">{text}</p>
+        <p className="type-body text-brand/50">{text}</p>
       </div>
     </div>
   );
@@ -35,10 +35,10 @@ export function AboutTraits() {
       <div className="flex w-full flex-col items-stretch gap-8 lg:-mb-[100px] lg:flex-row lg:items-center lg:gap-5 lg:py-10">
         <div className="flex flex-1 flex-col justify-between gap-12 lg:min-h-[560px]">
           <div className="flex flex-col gap-5">
-            <p className="text-[9px] font-bold tracking-[3.42px] text-brand/30 uppercase">
+            <p className="type-tag text-brand-primary-30">
               {aboutTraits.kicker}
             </p>
-            <h2 className="font-heading text-[32px] leading-10 font-bold tracking-[-0.84px] text-brand sm:text-[42px] sm:leading-[48px]">
+            <h2 className="type-h2 text-text-brand">
               {aboutTraits.title}
             </h2>
           </div>
@@ -76,12 +76,12 @@ export function AboutTraits() {
             className="object-cover"
           />
         </div>
-        <p className="font-heading text-[24px] leading-[30px] italic text-brand">
+        <p className="type-subtitle italic text-text-brand">
           “Je ne vous propose pas simplement de découvrir un pays. Je vous invite
           à le ressentir. Dans toute sa{" "}
-          <span className="text-brand-teal">Dolce Vita.</span>”
+          <span className="text-brand-secondary">Dolce Vita.</span>”
         </p>
-        <p className="text-[10px] font-bold tracking-[1.7px] text-brand/30 uppercase">
+        <p className="type-tag text-brand/30">
           {aboutTraits.quoteAuthor}
         </p>
       </div>

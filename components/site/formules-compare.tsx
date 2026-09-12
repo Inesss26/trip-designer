@@ -22,7 +22,7 @@ function CompareCell({
     return (
       <span
         className={cn(
-          "text-[16px] font-light tracking-[-0.3px]",
+            "type-body",
           featured ? "text-brand-sand" : "text-brand/30",
         )}
       >
@@ -36,9 +36,8 @@ function CompareCell({
   return (
     <span
       className={cn(
-        "text-center text-[15px] leading-5",
-        strong ? "font-semibold" : "font-light",
-        featured ? (strong ? "text-white" : "text-brand-cream") : "text-brand-navy",
+        strong ? "type-body-strong" : "type-body",
+        featured ? (strong ? "text-text-on-dark" : "text-text-on-dark") : "text-accent-dark",
       )}
     >
       {cell.value}
@@ -50,56 +49,62 @@ export function FormulesCompare() {
   return (
     <section className="mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-4 sm:px-8 lg:px-11">
       <div className="flex flex-col gap-2">
-        <p className="text-[10px] font-bold tracking-[1.7px] text-brand/30 uppercase">
+        <p className="type-tag text-brand/30">
           {formulesCompare.kicker}
         </p>
-        <h2 className="font-heading text-[32px] leading-10 font-bold tracking-[-0.84px] text-brand sm:text-[42px] sm:leading-[48px]">
+        <h2 className="type-h2 text-text-brand">
           {formulesCompare.title}
         </h2>
-        <p className="text-[15px] leading-5 font-light text-brand/50">
+        <p className="type-body text-brand/50">
           {formulesCompare.subtitle}
         </p>
       </div>
 
       <div className="-mx-4 overflow-x-auto px-4 pt-4 sm:mx-0 sm:px-0">
-        <table className="w-full min-w-[860px] border-separate border-spacing-x-5 border-spacing-y-0">
+        <table className="w-full min-w-[860px] table-fixed border-separate border-spacing-0">
           <caption className="sr-only">
             Comparatif des formules Dolce Vita, La Strada et Far Niente
           </caption>
+          <colgroup>
+            <col />
+            <col className="w-[215px]" />
+            <col className="w-[215px]" />
+            <col className="w-[215px]" />
+          </colgroup>
           <thead>
             <tr className="align-bottom">
-              <th className="w-[min(100%,387px)]" />
+              <th />
               {formulesCompare.columns.map((column) => (
                 <th
                   key={column.id}
                   className={cn(
-                    "relative w-[215px] px-5 py-5 text-center",
-                    column.featured && "bg-brand-navy",
+                    "relative px-5 py-5 text-center",
+                    column.featured && "bg-accent-dark",
                   )}
                 >
                   {column.featured ? (
-                    <span className="absolute top-[-10px] left-1/2 -translate-x-1/2 bg-brand px-3 py-1 text-[7px] font-bold tracking-[1.4px] text-white uppercase">
+                    <span className="absolute top-[-10px] left-1/2 -translate-x-1/2 bg-brand-primary px-3 py-1 type-tag text-text-on-dark">
                       ✦ Populaire
                     </span>
                   ) : null}
                   <p
                     className={cn(
-                      "text-[10px] font-bold tracking-[1.7px] uppercase",
-                      column.featured ? "text-white" : "text-brand-teal",
+                      "type-tag",
+                      column.featured ? "text-text-on-dark" : "text-brand-secondary",
                     )}
                   >
                     {column.kicker}
                   </p>
                   <p
                     className={cn(
-                      "mt-2 font-heading text-[24px] leading-[30px] font-bold",
-                      column.featured ? "text-white" : "text-brand-navy",
+                      "mt-2 type-subtitle",
+                      column.featured ? "text-text-on-dark" : "text-accent-dark",
                     )}
                   >
                     {column.name}
                   </p>
                   {column.subtitle ? (
-                    <p className="mt-2 text-[12px] leading-[15px] font-medium text-brand-navy">
+                    <p className="mt-2 type-body-small text-accent-dark">
                       {column.subtitle}
                     </p>
                   ) : null}
@@ -112,7 +117,7 @@ export function FormulesCompare() {
               <tr key={feature}>
                 <th
                   scope="row"
-                  className="h-[52px] px-7 text-left text-[12px] leading-[15px] font-medium whitespace-nowrap text-brand-navy"
+                  className="h-[52px] px-7 text-left type-body-small whitespace-nowrap text-accent-dark"
                 >
                   {feature}
                 </th>
@@ -121,7 +126,7 @@ export function FormulesCompare() {
                     key={column.id}
                     className={cn(
                       "h-[52px] px-5 text-center",
-                      column.featured && "bg-brand-navy",
+                      column.featured && "bg-accent-dark",
                     )}
                   >
                     <span className="flex items-center justify-center">
@@ -137,7 +142,7 @@ export function FormulesCompare() {
             <tr>
               <th
                 scope="row"
-                className="bg-brand-sand px-7 py-5 text-left text-[10px] font-bold tracking-[1.7px] text-brand-navy uppercase"
+                className="bg-bg-muted px-7 py-5 text-left type-tag text-accent-dark"
               >
                 Tarif
               </th>
@@ -146,21 +151,21 @@ export function FormulesCompare() {
                   key={column.id}
                   className={cn(
                     "px-5 py-5 text-center",
-                    column.featured ? "bg-brand-navy" : "bg-brand-sand",
+                    column.featured ? "bg-accent-dark" : "bg-bg-muted",
                   )}
                 >
                   <p
                     className={cn(
-                      "font-heading text-[20px] leading-[30px] font-bold",
-                      column.featured ? "text-white" : "text-brand-navy",
+                      "type-subtitle",
+                      column.featured ? "text-text-on-dark" : "text-accent-dark",
                     )}
                   >
                     {column.price}
                   </p>
                   <p
                     className={cn(
-                      "text-[10px] leading-[15px] font-medium",
-                      column.featured ? "text-white" : "text-brand-navy",
+                      "type-tag",
+                      column.featured ? "text-text-on-dark" : "text-accent-dark",
                     )}
                   >
                     {column.priceCaption}
@@ -172,7 +177,7 @@ export function FormulesCompare() {
         </table>
       </div>
 
-      <p className="mx-auto max-w-[672px] text-center text-[12px] leading-[15px] font-medium text-brand/30">
+      <p className="mx-auto max-w-[672px] text-center type-body-small text-brand/30">
         {formulesDisclaimer}
       </p>
     </section>

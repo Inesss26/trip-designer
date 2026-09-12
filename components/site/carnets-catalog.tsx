@@ -35,7 +35,7 @@ export function CarnetsCatalog() {
               aria-selected={active}
               onClick={() => setFilter(item.id)}
               className={cn(
-                "flex shrink-0 items-center gap-2.5 px-6 py-4 text-[10px] font-bold tracking-[1.7px] uppercase",
+                "flex shrink-0 items-center gap-2.5 px-6 py-4 type-tag",
                 active
                   ? "border-b-2 border-brand text-brand"
                   : "text-brand/50 hover:text-brand",
@@ -44,10 +44,10 @@ export function CarnetsCatalog() {
               {item.label}
               <span
                 className={cn(
-                  "rounded-full px-1.5 py-0.5 text-[10px] font-bold tracking-[1.7px]",
+                  "rounded-full px-1.5 py-0.5 type-tag",
                   active
-                    ? "bg-brand-teal text-white"
-                    : "bg-brand-sand text-brand/30",
+                    ? "bg-brand-secondary text-text-on-dark"
+                    : "bg-bg-muted text-brand/30",
                 )}
               >
                 {count}

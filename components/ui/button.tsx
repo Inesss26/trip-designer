@@ -19,14 +19,20 @@ const buttonVariants = cva(
         destructive:
           "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40",
         link: "text-primary underline-offset-4 hover:underline",
+        primary:
+          "rounded-[var(--button-radius)] border-0 bg-brand-primary type-button text-text-on-dark hover:bg-[var(--cta-primary-hover)] hover:text-brand-primary",
+        dark:
+          "rounded-[var(--button-radius)] border-0 bg-accent-dark type-button text-text-on-dark hover:bg-bg-muted hover:text-accent-dark",
+        tertiary:
+          "rounded-[var(--button-radius)] border border-brand-primary-30 bg-white/40 type-button text-brand-primary hover:border-[var(--cta-primary-hover)] hover:bg-[var(--cta-primary-hover)] hover:text-text-on-dark",
         brand:
-          "rounded-none bg-brand text-white hover:bg-brand/90",
+          "rounded-[var(--button-radius)] border-0 bg-brand-primary type-button text-text-on-dark hover:bg-[var(--cta-primary-hover)] hover:text-brand-primary",
         brandSecondary:
-          "rounded-none bg-brand-navy text-white hover:bg-brand-navy/90",
+          "rounded-[var(--button-radius)] border-0 bg-accent-dark type-button text-text-on-dark hover:bg-bg-muted hover:text-accent-dark",
         brandOutline:
-          "rounded-none border-[1.5px] border-brand/30 bg-white/40 text-brand hover:bg-white",
+          "rounded-[var(--button-radius)] border border-brand-primary-30 bg-white/40 type-button text-brand-primary hover:border-[var(--cta-primary-hover)] hover:bg-[var(--cta-primary-hover)] hover:text-text-on-dark",
         brandGhost:
-          "rounded-none bg-transparent text-brand hover:opacity-70",
+          "group gap-[10px] rounded-[var(--button-radius)] border-0 bg-transparent type-button text-brand-primary hover:text-brand-secondary",
       },
       size: {
         default:
@@ -40,7 +46,7 @@ const buttonVariants = cva(
         "icon-sm":
           "size-7 rounded-[min(var(--radius-md),12px)] in-data-[slot=button-group]:rounded-lg",
         "icon-lg": "size-9",
-        cta: "h-[47px] gap-2 px-8 text-[12px] font-bold uppercase tracking-[2px]",
+        cta: "h-[45px] gap-2 px-[var(--button-padding-x)] type-button",
       },
     },
     defaultVariants: {

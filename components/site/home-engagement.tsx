@@ -7,10 +7,10 @@ export function HomeEngagement() {
   return (
     <section className="mx-auto flex w-full max-w-[1440px] flex-col gap-[52px] px-4 sm:px-8 lg:px-11">
       <div className="flex flex-col gap-6 lg:flex-row lg:gap-16">
-        <p className="shrink-0 text-[10px] font-bold tracking-[1.7px] text-brand uppercase">
+        <p className="shrink-0 type-tag text-brand">
           Mon engagement
         </p>
-        <div className="font-heading text-[26px] leading-9 sm:text-[32px]">
+        <div className="type-h3">
           <p className="text-brand">
             Vous créer un voyage immersif et sur-mesure, pensé comme une
             véritable expérience.
@@ -34,11 +34,11 @@ export function HomeEngagement() {
                 className={cn("object-cover", item.imageClassName)}
               />
             </div>
-            <div className="flex flex-1 flex-col gap-5 bg-brand-sand p-8 sm:p-10">
-              <p className="text-[10px] font-bold tracking-[1.7px] text-brand uppercase">
+            <div className="card-muted flex flex-1 flex-col gap-5 p-8 sm:p-10">
+              <p className="type-tag text-brand">
                 {item.title}
               </p>
-              <p className="text-[15px] leading-5 font-light text-brand">
+              <p className="type-body text-brand">
                 {item.body}
               </p>
             </div>

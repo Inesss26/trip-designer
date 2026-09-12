@@ -24,53 +24,55 @@ export function FormulesHero() {
         />
         <div
           aria-hidden
-          className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.2),rgba(0,0,0,0.2)),linear-gradient(90deg,rgba(30,72,84,0.2),rgba(30,72,84,0.2))]"
+          className="absolute inset-0 bg-accent-dark/20"
         />
         <div className="relative flex max-w-[716px] flex-col gap-8">
-          <p className="text-[10px] font-bold tracking-[1.7px] text-white uppercase">
+          <p className="type-tag text-text-on-dark">
             {formulesHeroCopy.kicker}
           </p>
-          <h1 className="font-heading text-[40px] leading-[44px] font-bold tracking-[-1.2px] text-white sm:text-[64px] sm:leading-[68px] sm:tracking-[-1.92px]">
+          <h1 className="type-h1 text-text-on-dark">
             {formulesHeroCopy.title}
           </h1>
-          <p className="max-w-[448px] text-[15px] leading-5 font-semibold text-white">
+          <p className="max-w-[448px] type-body-strong text-text-on-dark">
             {formulesHeroCopy.subtitle}
           </p>
         </div>
       </div>
 
       <div className="relative z-10 mx-auto flex w-full max-w-[1440px] -translate-y-10 flex-col gap-8 px-4 sm:-translate-y-[88px] sm:px-8 lg:px-11">
-        <div className="grid items-end gap-5 lg:grid-cols-3">
+        <div className="grid gap-5 lg:grid-cols-3 lg:grid-rows-[145px_auto]">
           {formulesPageFormulas.map((formula) => (
             <article
               key={formula.id}
               className={cn(
-                "flex flex-col gap-9 bg-white px-8 pt-11 pb-10",
+                "card flex flex-col gap-9 pt-11 pb-10",
                 formula.featured
-                  ? "shadow-[0_4px_5.5px_rgba(61,0,0,0.5)] lg:min-h-[1050px]"
-                  : "shadow-[0_4px_4px_rgba(30,72,84,0.3)] lg:min-h-[905px]",
+                  ? "shadow-[0_4px_5.5px_var(--color-brand-primary-50)] lg:col-start-2 lg:row-span-2 lg:min-h-[1050px]"
+                  : "shadow-[0_4px_4px_color-mix(in_srgb,var(--color-accent-dark)_30%,transparent)] lg:row-start-2 lg:h-full",
+                formula.id === "dolce-vita" && "lg:col-start-1",
+                formula.id === "far-niente" && "lg:col-start-3",
               )}
             >
               <div className="flex flex-col gap-4">
                 <p
                   className={cn(
-                    "text-[10px] font-bold tracking-[1.7px] uppercase",
-                    formula.kickerAccent ? "text-brand-teal" : "text-brand/30",
+                    "type-tag",
+                    formula.kickerAccent ? "text-brand-secondary" : "text-brand/30",
                   )}
                 >
                   {formula.kicker}
                 </p>
-                <h2 className="font-heading text-[32px] text-brand">
+                <h2 className="type-h3 text-text-brand">
                   {formula.name}
                 </h2>
               </div>
 
-              <p className="text-[15px] leading-5 font-light text-brand">
+              <p className="type-body text-brand">
                 {formula.description}
               </p>
 
               <div className="flex flex-col gap-4">
-                <p className="text-[10px] font-bold tracking-[1.7px] text-brand/50 uppercase">
+                <p className="type-tag text-brand/50">
                   Compris dans ma prestation :
                 </p>
                 <ul className="flex flex-col gap-3">
@@ -78,11 +80,11 @@ export function FormulesHero() {
                     <li key={feature.title} className="flex flex-col gap-1">
                       <div className="flex items-center gap-3">
                         <SiteIcon src="/icons/diamond.svg" size={8} />
-                        <p className="text-[15px] leading-5 font-semibold text-brand">
+                        <p className="type-body-strong text-brand">
                           {feature.title}
                         </p>
                       </div>
-                      <p className="text-[15px] leading-5 font-light text-brand/50">
+                      <p className="type-body text-brand/50">
                         {feature.detail}
                       </p>
                     </li>
@@ -91,7 +93,7 @@ export function FormulesHero() {
               </div>
 
               {"note" in formula && formula.note ? (
-                <p className="text-[12px] leading-[15px] font-medium text-brand/50">
+                <p className="type-body-small text-brand/50">
                   {formula.note}
                 </p>
               ) : null}
@@ -100,10 +102,10 @@ export function FormulesHero() {
                 <div className="flex flex-col gap-1 pt-8">
                   {formula.pricing.variant === "single" ? (
                     <>
-                      <p className="font-heading text-[42px] leading-12 font-bold tracking-[-0.84px] text-brand">
+                      <p className="type-h2 text-brand">
                         {formula.pricing.price}
                       </p>
-                      <p className="text-[10px] font-bold tracking-[1.7px] text-brand/50 uppercase">
+                      <p className="type-tag text-brand/50">
                         {formula.pricing.caption}
                       </p>
                     </>
@@ -115,10 +117,10 @@ export function FormulesHero() {
                           key={tier.label}
                           className="flex items-center justify-between gap-4"
                         >
-                          <p className="text-[10px] font-bold tracking-[1.7px] text-brand/50 uppercase">
+                          <p className="type-tag text-brand/50">
                             {tier.label}
                           </p>
-                          <p className="font-heading text-[36px] leading-[42px] font-bold text-brand">
+                          <p className="type-h2 text-text-brand">
                             {tier.price}
                           </p>
                         </div>
@@ -127,14 +129,14 @@ export function FormulesHero() {
                   ) : null}
                   {formula.pricing.variant === "daily" ? (
                     <>
-                      <p className="font-heading text-[42px] leading-12 font-bold tracking-[-0.84px] text-brand">
+                      <p className="type-h2 text-brand">
                         {formula.pricing.price}
-                        <span className="text-[20px] font-normal">
+                        <span className="type-subtitle">
                           {" "}
                           {formula.pricing.suffix}
                         </span>
                       </p>
-                      <p className="text-[10px] font-bold tracking-[1.7px] text-brand/50 uppercase">
+                      <p className="type-tag text-brand/50">
                         {formula.pricing.caption}
                       </p>
                     </>
@@ -154,7 +156,7 @@ export function FormulesHero() {
           ))}
         </div>
 
-        <p className="mx-auto max-w-[672px] text-center text-[12px] leading-[15px] font-medium text-brand/50">
+        <p className="mx-auto max-w-[672px] text-center type-body-small text-brand/50">
           {formulesDisclaimer}
         </p>
       </div>

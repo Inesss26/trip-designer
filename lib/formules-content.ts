@@ -44,7 +44,7 @@ export const formulesPageFormulas = [
       price: "280€",
       caption: "Tarif fixe quelque soit le nombre de jours",
     },
-    ctaVariant: "brandSecondary" as const,
+    ctaVariant: "dark" as const,
   },
   {
     id: "la-strada",
@@ -88,7 +88,7 @@ export const formulesPageFormulas = [
         { label: "7 points de chute:", price: "930€" },
       ],
     },
-    ctaVariant: "brand" as const,
+    ctaVariant: "primary" as const,
   },
   {
     id: "far-niente",
@@ -127,7 +127,7 @@ export const formulesPageFormulas = [
       suffix: "/jour",
       caption: "sur devis (tarif dégressif)",
     },
-    ctaVariant: "brandSecondary" as const,
+    ctaVariant: "dark" as const,
   },
 ] as const;
 

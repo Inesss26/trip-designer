@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Fraunces, Geist, Geist_Mono, Instrument_Serif, Montserrat } from "next/font/google";
-import { Toaster } from "@/components/ui/sonner";
+import { Geist, Geist_Mono, Montserrat } from "next/font/google";
+import localFont from "next/font/local";
+import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -17,18 +18,34 @@ const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
   style: ["normal", "italic"],
+  weight: ["300", "400", "600", "700"],
 });
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin"],
-  style: ["normal", "italic"],
-});
-
-const instrumentSerif = Instrument_Serif({
-  variable: "--font-instrument",
-  subsets: ["latin"],
-  weight: "400",
+const rocaOne = localFont({
+  src: [
+    {
+      path: "./fonts/roca-one/RocaOne-Rg.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/roca-one/RocaOne-It.woff2",
+      weight: "400",
+      style: "italic",
+    },
+    {
+      path: "./fonts/roca-one/RocaOne-Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "./fonts/roca-one/RocaOne-BdIt.woff2",
+      weight: "700",
+      style: "italic",
+    },
+  ],
+  variable: "--font-roca",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -44,7 +61,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="fr"
-      className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} ${fraunces.variable} ${instrumentSerif.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} ${rocaOne.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
         {children}

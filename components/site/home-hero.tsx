@@ -16,9 +16,9 @@ export function HomeHero() {
         />
         <div
           aria-hidden
-          className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.05),rgba(0,0,0,0.05)),linear-gradient(180deg,rgba(30,72,84,0.05),rgba(61,0,0,0.3))]"
+          className="absolute inset-0 bg-gradient-to-b from-accent-dark/5 to-brand-primary/30"
         />
-        <p className="absolute inset-x-4 bottom-24 text-center font-heading text-[40px] leading-none text-white sm:bottom-32 sm:text-6xl lg:text-[88px]">
+        <p className="absolute inset-x-4 bottom-24 text-center type-h1-display text-text-on-dark sm:bottom-32">
           MY TRIP DESIGNER
         </p>
       </div>
@@ -33,10 +33,10 @@ export function HomeHero() {
             className="object-cover"
           />
         </div>
-        <h1 className="font-heading text-[26px] leading-9 text-brand sm:text-[32px]">
+        <h1 className="type-h3 text-text-brand">
           {homeHeroCopy.title}
         </h1>
-        <p className="max-w-2xl text-[15px] leading-5 font-light text-brand/50 whitespace-pre-line">
+        <p className="max-w-2xl type-body text-brand/50 whitespace-pre-line">
           {homeHeroCopy.subtitle}
         </p>
       </div>
@@ -44,10 +44,10 @@ export function HomeHero() {
       <div className="grid w-full max-w-[1440px] grid-cols-1 gap-8 px-4 pb-8 text-center sm:grid-cols-3 sm:gap-[30px] sm:px-8 lg:px-[253px]">
         {homeStats.map((stat) => (
           <div key={stat.label}>
-            <p className="font-heading text-[40px] font-bold leading-none text-brand sm:text-[52px]">
+            <p className="type-h1 leading-none text-text-brand">
               {stat.value}
             </p>
-            <p className="mt-1 text-[15px] font-light leading-5 text-brand">
+            <p className="mt-1 type-body text-text-brand">
               {stat.label}
             </p>
           </div>

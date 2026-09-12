@@ -14,24 +14,24 @@ export function MarqueeTape({
       className={cn(
         "w-full overflow-hidden py-5",
         isRose
-          ? "border-y border-brand/30 bg-brand-rose/90"
-          : "bg-brand",
+          ? "border-y border-brand/30 bg-bg-pink-muted"
+          : "bg-brand-primary",
       )}
     >
       <div className="flex w-max animate-marquee">
         {[0, 1].map((copy) => (
           <p
             key={copy}
-            className="flex items-center px-4 text-[9px] font-bold tracking-[2.25px] uppercase"
+            className="flex items-center px-4 type-tag"
           >
             {sequence.map((item, index) => (
               <span key={`${copy}-${item}-${index}`} className="flex items-center">
                 <span
-                  className={isRose ? "px-4 text-brand/50" : "px-4 text-white"}
+                  className={isRose ? "px-4 text-brand/50" : "px-4 text-text-on-dark"}
                 >
                   {item}
                 </span>
-                <span className="px-4 text-brand-teal">✦</span>
+                <span className="px-4 text-brand-secondary">✦</span>
               </span>
             ))}
           </p>

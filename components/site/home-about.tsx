@@ -12,18 +12,18 @@ export function HomeAbout() {
   return (
     <section
       id="a-propos"
-      className="mx-auto flex w-full max-w-[1440px] scroll-mt-8 flex-col gap-8 px-4 sm:px-8 lg:flex-row lg:items-end lg:gap-5 lg:px-40"
+      className="mx-auto flex w-full max-w-[1440px] scroll-mt-8 flex-col gap-8 px-4 sm:px-8 lg:flex-row lg:items-end lg:justify-center lg:gap-5 lg:px-11"
     >
-      <div className="w-full lg:w-[321px]">
-        <h2 className="font-heading text-[32px] leading-10 font-bold tracking-[-0.84px] text-brand sm:text-[42px] sm:leading-[48px]">
+      <div className="w-full min-w-0 lg:w-[321px]">
+        <h2 className="type-h2 text-text-brand">
           Ciao,
           <br />
           moi c&apos;est{" "}
-          <span className="italic text-brand-teal">Agathe !</span>
+          <span className="type-h2-italic text-brand-secondary">Agathe !</span>
         </h2>
       </div>
 
-      <div className="relative h-[420px] w-full overflow-hidden sm:h-[520px] lg:h-[629px] lg:w-[437px] lg:shrink-0">
+      <div className="relative h-[420px] w-full min-w-0 overflow-hidden sm:h-[520px] lg:h-[629px] lg:w-[437px]">
         <Image
           src="/images/home/agathe.png"
           alt="Agathe, fondatrice de My Trip Designer"
@@ -33,7 +33,7 @@ export function HomeAbout() {
         />
       </div>
 
-      <div className="flex flex-1 flex-col items-start justify-end gap-6">
+      <div className="flex w-full min-w-0 flex-col items-start justify-end gap-6 lg:w-[321px]">
         <div className="relative size-[95px]">
           <Image
             src="/images/home/logo.png"
@@ -43,15 +43,15 @@ export function HomeAbout() {
             className="object-cover"
           />
         </div>
-        <div className="text-[15px] leading-5 text-brand">
-          <p className="font-semibold">Créatrice de souvenirs.</p>
+        <div className="type-body text-text-brand">
+          <p className="type-body-strong">Créatrice de souvenirs.</p>
           {aboutParagraphs.map((paragraph) => (
-            <p key={paragraph.slice(0, 24)} className="mt-4 font-light">
+            <p key={paragraph.slice(0, 24)} className="mt-4 type-body">
               {paragraph}
             </p>
           ))}
         </div>
-        <Button asChild variant="brandOutline" size="cta" className="w-full">
+        <Button asChild variant="tertiary" size="cta" className="w-full">
           <Link href="/a-propos">découvrir mon histoire</Link>
         </Button>
       </div>

@@ -54,19 +54,19 @@ export default async function TripPage({
   return (
     <SiteShell content={content}>
       <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-12">
-        <nav aria-label="Fil d'Ariane" className="text-sm text-muted-foreground">
-          <Link href="/carnets" className="hover:underline">
+        <nav aria-label="Fil d'Ariane" className="type-body-small text-brand-primary-50">
+          <Link href="/carnets" className="hover:opacity-70">
             Retour aux carnets
           </Link>
         </nav>
 
-        <h1 className="mt-6 text-3xl font-semibold tracking-tight">
+        <h1 className="mt-6 type-h1 text-text-brand">
           {trip.title}
         </h1>
-        <p className="mt-2 text-muted-foreground">
+        <p className="mt-2 type-body text-brand-primary-50">
           {[trip.destination, trip.country].filter(Boolean).join(" · ")}
         </p>
-        <p className="mt-1 text-sm text-muted-foreground">
+        <p className="mt-1 type-body-small text-brand-primary-50">
           {[duration, price ? `à partir de ${price}` : null]
             .filter(Boolean)
             .join(" · ") || "Durée et tarif à définir ensemble"}
@@ -82,10 +82,10 @@ export default async function TripPage({
           />
         </div>
 
-        <p className="mt-8 text-lg">{trip.summary}</p>
+        <p className="mt-8 type-body text-text-brand">{trip.summary}</p>
 
         {paragraphs.length > 0 ? (
-          <div className="mt-6 space-y-4 text-muted-foreground">
+          <div className="mt-6 space-y-4 type-body text-brand-primary-50">
             {paragraphs.map((paragraph, index) => (
               <p key={index}>{paragraph}</p>
             ))}
@@ -93,7 +93,7 @@ export default async function TripPage({
         ) : null}
 
         {trip.tags.length > 0 ? (
-          <ul className="mt-8 flex flex-wrap gap-2 text-sm text-muted-foreground">
+          <ul className="mt-8 flex flex-wrap gap-2 type-tag text-brand-primary-50">
             {trip.tags.map((tag) => (
               <li key={tag} className="rounded-full border px-3 py-1">
                 {tag}
@@ -104,7 +104,7 @@ export default async function TripPage({
 
         {trip.gallery.length > 0 ? (
           <section className="mt-10">
-            <h2 className="text-xl font-semibold tracking-tight">En images</h2>
+            <h2 className="type-h2 text-text-brand">En images</h2>
             <div className="mt-4 grid gap-4 sm:grid-cols-2">
               {trip.gallery.map((url, index) => (
                 <TripCover
@@ -120,7 +120,7 @@ export default async function TripPage({
 
         {reviews.length > 0 ? (
           <section className="mt-12">
-            <h2 className="text-xl font-semibold tracking-tight">
+            <h2 className="type-h2 text-text-brand">
               Les retours des voyageurs
             </h2>
             <div className="mt-4">
@@ -130,15 +130,15 @@ export default async function TripPage({
         ) : null}
 
         <section className="mt-12 border-t pt-8">
-          <h2 className="text-xl font-semibold tracking-tight">
+          <h2 className="type-h2 text-text-brand">
             Ce voyage vous parle ?
           </h2>
-          <p className="mt-2 text-muted-foreground">
+          <p className="mt-2 type-body text-brand-primary-50">
             Il sert de base : les étapes, la durée et le budget s&apos;adaptent à
             vos envies.
           </p>
           <div className="mt-4">
-            <Button asChild>
+            <Button asChild variant="primary" size="cta">
               <Link href={`/contact?voyage=${trip.slug}`}>
                 Demander une version sur mesure
               </Link>

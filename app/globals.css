@@ -9,12 +9,31 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
-  --color-brand: #3d0000;
-  --color-brand-teal: #0097b2;
-  --color-brand-navy: #1e4854;
-  --color-brand-cream: #fbf5f2;
-  --color-brand-sand: #eee7e2;
-  --color-brand-rose: #f8e2e4;
+  --font-heading: var(--font-roca), ui-serif, Georgia, serif;
+  --font-body: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --font-logo: var(--font-roca), ui-serif, Georgia, serif;
+
+  --color-brand-primary: #3d0000;
+  --color-brand-secondary: #0097b2;
+  --color-accent-dark: #1e4854;
+  --color-bg-default: #ffffff;
+  --color-bg-main: #fbf5f2;
+  --color-bg-muted: #eee7e2;
+  --color-bg-pink: #f8e2e4;
+  --color-bg-pink-muted: rgb(248 226 228 / 90%);
+  --color-text-main: #151414;
+  --color-text-brand: #3d0000;
+  --color-text-on-dark: #ffffff;
+  --color-brand-primary-50: rgb(61 0 0 / 50%);
+  --color-brand-primary-30: rgb(61 0 0 / 30%);
+
+  --color-brand: var(--color-brand-primary);
+  --color-brand-teal: var(--color-brand-secondary);
+  --color-brand-navy: var(--color-accent-dark);
+  --color-brand-cream: var(--color-bg-main);
+  --color-brand-sand: var(--color-bg-muted);
+  --color-brand-rose: var(--color-bg-pink);
+
   --animate-marquee: marquee 45s linear infinite;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -55,6 +74,15 @@
 }
 
 :root {
+  /* Measured from canonical Figma instances (geometry is not a published token). */
+  --card-padding: 2rem;
+  --card-radius: 0px;
+  --card-border: 0;
+  --button-padding-x: 2rem;
+  --button-padding-y: 1rem;
+  --button-radius: 0px;
+  --cta-primary-hover: #c4b2b2;
+
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -144,16 +172,146 @@
   }
 }
 
-@utility font-heading {
-  font-family: var(--font-fraunces), ui-serif, Georgia, serif;
-}
-
-@utility font-logo {
-  font-family: var(--font-instrument), ui-serif, Georgia, serif;
-}
-
 @utility font-site {
-  font-family: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-body);
+}
+
+@utility type-h1-display {
+  font-family: var(--font-heading);
+  font-size: 48px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0;
+  @media (min-width: 640px) {
+    font-size: 72px;
+  }
+  @media (min-width: 1024px) {
+    font-size: 96px;
+  }
+}
+
+@utility type-h1 {
+  font-family: var(--font-heading);
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 44px;
+  letter-spacing: -0.03em;
+  @media (min-width: 640px) {
+    font-size: 64px;
+    line-height: 68px;
+  }
+}
+
+@utility type-h2 {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 40px;
+  letter-spacing: -0.02em;
+  @media (min-width: 640px) {
+    font-size: 42px;
+    line-height: 48px;
+  }
+}
+
+@utility type-h2-italic {
+  font-family: var(--font-heading);
+  font-size: inherit;
+  font-weight: 700;
+  font-style: italic;
+  line-height: inherit;
+  letter-spacing: 0;
+}
+
+@utility type-h3 {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 36px;
+  letter-spacing: 0;
+}
+
+@utility type-subtitle {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 30px;
+  letter-spacing: 0;
+}
+
+@utility type-body {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 20px;
+  letter-spacing: 0;
+}
+
+@utility type-body-strong {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0;
+}
+
+@utility type-body-italic {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 20px;
+  letter-spacing: 0;
+}
+
+@utility type-body-small {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 15px;
+  letter-spacing: 0;
+}
+
+@utility type-button {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+@utility type-tag {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+@utility card {
+  background: var(--color-bg-default);
+  color: var(--color-text-brand);
+  padding: var(--card-padding);
+  border-radius: var(--card-radius);
+}
+
+@utility card-muted {
+  background: var(--color-bg-muted);
+}
+
+@utility card-pink {
+  background: var(--color-bg-pink);
+}
+
+@utility upsell-box {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--color-bg-pink);
+  color: var(--color-text-brand);
+  padding: var(--card-padding);
+  border-radius: var(--card-radius);
 }
 
 @media (prefers-reduced-motion: reduce) {

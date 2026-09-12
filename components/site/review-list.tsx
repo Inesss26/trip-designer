@@ -3,10 +3,10 @@ import { formatDate } from "@/lib/format";
 
 function Stars({ rating }: { rating: number }) {
   return (
-    <p className="text-sm" aria-label={`Note : ${rating} sur 5`}>
+    <p className="type-body" aria-label={`Note : ${rating} sur 5`}>
       <span aria-hidden="true">
         {"★".repeat(rating)}
-        <span className="text-muted-foreground">{"★".repeat(5 - rating)}</span>
+        <span className="text-brand-primary-30">{"★".repeat(5 - rating)}</span>
       </span>
     </p>
   );
@@ -21,7 +21,7 @@ export function ReviewList({
 }) {
   if (reviews.length === 0) {
     return (
-      <p className="text-sm text-muted-foreground">
+      <p className="type-body text-brand-primary-50">
         Les premiers avis seront publiés au retour des prochains voyageurs.
       </p>
     );
@@ -36,8 +36,8 @@ export function ReviewList({
         return (
           <li key={review.id} className="space-y-2 border-l-2 pl-4">
             <Stars rating={review.rating} />
-            <blockquote className="text-sm">{review.content}</blockquote>
-            <footer className="text-sm text-muted-foreground">
+            <blockquote className="type-body">{review.content}</blockquote>
+            <footer className="type-body-small text-brand-primary-50">
               {review.authorName}
               {review.authorLocation ? `, ${review.authorLocation}` : ""}
               {trip ? ` — ${trip.title}` : ""}

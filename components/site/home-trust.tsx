@@ -9,40 +9,40 @@ export function HomeTrust() {
       <div className="flex w-full flex-col justify-center px-4 py-16 sm:px-8 lg:w-[min(100%,710px)] lg:py-[100px] lg:pl-[11vw] lg:pr-12">
         <div className="flex max-w-[552px] flex-col gap-[52px]">
           <div className="flex flex-col gap-6">
-            <h2 className="font-heading text-[28px] leading-9 text-brand sm:text-[32px]">
+            <h2 className="type-h3 text-text-brand">
               Vous rêvez de votre prochain voyage, mais ...
             </h2>
-            <p className="text-[15px] leading-5 font-light text-brand">
+            <p className="type-body text-brand">
               Entre le{" "}
-              <span className="font-semibold text-brand-teal">
+              <span className="type-body-strong text-brand-secondary">
                 manque de temps
               </span>{" "}
               pour chercher les bonnes adresses, la peur de tomber dans les{" "}
-              <span className="font-semibold text-brand-teal">
+              <span className="type-body-strong text-brand-secondary">
                 pièges à touristes
               </span>{" "}
               et la gestion de toute la logistique, planifier votre séjour se
               transforme vite en{" "}
-              <span className="font-semibold text-brand-teal">stress.</span>
+              <span className="type-body-strong text-brand-secondary">stress.</span>
             </p>
-            <p className="text-[15px] leading-5 font-light text-brand">
+            <p className="type-body text-brand">
               Vous méritez bien mieux que le stress des préparatifs pour vos
               vacances.
             </p>
           </div>
 
           <div className="flex flex-col gap-6">
-            <h3 className="font-heading text-[28px] leading-9 text-brand sm:text-[32px]">
+            <h3 className="type-h3 text-text-brand">
               Et si vous faisiez confiance à un{" "}
-              <span className="text-brand-teal">travel planner</span> ?
+              <span className="text-brand-secondary">travel planner</span> ?
             </h3>
             <ul className="flex flex-col gap-5">
               {homeBenefits.map((benefit) => (
                 <li key={benefit.title} className="flex items-start gap-5">
                   <SiteIcon src={benefit.icon} size={20} className="mt-0.5" />
-                  <div className="flex flex-col gap-1 text-[15px] leading-5 text-brand">
-                    <p className="font-semibold">{benefit.title}</p>
-                    <p className="font-light">{benefit.body}</p>
+                  <div className="flex flex-col gap-1 type-body text-text-brand">
+                    <p className="type-body-strong">{benefit.title}</p>
+                    <p className="type-body">{benefit.body}</p>
                   </div>
                 </li>
               ))}

@@ -12,13 +12,13 @@ export function TripCard({ trip }: { trip: Trip }) {
     <article className="flex flex-col gap-3">
       <Link href={`/voyages/${trip.slug}`} className="group">
         <TripCover src={trip.coverImageUrl} alt={`${trip.title} — ${trip.destination}`} />
-        <h3 className="mt-3 text-lg font-medium group-hover:underline">
+        <h3 className="mt-3 type-subtitle text-text-brand group-hover:opacity-70">
           {trip.title}
         </h3>
       </Link>
-      <p className="text-sm text-muted-foreground">{trip.destination}</p>
-      <p className="text-sm">{trip.summary}</p>
-      <p className="text-sm text-muted-foreground">
+      <p className="type-tag text-brand-primary-50">{trip.destination}</p>
+      <p className="type-body text-text-brand">{trip.summary}</p>
+      <p className="type-body-small text-brand-primary-50">
         {[duration, price ? `à partir de ${price}` : null]
           .filter(Boolean)
           .join(" · ") || "Durée et tarif à définir ensemble"}

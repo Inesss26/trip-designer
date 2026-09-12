@@ -18,8 +18,13 @@ const dateTimeFormatter = new Intl.DateTimeFormat("fr-FR", {
   minute: "2-digit",
 });
 
+function formatCurrency(value: number, formatter: Intl.NumberFormat): string {
+  // Node and browsers disagree on the space before € (nbsp vs nnbsp vs space).
+  return formatter.format(value).replace(/[\u00a0\u202f]/g, " ");
+}
+
 export function formatPrice(value: number | null): string | null {
-  return value === null ? null : priceFormatter.format(value);
+  return value === null ? null : formatCurrency(value, priceFormatter);
 }
 
 export function formatDate(value: string | null): string | null {

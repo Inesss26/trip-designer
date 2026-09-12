@@ -14,21 +14,21 @@ export function ContactHero() {
   const external = href.startsWith("http");
 
   return (
-    <section className="bg-brand px-4 py-16 sm:px-8 sm:py-16 lg:px-11">
+    <section className="bg-brand-primary px-4 py-16 sm:px-8 sm:py-16 lg:px-11">
       <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center justify-between gap-12 lg:flex-row">
         <div className="flex max-w-[552px] flex-col gap-11">
           <div className="flex flex-col gap-5">
-            <p className="text-[10px] font-bold tracking-[1.7px] text-brand-cream/25 uppercase">
+            <p className="type-tag text-text-on-dark/25">
               premier échange
             </p>
-            <h1 className="font-heading text-[32px] leading-10 font-bold tracking-[-0.84px] text-brand-cream sm:text-[42px] sm:leading-[48px]">
+            <h1 className="type-h2 text-text-on-dark">
               Réservez votre
-              <span className="block italic text-brand-teal">
+              <span className="block type-h2-italic text-brand-secondary">
                 appel découverte.
               </span>
             </h1>
           </div>
-          <p className="text-[15px] leading-5 font-light text-brand-cream">
+          <p className="type-body text-text-on-dark">
             Un appel de 30 minutes, gratuit et sans engagement, pour
             comprendre vos envies et vous expliquer comment je peux les
             transformer en voyage inoubliable.
@@ -37,14 +37,14 @@ export function ContactHero() {
             {perks.map((perk) => (
               <li
                 key={perk}
-                className="flex items-center gap-4 text-[12px] leading-[15px] font-medium text-brand-cream"
+                className="flex items-center gap-4 type-body-small text-text-on-dark"
               >
                 <SiteIcon src="/icons/contact/check.svg" width={8} height={5.5} />
                 {perk}
               </li>
             ))}
           </ul>
-          <Button asChild variant="brandSecondary" size="cta">
+          <Button asChild variant="dark" size="cta">
             <a
               href={href}
               {...(external

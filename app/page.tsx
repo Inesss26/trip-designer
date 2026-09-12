@@ -5,7 +5,7 @@ import { HomeExtras } from "@/components/site/home-extras";
 import { HomeFormulas } from "@/components/site/home-formulas";
 import { HomeHero } from "@/components/site/home-hero";
 import { HomeProcess } from "@/components/site/home-process";
-import { HomeReviews } from "@/components/site/home-reviews";
+import { HomeReviews } from "@/components/site/home-reviews-lazy";
 import { HomeTrust } from "@/components/site/home-trust";
 import { MarqueeTape } from "@/components/site/marquee-tape";
 import { SiteShell } from "@/components/site/site-shell";

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { SiteIcon } from "@/components/site/site-icon";
 import type { Review, Trip } from "@/lib/data/types";
@@ -46,6 +46,7 @@ export function HomeReviews({
 }) {
   const [index, setIndex] = useState(0);
   const [offset, setOffset] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
   const viewportRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const count = reviews.length;
@@ -61,11 +62,17 @@ export function HomeReviews({
     setOffset(trackOffset(viewport, track, index));
   }, [index]);
 
-  useLayoutEffect(() => {
-    updateOffset();
-  }, [updateOffset, count]);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
+    if (!isMounted) {
+      return;
+    }
+
+    updateOffset();
+
     const viewport = viewportRef.current;
     const track = trackRef.current;
     if (!viewport) {
@@ -79,7 +86,7 @@ export function HomeReviews({
     }
 
     return () => observer.disconnect();
-  }, [updateOffset]);
+  }, [isMounted, updateOffset]);
 
   function goTo(next: number) {
     if (count === 0) {
@@ -109,7 +116,7 @@ export function HomeReviews({
             <div
               ref={trackRef}
               className="flex items-start gap-4 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none lg:items-center lg:gap-6"
-              style={{ transform: `translateX(${offset}px)` }}
+              style={isMounted ? { transform: `translateX(${offset}px)` } : undefined}
             >
               {reviews.map((review, itemIndex) => (
                 <article

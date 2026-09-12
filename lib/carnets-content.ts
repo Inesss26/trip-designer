@@ -25,7 +25,7 @@ const carnetPriceFormatter = new Intl.NumberFormat("fr-FR", {
 });
 
 export function formatCarnetPrice(value = CARNET_PRICE_EUR): string {
-  return carnetPriceFormatter.format(value);
+  return carnetPriceFormatter.format(value).replace(/[\u00a0\u202f]/g, " ");
 }
 
 export const carnetFilters = [

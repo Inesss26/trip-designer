@@ -6,16 +6,16 @@ export function CarnetsBenefits() {
     <section className="mx-auto flex w-full max-w-[1440px] flex-col gap-10 px-4 sm:px-8 lg:px-11">
       <div className="flex flex-col items-start justify-between gap-10 lg:flex-row">
         <div className="flex max-w-[375px] flex-col gap-5">
-          <p className="text-[10px] font-bold tracking-[1.7px] text-brand/30 uppercase">
+          <p className="type-tag text-brand/30">
             dans votre carnet
           </p>
-          <h2 className="font-heading text-[32px] leading-10 font-bold tracking-[-0.84px] text-brand sm:text-[44px] sm:leading-[48px] sm:tracking-[-0.88px]">
+          <h2 className="type-h2 text-text-brand">
             Tout votre séjour
-            <span className="block text-[32px] italic text-brand-teal sm:text-[42px]">
+            <span className="block type-h2-italic text-brand-secondary">
               dans la poche.
             </span>
           </h2>
-          <p className="text-[15px] leading-5 font-light text-brand/50">
+          <p className="type-body text-brand/50">
             Exit les guides de 200 pages. Tout ce dont vous avez besoin est
             réuni au même endroit, organisé pour voyager sans friction.
           </p>
@@ -25,7 +25,7 @@ export function CarnetsBenefits() {
           {carnetBenefits.map((benefit) => (
             <article
               key={benefit.title}
-              className="flex min-h-[250px] flex-col justify-between bg-white p-8"
+              className="card flex min-h-[250px] flex-col justify-between"
             >
               <SiteIcon
                 src={benefit.icon}
@@ -33,10 +33,10 @@ export function CarnetsBenefits() {
                 height={benefit.iconHeight}
               />
               <div className="flex flex-col gap-3">
-                <h3 className="font-heading text-[24px] leading-[30px] font-bold text-brand">
+                <h3 className="type-subtitle text-brand">
                   {benefit.title}
                 </h3>
-                <p className="text-[15px] leading-5 font-light text-brand/50">
+                <p className="type-body text-brand/50">
                   {benefit.text}
                 </p>
               </div>
