@@ -24,7 +24,7 @@ export function SiteHeader({ instagram }: { instagram?: string }) {
 
   return (
     <header className="relative z-20 bg-bg-main">
-      <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between px-4 py-5 sm:px-8 lg:px-11">
+      <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between px-4 py-3 sm:px-8 lg:px-11">
         <Link
           href="/"
           className="type-logo text-brand-primary"
@@ -63,11 +63,11 @@ export function SiteHeader({ instagram }: { instagram?: string }) {
               />
             </a>
           </div>
-          <DiscoveryCta />
+          <DiscoveryCta className="py-2" />
         </nav>
 
         <div className="flex items-center gap-2 lg:hidden">
-          <DiscoveryCta label="Appel" />
+          <DiscoveryCta label="Appel" className="py-2" />
           <MobileMenu pathname={pathname} />
         </div>
       </div>

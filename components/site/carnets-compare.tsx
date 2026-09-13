@@ -2,6 +2,10 @@ import { SiteIcon } from "@/components/site/site-icon";
 import { carnetsCompare } from "@/lib/carnets-content";
 import { cn } from "@/lib/utils";
 
+const compareRowStyle = {
+  gridTemplateColumns: "minmax(12rem, 1fr) 16rem 16rem 16rem",
+} as const;
+
 export function CarnetsCompare() {
   return (
     <section className="mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-4 sm:px-8 lg:px-11">
@@ -18,120 +22,122 @@ export function CarnetsCompare() {
       </div>
 
       <div className="-mx-4 overflow-x-auto px-4 pt-4 sm:mx-0 sm:px-0">
-        <table className="w-full min-w-[860px] border-separate border-spacing-x-5 border-spacing-y-0">
-          <caption className="sr-only">
-            Comparatif du carnet prêt à l&apos;emploi, du carnet sur-mesure et du
-            carnet premium
-          </caption>
-          <thead>
-            <tr className="align-bottom">
-              <th className="w-[min(100%,387px)]" />
-              {carnetsCompare.columns.map((column) => (
-                <th
-                  key={column.id}
+        <div
+          role="table"
+          aria-label="Comparatif du carnet prêt à l'emploi, du carnet sur-mesure et du carnet premium"
+          className="flex w-full min-w-[860px] flex-col"
+        >
+          <div role="row" className="grid gap-x-2" style={compareRowStyle}>
+            <div role="columnheader" className="self-end" />
+            {carnetsCompare.columns.map((column) => (
+              <div
+                key={column.id}
+                role="columnheader"
+                className={cn(
+                  "relative px-3 py-5 text-center",
+                  column.featured && "bg-accent-dark",
+                )}
+              >
+                {column.featured ? (
+                  <span className="absolute top-[-10px] left-1/2 -translate-x-1/2 bg-brand-primary px-3 py-1 type-tag text-text-on-dark">
+                    ✦ Populaire
+                  </span>
+                ) : null}
+                {column.kicker ? (
+                  <p
+                    className={cn(
+                      "type-tag",
+                      column.featured ? "text-text-on-dark" : "text-brand-secondary",
+                    )}
+                  >
+                    {column.kicker}
+                  </p>
+                ) : null}
+                <p
                   className={cn(
-                    "relative w-[215px] px-5 py-5 text-center",
+                    "type-subtitle",
+                    column.kicker && "mt-2",
+                    column.featured ? "text-text-on-dark" : "text-accent-dark",
+                  )}
+                >
+                  {column.name}
+                </p>
+              </div>
+            ))}
+          </div>
+          {carnetsCompare.features.map((feature, index) => (
+            <div
+              key={feature}
+              role="row"
+              className="grid gap-x-2"
+              style={compareRowStyle}
+            >
+              <div
+                role="rowheader"
+                className="flex h-14 items-center px-7 text-left type-body-small whitespace-nowrap text-brand/50"
+              >
+                {feature}
+              </div>
+              {carnetsCompare.columns.map((column) => (
+                <div
+                  key={column.id}
+                  role="cell"
+                  className={cn(
+                    "flex h-14 items-center justify-center px-3 text-center",
                     column.featured && "bg-accent-dark",
                   )}
                 >
-                  {column.featured ? (
-                    <span className="absolute top-[-10px] left-1/2 -translate-x-1/2 bg-brand-primary px-3 py-1 type-tag text-text-on-dark">
-                      ✦ Populaire
-                    </span>
-                  ) : null}
-                  {column.kicker ? (
-                    <p
+                  {column.cells[index].type === "check" ? (
+                    <SiteIcon
+                      src={
+                        column.featured
+                          ? "/icons/diamond-light.svg"
+                          : "/icons/diamond.svg"
+                      }
+                      size={10}
+                    />
+                  ) : (
+                    <span
                       className={cn(
-                        "type-tag",
-                        column.featured ? "text-text-on-dark" : "text-brand-secondary",
+                        "type-body",
+                        column.featured ? "text-brand-sand" : "text-brand/30",
                       )}
                     >
-                      {column.kicker}
-                    </p>
-                  ) : null}
-                  <p
-                    className={cn(
-                      "type-subtitle",
-                      column.kicker && "mt-2",
-                      column.featured ? "text-text-on-dark" : "text-accent-dark",
-                    )}
-                  >
-                    {column.name}
-                  </p>
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {carnetsCompare.features.map((feature, index) => (
-              <tr key={feature}>
-                <th
-                  scope="row"
-                  className="h-14 px-7 text-left type-body-small whitespace-nowrap text-brand/50"
-                >
-                  {feature}
-                </th>
-                {carnetsCompare.columns.map((column) => (
-                  <td
-                    key={column.id}
-                    className={cn(
-                      "h-14 px-5 text-center",
-                      column.featured && "bg-accent-dark",
-                    )}
-                  >
-                    <span className="flex items-center justify-center">
-                      {column.cells[index].type === "check" ? (
-                        <SiteIcon
-                          src={
-                            column.featured
-                              ? "/icons/diamond-light.svg"
-                              : "/icons/diamond.svg"
-                          }
-                          size={10}
-                        />
-                      ) : (
-                        <span
-                          className={cn(
-                            "type-body",
-                            column.featured ? "text-brand-sand" : "text-brand/30",
-                          )}
-                        >
-                          —
-                        </span>
-                      )}
+                      —
                     </span>
-                  </td>
-                ))}
-              </tr>
-            ))}
-            <tr>
-              <th
-                scope="row"
-                className="bg-bg-muted px-7 py-5 text-left type-tag text-accent-dark"
+                  )}
+                </div>
+              ))}
+            </div>
+          ))}
+          <div role="row" className="grid gap-x-2" style={compareRowStyle}>
+            <div
+              role="rowheader"
+              className="bg-bg-muted px-7 py-5 text-left type-tag text-accent-dark"
+            >
+              Tarif
+            </div>
+            {carnetsCompare.columns.map((column) => (
+              <div
+                key={column.id}
+                role="cell"
+                className={cn(
+                  "px-3 py-5 text-center",
+                  column.featured ? "bg-accent-dark" : "bg-bg-muted",
+                )}
               >
-                Tarif
-              </th>
-              {carnetsCompare.columns.map((column) => (
-                <td
-                  key={column.id}
+                <p
                   className={cn(
-                    "px-5 py-5 text-center",
-                    column.featured ? "bg-accent-dark" : "bg-bg-muted",
+                    "type-subtitle",
+                    column.featured ? "text-text-on-dark" : "text-accent-dark",
                   )}
                 >
-                  <p
-                    className={cn(
-                      "type-subtitle",
-                      column.featured ? "text-text-on-dark" : "text-accent-dark",
-                    )}
-                  >
-                    {column.price}
-                  </p>
-                </td>
-              ))}
-            </tr>
-          </tbody>
-        </table>
+                  {column.price}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

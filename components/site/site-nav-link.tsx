@@ -5,7 +5,7 @@ import { SiteIcon } from "@/components/site/site-icon";
 import { cn } from "@/lib/utils";
 
 const navLinkClass =
-  "group inline-flex items-center gap-[10px] rounded-[10px] p-3 type-nav-cta text-brand-primary-50 transition-colors hover:font-semibold hover:text-brand-primary";
+  "group inline-flex items-center gap-[10px] rounded-[10px] px-3 py-2 type-nav-cta text-brand-primary-50 transition-colors hover:font-semibold hover:text-brand-primary";
 
 export function SiteNavLink({
   href,

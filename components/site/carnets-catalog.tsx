@@ -35,10 +35,10 @@ export function CarnetsCatalog() {
               aria-selected={active}
               onClick={() => setFilter(item.id)}
               className={cn(
-                "flex shrink-0 items-center gap-2.5 px-6 py-4 type-tag",
+                "flex shrink-0 cursor-pointer items-center gap-2.5 border-b-2 px-6 py-4 type-tag transition-colors",
                 active
-                  ? "border-b-2 border-brand text-brand"
-                  : "text-brand/50 hover:text-brand",
+                  ? "border-brand text-brand"
+                  : "border-transparent text-brand-primary-50 hover:text-brand",
               )}
             >
               {item.label}
@@ -47,7 +47,7 @@ export function CarnetsCatalog() {
                   "rounded-full px-1.5 py-0.5 type-tag",
                   active
                     ? "bg-brand-secondary text-text-on-dark"
-                    : "bg-bg-muted text-brand/30",
+                    : "bg-bg-muted text-brand-primary-30",
                 )}
               >
                 {count}

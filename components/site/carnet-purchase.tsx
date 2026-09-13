@@ -25,6 +25,7 @@ export function CarnetPurchase({
 
   return (
     <>
+      <div className="flex flex-col">
       <section className="relative h-[240px] w-full overflow-hidden sm:h-[350px]">
         <Image
           src={carnet.heroImage}
@@ -43,20 +44,22 @@ export function CarnetPurchase({
       <section className="mx-auto flex w-full max-w-[1440px] flex-col gap-16 px-4 py-12 sm:px-8 lg:flex-row lg:items-start lg:justify-between lg:gap-16 lg:px-11 lg:py-16">
         <div className="flex min-w-0 flex-1 flex-col gap-11">
           <div className="flex flex-col gap-8">
-            <nav
-              aria-label="Fil d'Ariane"
-              className="flex flex-wrap items-center gap-2 type-tag text-brand/30"
-            >
-              <Link href="/carnets" className="hover:text-brand">
-                Carnets
-              </Link>
-              <span aria-hidden>/</span>
-              <span>{carnetRegionLabels[carnet.region]}</span>
-            </nav>
-            <CarnetMeta
-              location={carnet.location}
-              durationDays={carnet.durationDays}
-            />
+            <div className="flex flex-col gap-2">
+              <nav
+                aria-label="Fil d'Ariane"
+                className="flex flex-wrap items-center gap-2 type-tag text-brand/30"
+              >
+                <Link href="/carnets" className="hover:text-brand">
+                  Carnets
+                </Link>
+                <span aria-hidden>/</span>
+                <span>{carnetRegionLabels[carnet.region]}</span>
+              </nav>
+              <CarnetMeta
+                location={carnet.location}
+                durationDays={carnet.durationDays}
+              />
+            </div>
             <h1 className="type-h1 text-text-brand">
               {carnet.title}
             </h1>
@@ -143,6 +146,7 @@ export function CarnetPurchase({
           </div>
         </aside>
       </section>
+      </div>
 
       <CarnetsCompare />
       <CarnetsBenefits />

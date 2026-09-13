@@ -211,54 +211,280 @@ export const formulesCompare = {
   ],
 } as const;
 
-export const formulesFaq = [
+export type FormulesFaqRichPart =
+  | { type: "text"; text: string }
+  | { type: "strong"; text: string; tone?: "brand" | "teal" }
+  | { type: "break" };
+
+export type FormulesFaqItem =
+  | {
+      id: string;
+      question: string;
+      kind: "paragraphs";
+      paragraphs: string[];
+    }
+  | {
+      id: string;
+      question: string;
+      kind: "rich";
+      blocks: FormulesFaqRichPart[][];
+    }
+  | {
+      id: string;
+      question: string;
+      kind: "compare";
+      columns: [string, string];
+      rows: {
+        label: string;
+        planner: string[];
+        agency: string[];
+      }[];
+    }
+  | {
+      id: string;
+      question: string;
+      kind: "steps";
+      steps: { step: string; title: string; body: string }[];
+    }
+  | {
+      id: string;
+      question: string;
+      kind: "bullets";
+      items: {
+        title: string;
+        suffix: string;
+        body: string;
+      }[];
+    };
+
+export const formulesFaq: FormulesFaqItem[] = [
   {
-    question: "C'est quoi un travel planner ?",
-    answer:
-      "Un travel planner conçoit votre voyage sur-mesure, de l'itinéraire aux adresses, sans vous vendre de forfait. Je compare, je sélectionne et je vous livre un carnet clair : vous réservez ensuite en toute sérénité, au juste prix.",
+    id: "travel-planner",
+    question: "C’est quoi un travel planner ?",
+    kind: "paragraphs",
+    paragraphs: [
+      "Un travel planner est un professionnel de l’organisation de voyages sur-mesure. Contrairement à une agence de voyages traditionnelle, il conçoit votre séjour de manière personnalisée en fonction de vos envies, votre budget et votre style de découverte, tout en vous laissant la liberté de réserver directement vos prestations. Son rôle est de rechercher, structurer et optimiser votre voyage : sélection d’hébergements, itinéraire cohérent, recommandations locales, conseils pratiques… Vous bénéficiez ainsi d’une expertise et d’un accompagnement personnalisé, tout en gardant le contrôle de votre voyage.",
+    ],
   },
   {
+    id: "vs-agency",
     question:
-      "Pourquoi faire appel à un travel planner plutôt qu'à une agence de voyage ?",
-    answer:
-      "Une agence vend souvent des packages déjà ficelés. Je pars d'une page blanche : vos envies, votre rythme, vos contraintes. Pas de circuit stéréotypé, pas de commission cachée sur des prestations imposées — uniquement un accompagnement d'experte.",
+      "Pourquoi faire appel à un travel planner plutôt qu’à une agence de voyage ?",
+    kind: "compare",
+    columns: ["Travel planner", "Agence de voyage"],
+    rows: [
+      {
+        label: "Concept",
+        planner: [
+          "Crée des voyages sur-mesure qui respectent les critères, les besoins et le budget du client",
+        ],
+        agency: [
+          "Vend des séjours sous forme de package pré-fabriqués destinés à Monsieur et Madame tout le monde.",
+        ],
+      },
+      {
+        label: "Prestations",
+        planner: [
+          "Fait des propositions adaptées à vos critères et besoins",
+        ],
+        agency: [
+          "Propose des prestations avec lesquels il a des partenariats",
+        ],
+      },
+      {
+        label: "Tarifs",
+        planner: [
+          "Payé uniquement pour son service de recherche, de création de voyage et de négociation, tout en faisant bénéficier le voyageur des tarifs négociés ou au juste prix",
+        ],
+        agency: [
+          "Manque de transparence, prend des commissions sur toutes les prestations, incluses dans le tarif total du séjour",
+        ],
+      },
+      {
+        label: "Réservation",
+        planner: [
+          "Peut assister le client sur le processus de réservations, mais ne peut effectuer la réservation à sa place",
+        ],
+        agency: ["Effectue les réservations"],
+      },
+      {
+        label: "Relation",
+        planner: ["Humain et accessible, contact direct"],
+        agency: [
+          "Pas d’interlocuteur privilégié, qualité du service client non garantie",
+        ],
+      },
+      {
+        label: "Conseils",
+        planner: [
+          "Conseils personnalisés, vous bénéficiez de recommandations et de bon plans",
+        ],
+        agency: ["Peu voir pas de conseils personnalisés"],
+      },
+      {
+        label: "Les plus",
+        planner: [
+          "Carnet de voyage sur-mesure reprenant toutes les informations du séjour (informations pratiques sur la destination, hébergement, incontournables, adresses locales,  activités…",
+          "Carte interactive reprenant votre itinéraire et regroupant toutes vos adresses, lieux d’intérêt et recommandations pour un accès simple et fluide pendant votre séjour.",
+        ],
+        agency: [],
+      },
+    ],
   },
   {
+    id: "italy-expert",
     question:
       "Pourquoi suis-je la personne idéale pour organiser votre voyage en Italie ?",
-    answer:
-      "Franco-italienne installée à Rome, l'Italie est mon terrain de jeu quotidien. Je connais les adresses locales, les pièges à touristes et les rythmes réels des lieux. Cette intimité avec le territoire se retrouve dans chaque recommandation.",
+    kind: "paragraphs",
+    paragraphs: [
+      "Franco-italienne, j’ai grandi entre deux cultures, deux sensibilités, deux façons de vivre.",
+      "Je suis née et ai grandi à Paris. Puis il y a eu Rome. En 2019, j’y vis pour la première fois. Trois mois qui changent tout. Je tombe amoureuse de la Cité Éternelle et de ses ruelles où l’on se perd sans jamais vraiment se perdre. À ce moment-là, une évidence s’impose : je veux partager ma vie entre Paris et Rome.",
+      "En 2024, j’y retourne pour un an. Cette fois, je ne suis plus de passage. Je vis Rome au quotidien. Je découvre les cafés de quartier, les adresses que l’on se murmure à voix basse, les lieux absents des guides. En 2026, je m’y installe pour de bon.",
+      "Entre-temps, mon parcours en événementiel et en travel planning m’a appris à transformer une destination en expérience, et à concevoir un séjour comme un événement : avec cohérence, fluidité et sens du détail.",
+      "Mais au fond, ce qui m’anime est simple : voir les gens sourire. Créer des souvenirs qui restent. Offrir une Italie authentique qui ne se contente pas d’être visitée, mais pleinement vécue.",
+    ],
   },
   {
+    id: "services",
     question: "Quels sont les différents services proposés ?",
-    answer:
-      "Trois formules — Dolce Vita (un point de chute), La Strada (roadtrip multi-étapes) et Far Niente (planning jour par jour, à cumuler) — plus des services à la carte : consultation My Trip Advisor, négociation hôtelière et coups de main ciblés.",
+    kind: "rich",
+    blocks: [
+      [
+        { type: "text", text: "My Trip Designer propose " },
+        {
+          type: "strong",
+          text: "deux formules principales",
+          tone: "teal",
+        },
+        {
+          type: "text",
+          text: " d’organisation de voyage : Dolce Vita, idéale pour un séjour dans une seule destination, et La Strada, conçue pour un itinéraire personnalisé avec plusieurs points de chute. Ces deux formules incluent la recherche d’hébergements, de transports et de transferts, ainsi qu’un carnet sur-mesure regroupant toutes les informations utiles à votre séjour.",
+        },
+      ],
+      [
+        {
+          type: "text",
+          text: "Il est possible d’ajouter à une de ces deux formules le surclassement Far Niente afin de bénéficier d’un programme détaillé jour par jour ainsi que d’une carte interactive.",
+        },
+      ],
+      [
+        {
+          type: "text",
+          text: "Sont également proposés comme prestations: la consultation My Trip Advisor, le Carnet de voyages prêt à l’emploi, un service de négociation, ainsi que des prestations à la carte (recherche d’hébergements, de transports…).",
+        },
+      ],
+    ],
   },
   {
+    id: "process",
+    question: "Comment ça se passe concrètement ?",
+    kind: "steps",
+    steps: [
+      {
+        step: "1",
+        title: "Tout commence par un appel gratuit : ",
+        body: "Ce premier échange est 100% gratuit et sans engagement. Pour l'optimiser au mieux, je vous invite à remplir un court formulaire lors de votre réservation afin de me partager vos premières envies de voyage.",
+      },
+      {
+        step: "2",
+        title: "Appel découverte : ",
+        body: "Durant une trentaine de minutes, vous me faites part en détail de vos envies, intérêts, besoins et critères. Cela me permet de vous orienter vers la formule la plus adaptée à votre projet.",
+      },
+      {
+        step: "3",
+        title: "Réception du devis & Validation : ",
+        body: "À l’issue de notre appel, vous recevez un récapitulatif de notre échange, un devis ainsi que les Conditions Générales de Vente.",
+      },
+      {
+        step: "4",
+        title: "Création du voyage :",
+        body: "Dès que la validation est signée, je donne vie à votre projet. Je commence à concevoir votre feuille de route personnalisée et à rassembler mes meilleures recommandations locales pour poser les bases de votre futur séjour.",
+      },
+      {
+        step: "5",
+        title: "Suivi & Ajustements :",
+        body: "Je vous propose mes premières pistes. Nous affinons ensemble chaque élément du programme, en procédant à des ajustements jusqu’à ce que le projet corresponde à 100 % à vos attentes.",
+      },
+      {
+        step: "6",
+        title: "Réception du carnet de voyage :",
+        body: "Vous recevez votre carnet de voyage finalisé regroupant l'intégralité des réservations et tous les détails pratiques pour voyager l'esprit serein. Vous n’avez qu’à vous occuper des réservations et des valises !",
+      },
+    ],
+  },
+  {
+    id: "italy-only",
+    question: "Est-ce que tu organises uniquement des voyages en Italie ?",
+    kind: "rich",
+    blocks: [
+      [
+        {
+          type: "text",
+          text: "Non, je n’organise pas uniquement des voyages en Italie!",
+        },
+      ],
+      [
+        { type: "text", text: "My Trip Designer c’est déjà " },
+        { type: "strong", text: "+150 voyages", tone: "teal" },
+        { type: "text", text: " organisés dans " },
+        { type: "strong", text: "80 destinations ", tone: "teal" },
+        {
+          type: "text",
+          text: "dans le monde entier.",
+        },
+        { type: "break" },
+        {
+          type: "text",
+          text: "Passionnée de voyage, j’ai personnellement exploré 16 pays et travaillé sur plus d’une vingtaine de destinations en Europe, Afrique, Amérique et Asie. Je peux donc également vous accompagner dans l’organisation d’autres voyages, avec la même exigence et le même souci du détail.",
+        },
+      ],
+    ],
+  },
+  {
+    id: "client-tasks",
+    question: "De quoi dois-je m’occuper ?",
+    kind: "paragraphs",
+    paragraphs: [
+      "Il vous sera uniquement demandé de valider les propositions, d’effectuer les réservations (la profession de travel planner ne me permet pas de le faire à votre place), et de préparer vos valises! ",
+    ],
+  },
+  {
+    id: "carnet-difference",
     question:
       "Quelle est la différence entre un carnet prêt à l'emploi et un carnet sur-mesure ?",
-    answer:
-      "Un carnet prêt à l'emploi est un itinéraire déjà conçu, à suivre tel quel. Un carnet sur-mesure est créé pour vous : dates, rythme, hébergements et adresses collent à votre projet, pas à un modèle universel.",
+    kind: "bullets",
+    items: [
+      {
+        title: "Le carnet prêt à l’emploi ",
+        suffix: "— disponible directement à l’achat (39,90€)",
+        body: "Un guide digital complet sur votre destination, pensé pour organiser votre voyage en autonomie : informations pratiques, conseils et recommandations, incontournables et pépites à visiter, adresses locales et bien plus encore.",
+      },
+      {
+        title: "Le carnet sur mesure ",
+        suffix: "— inclus dans les formules Dolce Vita et La Strada",
+        body: "Tout le contenu du carnet prêt à l'emploi, mais élaboré spécialement pour vous. La différence : il intègre vos réservations (vols, hébergement...) et s'adapte à votre voyage réel, pas à un voyage type.",
+      },
+      {
+        title: "Le carnet Premium",
+        suffix: " — inclus dans la formule Far Niente",
+        body: "Le carnet sur-mesure, augmenté. En plus dans votre carnet, un programme détaillé jour par jour adapté à votre rythme, des propositions d'activités selon vos centres d'intérêt, et une carte interactive My Maps avec vos itinéraires, points d'intérêt et adresses.",
+      },
+    ],
   },
   {
-    question: "Comment ça se passe concrètement ?",
-    answer:
-      "Un appel découverte gratuit de 30 minutes, puis un devis. Une fois validé, je construis votre feuille de route, on affine ensemble, et vous recevez votre carnet finalisé avec toutes les infos pratiques pour partir l'esprit léger.",
-  },
-  {
-    question: "Est-ce que tu organises uniquement des voyages en Italie ?",
-    answer:
-      "L'Italie est ma spécialité, mais je conçois aussi des séjours uniques en Europe et dans le monde entier, toujours avec la même exigence d'immersion et d'authenticité.",
-  },
-  {
-    question: "De quoi dois-je m'occuper ?",
-    answer:
-      "Je m'occupe de la recherche, des conseils et de la création du carnet. Les réservations finales (transports, hébergements, activités) restent à votre charge — je vous guide pas à pas pour les finaliser sans stress.",
-  },
-  {
+    id: "far-niente-addon",
     question:
       "J'ai déjà acheté un carnet prêt à l'emploi (ou je souhaite en acheter un), puis-je demander un itinéraire sur-mesure jour par jour ?",
-    answer:
-      "Oui. Far Niente se cumule avec un carnet existant ou une formule : vous choisissez le nombre de jours à détailler, et je compose un programme quotidien sur-mesure autour de votre itinéraire.",
+    kind: "rich",
+    blocks: [
+      [
+        { type: "text", text: "Tout à fait ! Vous pouvez ajouter l'option " },
+        { type: "strong", text: "Far Niente", tone: "brand" },
+        {
+          type: "text",
+          text: " (+40 €/jour). Je me base sur le carnet pour vous concevoir un programme sur-mesure jour par jour avec carte interactive.",
+        },
+      ],
+    ],
   },
-] as const;
+];
