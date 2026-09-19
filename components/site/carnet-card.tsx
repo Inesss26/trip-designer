@@ -4,13 +4,16 @@ import Link from "next/link";
 import { SiteIcon } from "@/components/site/site-icon";
 import { formatCarnetPrice, type Carnet } from "@/lib/carnets-content";
 import { formatDuration } from "@/lib/format";
+import { cn } from "@/lib/utils";
 
 export function CarnetMeta({
   location,
   durationDays,
+  durationClassName = "text-brand/50",
 }: {
   location: string;
   durationDays: number;
+  durationClassName?: string;
 }) {
   return (
     <div className="flex min-w-0 flex-wrap items-center gap-x-6 gap-y-1">
@@ -18,7 +21,12 @@ export function CarnetMeta({
         <SiteIcon src="/icons/carnets/pin.svg" width={8} height={10} />
         {location}
       </p>
-      <p className="flex items-center gap-1.5 type-body-small text-brand/50">
+      <p
+        className={cn(
+          "flex items-center gap-1.5 type-body-small",
+          durationClassName,
+        )}
+      >
         <SiteIcon src="/icons/carnets/duration.svg" size={10} />
         {formatDuration(durationDays)}
       </p>
@@ -36,7 +44,7 @@ export function CarnetCard({ carnet }: { carnet: Carnet }) {
         <div className="relative h-[258px] shrink-0 overflow-hidden bg-bg-muted">
           <Image
             src={carnet.coverImage}
-            alt=""
+            alt={carnet.title}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className="object-cover transition-transform duration-300 ease-out motion-safe:group-hover:scale-105 motion-safe:group-focus-visible:scale-105"

@@ -89,7 +89,7 @@ export function CarnetsCompare() {
         <p className="type-body text-brand/50">{carnetsCompare.subtitle}</p>
       </div>
 
-      <div className="min-w-0 w-full overflow-x-auto pt-8">
+      <div className="min-w-0 w-full overflow-x-auto pt-3">
         <div
           role="table"
           aria-label="Comparatif du carnet prêt à l'emploi, du carnet sur-mesure et du carnet premium"

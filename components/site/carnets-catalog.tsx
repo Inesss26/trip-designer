@@ -57,11 +57,17 @@ export function CarnetsCatalog() {
         })}
       </div>
 
-      <div className="grid gap-px bg-brand/30 sm:grid-cols-2 lg:grid-cols-3">
-        {visible.map((carnet) => (
-          <CarnetCard key={carnet.slug} carnet={carnet} />
-        ))}
-      </div>
+      {visible.length === 0 ? (
+        <p className="type-body text-brand/50">
+          Aucun carnet dans cette catégorie pour le moment.
+        </p>
+      ) : (
+        <div className="grid gap-px bg-brand/30 sm:grid-cols-2">
+          {visible.map((carnet) => (
+            <CarnetCard key={carnet.slug} carnet={carnet} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

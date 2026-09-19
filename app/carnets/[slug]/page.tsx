@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { CarnetPurchase } from "@/components/site/carnet-purchase";
-import { HomeCta } from "@/components/site/home-close";
 import { SiteShell } from "@/components/site/site-shell";
 import {
   carnets,
@@ -50,7 +49,6 @@ export default async function CarnetPage({
     <SiteShell content={content}>
       <main className="flex min-w-0 flex-col gap-16 pb-0 lg:gap-24">
         <CarnetPurchase carnet={carnet} related={related} />
-        <HomeCta />
       </main>
     </SiteShell>
   );

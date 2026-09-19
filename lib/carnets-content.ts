@@ -9,11 +9,16 @@ export type Carnet = {
   summary: string;
   tagline: string;
   description: string;
+  keyFacts: {
+    season: string;
+    formalities: string;
+    transport: string;
+  };
+  highlights: [string, string, string];
   coverImage: string;
   heroImage: string;
   gallery: string[];
   ctaLabel: string;
-  relatedSlugs: [string, string, string];
 };
 
 export const CARNET_PRICE_EUR = 39.9;
@@ -31,8 +36,8 @@ export function formatCarnetPrice(value = CARNET_PRICE_EUR): string {
 export const carnetFilters = [
   { id: "tous", label: "Tous" },
   { id: "italie", label: "Italie" },
-  { id: "europe", label: "europe" },
-  { id: "monde", label: "reste du monde" },
+  { id: "europe", label: "Europe" },
+  { id: "monde", label: "Reste du monde" },
 ] as const;
 
 export type CarnetFilterId = (typeof carnetFilters)[number]["id"];
@@ -45,170 +50,144 @@ export const carnetRegionLabels: Record<CarnetRegion, string> = {
 
 export const carnets: Carnet[] = [
   {
-    slug: "rome-dolce-vita",
-    title: "Rome & la Dolce Vita",
-    location: "Latium",
-    region: "italie",
-    durationDays: 6,
+    slug: "barcelone",
+    title: "Barcelone",
+    location: "Catalogne, Espagne",
+    region: "europe",
+    durationDays: 5,
     summary:
-      "Quartiers d'artistes, trattorias centenaires, jardins oubliés — la Rome des initiés.",
+      "Une escapade catalane entre mer, architecture moderniste et créativité",
     tagline:
-      "Quartiers d'artistes, trattorias centenaires, jardins oubliés — la Rome des initiés.",
+      "Une escapade catalane entre mer, architecture moderniste et créativité",
     description:
-      "Rome se mérite hors des files d'attente et des clichés. Ce carnet vous ouvre les quartiers d'artistes, les trattorias centenaires et les jardins oubliés — la ville des initiés, à votre rythme, saison après saison.",
-    coverImage: "/images/carnets/rome.png",
-    heroImage: "/images/carnets/rome.png",
-    gallery: [],
-    ctaLabel: "voir ce carnet",
-    relatedSlugs: ["cote-amalfitaine", "echappee-toscane", "cyclades-insolites"],
-  },
-  {
-    slug: "cote-amalfitaine",
-    title: "La Côte Amalfitaine",
-    location: "Campanie, Italie",
-    region: "italie",
-    durationDays: 8,
-    summary:
-      "Ravello, Positano, Praiano : chaque virage révèle une terrasse suspendue sur la Méditerranée.",
-    tagline:
-      "Ravello, Positano, Praiano — chaque virage, une terrasse sur la Méditerranée.",
-    description:
-      "La côte Amalfitaine est l'une des plus belles routes du monde — et l'une des plus piégeuses pour les voyageurs non préparés. Ce carnet vous donne toutes les clés pour l'explorer à votre rythme, en évitant les bus bondés et les restaurants attrape-touristes. 8 jours de programme affiné saison après saison.",
-    coverImage: "/images/carnets/amalfi.png",
-    heroImage: "/images/carnets/amalfi-hero.png",
+      "Barcelone se déguste entre mer et collines, du modernisme de Gaudí aux ruelles du Born. Ce carnet pose le rythme d'une escapade catalane : les incontournables sans la foule, les tapas au bon moment, les transports qui font gagner du temps. Un aperçu pour partir l'esprit léger — le détail se feuillette dans le carnet.",
+    keyFacts: {
+      season: "Mai (18-24 °C)",
+      formalities: "Carte d'identité/Passeport (Schengen)",
+      transport: "Métro, bus, pass T-casual ou Hola Barcelona",
+    },
+    highlights: [
+      "Les étapes incontournables (Sagrada Família, Parc Güell...)",
+      "Les moments forts (ateliers, découvertes culinaires)",
+      "Sélection de bonnes adresses (tapas, rooftops)",
+    ],
+    coverImage:
+      "https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&w=1600&q=80",
+    heroImage:
+      "https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&w=1600&q=80",
     gallery: [
-      "/images/carnets/amalfi-gallery-1.png",
-      "/images/carnets/amalfi-gallery-2.png",
-      "/images/carnets/amalfi-gallery-3.png",
+      "https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1579282240050-141d4ecef9e1?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1539037116277-4db20810953d?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1464790719320-516ecd75af6c?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?auto=format&fit=crop&w=1200&q=80",
     ],
     ctaLabel: "voir ce carnet",
-    relatedSlugs: ["rome-dolce-vita", "echappee-toscane", "alentejo-cote-sauvage"],
   },
   {
-    slug: "echappee-toscane",
-    title: "Échappée en Toscane",
-    location: "Toscane",
+    slug: "florence",
+    title: "Florence",
+    location: "Toscane, Italie",
     region: "italie",
-    durationDays: 9,
+    durationDays: 4,
     summary:
-      "Vignobles de Montepulciano, fermes bio, bourgs médiévaux — la Toscane hors des radars.",
+      "Joyau de la Renaissance, berceau de l'art et douceur de vivre toscane",
     tagline:
-      "Vignobles de Montepulciano, fermes bio, bourgs médiévaux — la Toscane hors des radars.",
+      "Joyau de la Renaissance, berceau de l'art et douceur de vivre toscane",
     description:
-      "Loin des files de Chianti, ce carnet déroule une Toscane plus secrète : vignobles de Montepulciano, fermes bio et bourgs médiévaux. Neuf jours pour savourer la campagne italienne sans la circulation des grands axes.",
-    coverImage: "/images/carnets/toscane.png",
-    heroImage: "/images/carnets/toscane.png",
-    gallery: [],
+      "Florence concentre cinq siècles d'art dans une ville que l'on parcourt à pied. Ce carnet ouvre le joyau de la Renaissance sans s'y perdre : Duomo, Offices, ateliers de cuir et cafés historiques, au bon tempo. L'essentiel pour savourer la douceur toscane — le programme complet est dans le carnet.",
+    keyFacts: {
+      season: "Printemps (10-25 °C)",
+      formalities: "Carte d'identité/Passeport (Schengen)",
+      transport: "À pied, réseau bus & tramway",
+    },
+    highlights: [
+      "Les joyaux architecturaux (Duomo, Offices, Ponte Vecchio...)",
+      "Les expériences artisanales (cuir, papier marbré)",
+      "Adresses coups de cœur (cafés historiques, rooftops)",
+    ],
+    coverImage:
+      "https://images.unsplash.com/photo-1767037447367-99ffa711277c?auto=format&fit=crop&w=1600&q=80",
+    heroImage:
+      "https://images.unsplash.com/photo-1767037447367-99ffa711277c?auto=format&fit=crop&w=1600&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1476362555312-ab9e108a0b7e?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1534113414509-0eec2bfb493f?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1775343969930-6dfde1a057e0?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1764509612305-654894e04a66?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1776377231754-d36928e6ee4d?auto=format&fit=crop&w=1200&q=80",
+    ],
     ctaLabel: "voir ce carnet",
-    relatedSlugs: ["rome-dolce-vita", "cote-amalfitaine", "andalousie-profonde"],
   },
   {
-    slug: "cyclades-insolites",
-    title: "Cyclades insolites",
-    location: "Grèce",
+    slug: "londres",
+    title: "Londres",
+    location: "Angleterre, Royaume-Uni",
     region: "europe",
-    durationDays: 11,
+    durationDays: 5,
     summary:
-      "Folegandros, Milos, Sifnos — les Cyclades sauvages, loin de Santorin.",
+      "Cité cosmopolite entre traditions royales, culture alternative et modernité",
     tagline:
-      "Folegandros, Milos, Sifnos — les Cyclades sauvages, loin de Santorin.",
+      "Cité cosmopolite entre traditions royales, culture alternative et modernité",
     description:
-      "Oubliez Santorin saturée. Ce carnet relie Folegandros, Milos et Sifnos : villages blancs, criques minérales et tavernes de pêcheurs. Onze jours pour une Grèce des îles plus sauvage, au bon rythme des ferries.",
-    coverImage: "/images/carnets/cyclades.png",
-    heroImage: "/images/carnets/cyclades.png",
-    gallery: [],
-    ctaLabel: "voir le carnet",
-    relatedSlugs: ["alentejo-cote-sauvage", "andalousie-profonde", "rome-dolce-vita"],
+      "Londres mêle traditions royales, marchés bruyants et quartiers qui changent d'un arrêt de métro à l'autre. Ce carnet pose les classiques, l'Underground et les adresses qui font la différence. Une accroche cosmopolite — le détail se tourne page après page dans le carnet.",
+    keyFacts: {
+      season: "Février (5-10 °C)",
+      formalities: "Passeport valide obligatoire",
+      transport: "Underground, bus, Oyster / Contactless",
+    },
+    highlights: [
+      "Les classiques londoniens (Westminster, Tower Bridge, musées...)",
+      "L'ambiance des marchés (Covent Garden, Camden...)",
+      "Excursions et expériences uniques",
+    ],
+    coverImage:
+      "https://images.unsplash.com/photo-1761063814673-a9f0499d2081?auto=format&fit=crop&w=1600&q=80",
+    heroImage:
+      "https://images.unsplash.com/photo-1761063814673-a9f0499d2081?auto=format&fit=crop&w=1600&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1526129318478-62ed807ebdf9?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1486299267070-83823f5448dd?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1766442784315-7011b13de2a6?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1569865867048-34cfce8d58fe?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1529655683826-aba9b3e77383?auto=format&fit=crop&w=1200&q=80",
+    ],
+    ctaLabel: "voir ce carnet",
   },
   {
-    slug: "alentejo-cote-sauvage",
-    title: "Alentejo & côte sauvage",
-    location: "Portugal",
-    region: "europe",
-    durationDays: 9,
+    slug: "palerme",
+    title: "Palerme",
+    location: "Sicile, Italie",
+    region: "italie",
+    durationDays: 5,
     summary:
-      "Vignobles, liège, villages blancs et plages désertes — le Portugal authentique.",
+      "Carrefour arabo-normand, marchés vibrants et douceurs méditerranéennes",
     tagline:
-      "Vignobles, liège, villages blancs et plages désertes — le Portugal authentique.",
+      "Carrefour arabo-normand, marchés vibrants et douceurs méditerranéennes",
     description:
-      "L'Alentejo déroule ses plaines de liège, ses villages blancs et une côte encore déserte. Ce carnet assemble neuf jours de Portugal authentique — vignobles, océan et tables d'auberge — loin des circuits de Lisbonne.",
-    coverImage: "/images/carnets/alentejo.png",
-    heroImage: "/images/carnets/alentejo.png",
-    gallery: [],
-    ctaLabel: "voir le carnet",
-    relatedSlugs: ["cyclades-insolites", "andalousie-profonde", "cote-amalfitaine"],
-  },
-  {
-    slug: "andalousie-profonde",
-    title: "Andalousie profonde",
-    location: "Espagne",
-    region: "europe",
-    durationDays: 10,
-    summary:
-      "Séville, Ronda et les pueblos blancos — une Espagne ardente et hors du temps.",
-    tagline:
-      "Séville, Ronda et les pueblos blancos — une Espagne ardente et hors du temps.",
-    description:
-      "Séville, Ronda et les pueblos blancos : une Andalousie ardente, loin des plages de Costa. Dix jours pour les patios, les tapas de quartier et les routes de montagne, avec les bons horaires et les bonnes adresses.",
-    coverImage: "/images/carnets/andalousie.png",
-    heroImage: "/images/carnets/andalousie.png",
-    gallery: [],
-    ctaLabel: "voir le carnet",
-    relatedSlugs: ["cyclades-insolites", "alentejo-cote-sauvage", "echappee-toscane"],
-  },
-  {
-    slug: "sud-marocain",
-    title: "Sud marocain, dunes & kasbahs",
-    location: "Maroc",
-    region: "monde",
-    durationDays: 10,
-    summary:
-      "Ouarzazate, le désert de Merzouga, la vallée du Drâa — un grand sud inoubliable.",
-    tagline:
-      "Ouarzazate, le désert de Merzouga, la vallée du Drâa — un grand sud inoubliable.",
-    description:
-      "Ouarzazate, Merzouga, la vallée du Drâa : le grand sud marocain, entre kasbahs et dunes. Ce carnet pose un rythme tenable — routes, nuits sous les étoiles et palmeraies — pour un voyage intense sans improviser les étapes.",
-    coverImage: "/images/carnets/maroc.png",
-    heroImage: "/images/carnets/maroc.png",
-    gallery: [],
-    ctaLabel: "voir le carnet",
-    relatedSlugs: ["japon-rural-ryokans", "georgie-caucase", "andalousie-profonde"],
-  },
-  {
-    slug: "japon-rural-ryokans",
-    title: "Japon rural & ryokans",
-    location: "Japon",
-    region: "monde",
-    durationDays: 14,
-    summary:
-      "Kanazawa, Shirakawa-go, Kyoto hors saison. Le Japon profond et contemplatif.",
-    tagline:
-      "Kanazawa, Shirakawa-go, Kyoto hors saison. Le Japon profond et contemplatif.",
-    description:
-      "Kanazawa, Shirakawa-go, Kyoto hors saison : un Japon rural et contemplatif, ryokans compris. Quatorze jours pour les trains, les onsen et les villages de montagne, avec une feuille de route claire pour voyager sans friction.",
-    coverImage: "/images/carnets/japon.png",
-    heroImage: "/images/carnets/japon.png",
-    gallery: [],
-    ctaLabel: "voir le carnet",
-    relatedSlugs: ["georgie-caucase", "sud-marocain", "cyclades-insolites"],
-  },
-  {
-    slug: "georgie-caucase",
-    title: "Géorgie & Caucase",
-    location: "Géorgie",
-    region: "monde",
-    durationDays: 12,
-    summary:
-      "Tbilissi baroque, monastères en montagne, vignes millénaires — une destination rare.",
-    tagline:
-      "Tbilissi baroque, monastères en montagne, vignes millénaires — une destination rare.",
-    description:
-      "Tbilissi baroque, monastères perchés, vignes millénaires : la Géorgie reste une destination rare. Douze jours pour le Caucase, les tables de supra et les routes de montagne, avec les infos pratiques qui manquent encore aux guides génériques.",
-    coverImage: "/images/carnets/georgie.png",
-    heroImage: "/images/carnets/georgie.png",
-    gallery: [],
-    ctaLabel: "voir le carnet",
-    relatedSlugs: ["japon-rural-ryokans", "sud-marocain", "rome-dolce-vita"],
+      "Palerme est un carrefour : arabo-normand, baroque, marchés et mer à deux pas. Ce carnet vous y installe sans improvisation : patrimoine, street food, bus AMAT et escapades côtières. L'esprit méditerranéen en quelques pages — le reste se feuillette dans le carnet.",
+    keyFacts: {
+      season: "Juin (21-28 °C)",
+      formalities: "Carte d'identité/Passeport (Schengen)",
+      transport: "À pied, bus AMAT, train régional",
+    },
+    highlights: [
+      "Le patrimoine arabo-normand et baroque",
+      "L'ambiance des marchés et la street food",
+      "Escapades proches (mer et villages)",
+    ],
+    coverImage:
+      "https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=1600&q=80",
+    heroImage:
+      "https://images.unsplash.com/photo-1596484552834-6a58f850e0a1?auto=format&fit=crop&w=1600&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1533105079780-fdcd5d5c0d0e?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1605723517503-3cadb0c4d325?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1570077188670-e3a8d69d2c8b?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1560707303-4e980ce876ad?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1555990793-da11153b24c0?auto=format&fit=crop&w=1200&q=80",
+    ],
+    ctaLabel: "voir ce carnet",
   },
 ];
 
@@ -312,9 +291,7 @@ export function getCarnetBySlug(slug: string): Carnet | undefined {
 }
 
 export function getRelatedCarnets(carnet: Carnet): Carnet[] {
-  return carnet.relatedSlugs
-    .map((slug) => getCarnetBySlug(slug))
-    .filter((related): related is Carnet => Boolean(related));
+  return carnets.filter((item) => item.slug !== carnet.slug);
 }
 
 export function filterCarnets(
@@ -323,6 +300,12 @@ export function filterCarnets(
 ): Carnet[] {
   if (filter === "tous") {
     return list;
+  }
+
+  if (filter === "europe") {
+    return list.filter(
+      (carnet) => carnet.region === "europe" || carnet.region === "italie",
+    );
   }
 
   return list.filter((carnet) => carnet.region === filter);
