@@ -170,11 +170,11 @@ insert into public.reviews (
 ) values
 (
   'bbbbbbb1-bbbb-4bbb-8bbb-bbbbbbbbbbb1',
-  'Claire et Julien',
-  'Nantes',
+  'Alya',
+  'Roadtrip en Italie',
   5,
-  'Nous avions trois semaines et aucune idée de comment les organiser. Le carnet nous a évité deux erreurs de logistique qui nous auraient coûté une journée chacune. Les adresses de Takayama étaient le point fort du voyage.',
-  '11111111-1111-4111-8111-111111111111',
+  $review1$Un voyage magnifique en compagnie de toute la tribu : 4 adultes et 5 enfants ! Nous revenons la tête remplie d'images, de couleurs, d'ambiances, d'aventures et surtout de souvenirs. My Trip Designer était aux petits soins et conseils, on a pu profiter de tellement de choses en si peu de temps et encore une fois un voyage réussi! On s'est régalé encore une fois du beau pays qu'est l'Italie. Un mix de culture, nature et gastronomie. Grâce à ses recommandations, on a pu non seulement éviter les restau attrape-touristes, mais aussi déguster les bonnes glaces chez les enseignes les plus connues, savourer les pâtes fraîches et les pizzas succulentes! Notre circuit pour cette fois-ci est : Pise - Montecatini Terme - Portofino - Cinque Terre - Florence - Verragio et son carnaval grandiose! - Rome. Encore une fois merci !! Vivement notre prochain voyage$review1$,
+  null,
   '2026-04-12',
   'published',
   true,
@@ -182,11 +182,11 @@ insert into public.reviews (
 ),
 (
   'bbbbbbb2-bbbb-4bbb-8bbb-bbbbbbbbbbb2',
-  'Sophie M.',
-  'Lyon',
+  'Karine',
+  'Road trip à florence',
   5,
-  'Le double programme selon la météo m''a paru excessif avant de partir. Sur dix jours en Islande, nous avons basculé sur la version pluie quatre fois. Sans ça, nous aurions perdu ces journées.',
-  '22222222-2222-4222-8222-222222222222',
+  $review2$Agathe, je te remercie de tout cœur pour ce carnet qui m'a été plus que précieux. Quel temps de gagné ! Moi qui étais une adepte du Guide du Routard, je dois reconnaître que ce carnet est bien plus pratique : ultra complet, sans avoir à parcourir des centaines de pages. Les adresses ont été un sans faute, de véritables adresses Florentines aux saveurs locales inoubliables, et merci pour les pertinents conseils notamment à propos des musées. Encore merci pour ces recherches chronophages qui m'ont permis d'apprécier un séjour sur mesure sans aucune charge mentale ni stress en amont tout comme sur place !$review2$,
+  null,
   '2026-09-03',
   'published',
   true,
@@ -194,27 +194,15 @@ insert into public.reviews (
 ),
 (
   'bbbbbbb3-bbbb-4bbb-8bbb-bbbbbbbbbbb3',
-  'Famille Ferreira',
-  'Bordeaux',
-  4,
-  'Un vrai voyage de famille, avec des journées calibrées pour nos deux enfants. Seul regret : nous aurions aimé une nuit de plus à Lisbonne, ce qui n''est pas la faute de l''itinéraire mais de notre billet d''avion.',
-  '33333333-3333-4333-8333-333333333333',
+  'Chema',
+  'Family & Friend Trip à Barcelone',
+  5,
+  $review3$Agathe a parfaitement compris notre besoin pour notre voyage en famille. Elle a su nous proposer un séjour alliant détente, découvertes culturelles et activités adaptées aux enfants, pour que chacun puisse en profiter pleinement. Un grand merci Agathe pour ton accompagnement et pour le joli carnet de voyage aussi utile qu'attentionné !$review3$,
+  null,
   '2026-07-20',
   'published',
-  false,
+  true,
   3
-),
-(
-  'bbbbbbb4-bbbb-4bbb-8bbb-bbbbbbbbbbb4',
-  'Antoine D.',
-  'Paris',
-  5,
-  'J''ai pris uniquement l''appel découverte pour un voyage que je voulais organiser seul. Le compte rendu m''a fait revoir complètement l''ordre de mes étapes. Quarante-cinq minutes très bien investies.',
-  null,
-  '2026-02-08',
-  'published',
-  false,
-  4
 ),
 (
   'bbbbbbb5-bbbb-4bbb-8bbb-bbbbbbbbbbb5',
@@ -226,7 +214,7 @@ insert into public.reviews (
   '2026-10-01',
   'pending',
   false,
-  5
+  4
 )
 on conflict (id) do update set
   author_name = excluded.author_name,
@@ -245,9 +233,9 @@ on conflict (id) do update set
 
 insert into public.site_content (key, label, kind, value, sort_order) values
 ('site.name', 'Nom affiché du site', 'text', 'MyTripDesigner', 1),
-('site.email', 'Adresse e-mail de contact', 'text', 'bonjour@mytripdesigner.fr', 2),
+('site.email', 'Adresse e-mail de contact', 'text', 'agathe@mytripdesigner.fr', 2),
 ('site.phone', 'Téléphone (optionnel)', 'text', '', 3),
-('site.instagram', 'Compte Instagram (optionnel)', 'text', '@mytripdesigner', 4),
+('site.instagram', 'Compte Instagram (optionnel)', 'text', '@my_trip_designer', 4),
 ('home.hero.eyebrow', 'Accueil — surtitre', 'text', 'Créatrice de voyages sur mesure', 10),
 ('home.hero.title', 'Accueil — titre principal', 'text', 'Votre voyage sur-mesure, avec l''esprit Dolce Vita', 11),
 ('home.hero.subtitle', 'Accueil — sous-titre', 'richtext', 'Spécialiste de l''Italie, je conçois des itinéraires uniques et immersifs en Europe et dans le monde entier. Confiez-moi votre projet et partez l''esprit léger.', 12),

@@ -1,8 +1,8 @@
 import Image from "next/image";
 
 import { SiteIcon } from "@/components/site/site-icon";
+import { ZcalLink } from "@/components/site/zcal-link";
 import { Button } from "@/components/ui/button";
-import { CALENDLY_URL } from "@/lib/site";
 
 const perks = [
   "Appel 100 % offert, sans engagement",
@@ -10,12 +10,9 @@ const perks = [
 ] as const;
 
 export function ContactHero() {
-  const href = CALENDLY_URL || "#formulaire";
-  const external = href.startsWith("http");
-
   return (
-    <section className="bg-brand-primary px-4 py-16 sm:px-8 sm:py-16 lg:px-11">
-      <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center justify-between gap-12 lg:flex-row">
+    <section className="bg-brand-primary py-16">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center justify-between gap-12 px-4 sm:px-8 lg:flex-row lg:px-[115px]">
         <div className="flex max-w-[552px] flex-col gap-11">
           <div className="flex flex-col gap-5">
             <p className="type-tag text-text-on-dark/25">
@@ -44,15 +41,8 @@ export function ContactHero() {
               </li>
             ))}
           </ul>
-          <Button asChild variant="dark" size="cta">
-            <a
-              href={href}
-              {...(external
-                ? { target: "_blank", rel: "noreferrer" }
-                : undefined)}
-            >
-              Réserver mon appel découverte
-            </a>
+          <Button asChild variant="dark" size="cta" className="self-start">
+            <ZcalLink>Réserver mon appel découverte</ZcalLink>
           </Button>
         </div>
         <div className="relative h-[320px] w-full max-w-[323px] overflow-hidden sm:h-[400px] lg:h-[420px]">

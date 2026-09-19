@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { SiteIcon } from "@/components/site/site-icon";
@@ -10,6 +9,7 @@ import {
   type FormulesFaqItem,
   type FormulesFaqRichPart,
 } from "@/lib/formules-content";
+import { MAILTO_FAQ } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 function FaqRichParts({ parts }: { parts: FormulesFaqRichPart[] }) {
@@ -204,11 +204,7 @@ function FormulesFaqList() {
   );
 }
 
-export function FormulesFaq({
-  contactHref = "/contact",
-}: {
-  contactHref?: string;
-}) {
+export function FormulesFaq() {
   return (
     <section
       id="faq"
@@ -238,7 +234,7 @@ export function FormulesFaq({
           </p>
         </div>
         <Button asChild variant="tertiary" size="cta">
-          <Link href={contactHref}>contactez moi !</Link>
+          <a href={MAILTO_FAQ}>contactez moi !</a>
         </Button>
       </div>
     </section>

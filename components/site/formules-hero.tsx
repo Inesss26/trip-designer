@@ -1,7 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
 
 import { SiteIcon } from "@/components/site/site-icon";
+import { ZcalLink } from "@/components/site/zcal-link";
 import { Button } from "@/components/ui/button";
 import {
   formulesDisclaimer,
@@ -151,7 +151,7 @@ export function FormulesHero() {
                   size="cta"
                   className="w-full"
                 >
-                  <Link href="/contact">réserver mon appel</Link>
+                  <ZcalLink>réserver mon appel</ZcalLink>
                 </Button>
               </div>
             </article>

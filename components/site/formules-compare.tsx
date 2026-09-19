@@ -143,40 +143,43 @@ export function FormulesCompare() {
             </div>
           ))}
 
-          <div role="row" className="grid" style={compareRowStyle}>
-            <div
-              role="rowheader"
-              className="flex min-h-[89px] items-center px-7 text-left type-tag text-accent-dark"
-            >
-              Tarif
-            </div>
-            {formulesCompare.columns.map((column) => (
+          <div className="relative">
+            <div aria-hidden="true" className="absolute inset-0 bg-bg-muted" />
+            <div role="row" className="relative grid" style={compareRowStyle}>
               <div
-                key={column.id}
-                role="cell"
-                className={cn(
-                  "flex min-h-[89px] flex-col items-center justify-center gap-1 px-5 py-5 text-center",
-                  column.featured && "bg-accent-dark",
-                )}
+                role="rowheader"
+                className="flex min-h-[89px] items-center px-7 text-left type-tag text-accent-dark"
               >
-                <p
-                  className={cn(
-                    "font-heading text-[20px] leading-[30px] font-bold",
-                    column.featured ? "text-text-on-dark" : "text-accent-dark",
-                  )}
-                >
-                  {column.price}
-                </p>
-                <p
-                  className={cn(
-                    "font-body text-[10px] leading-[15px] font-medium",
-                    column.featured ? "text-text-on-dark" : "text-accent-dark",
-                  )}
-                >
-                  {column.priceCaption}
-                </p>
+                Tarif
               </div>
-            ))}
+              {formulesCompare.columns.map((column) => (
+                <div
+                  key={column.id}
+                  role="cell"
+                  className={cn(
+                    "flex min-h-[89px] flex-col items-center justify-center gap-1 px-5 py-5 text-center",
+                    column.featured && "bg-accent-dark",
+                  )}
+                >
+                  <p
+                    className={cn(
+                      "font-heading text-[20px] leading-[30px] font-bold",
+                      column.featured ? "text-text-on-dark" : "text-accent-dark",
+                    )}
+                  >
+                    {column.price}
+                  </p>
+                  <p
+                    className={cn(
+                      "font-body text-[10px] leading-[15px] font-medium",
+                      column.featured ? "text-text-on-dark" : "text-accent-dark",
+                    )}
+                  >
+                    {column.priceCaption}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

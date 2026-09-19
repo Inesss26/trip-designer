@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
+import { ZcalLink } from "@/components/site/zcal-link";
 
 function Bullet({
   children,
@@ -109,7 +110,7 @@ export function CarnetsUpsell() {
             !
           </p>
           <Button asChild variant="dark" size="cta" className="w-full">
-            <Link href="/contact">Commander mon carnet</Link>
+            <ZcalLink>Commander mon carnet</ZcalLink>
           </Button>
         </article>
       </div>

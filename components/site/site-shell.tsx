@@ -10,10 +10,12 @@ export function SiteShell({
   content: SiteContentMap;
 }) {
   return (
-    <div className="flex min-h-full flex-1 flex-col overflow-x-hidden bg-bg-main font-body text-text-brand">
-      <SiteHeader instagram={content["site.instagram"]} />
-      {children}
-      <SiteFooter content={content} />
+    <div className="flex min-h-full flex-1 flex-col bg-bg-main font-body text-text-brand">
+      <SiteHeader />
+      <div className="flex min-h-0 flex-1 flex-col overflow-x-clip">
+        {children}
+        <SiteFooter content={content} />
+      </div>
     </div>
   );
 }

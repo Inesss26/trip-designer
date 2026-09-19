@@ -6,6 +6,7 @@ import { CarnetFlipbook } from "@/components/site/carnet-flipbook-lazy";
 import { CarnetsBenefits } from "@/components/site/carnets-benefits";
 import { CarnetsCompare } from "@/components/site/carnets-compare";
 import { SiteIcon } from "@/components/site/site-icon";
+import { ZcalLink } from "@/components/site/zcal-link";
 import { Button } from "@/components/ui/button";
 import {
   carnetIncludes,
@@ -152,7 +153,7 @@ export function CarnetPurchase({
               (Sur devis — selon le nombre de jours, dès 40 €/j)
             </p>
             <Button asChild variant="tertiary" size="cta" className="w-full bg-white">
-              <Link href="/contact">réserver mon Appel découverte</Link>
+              <ZcalLink>réserver mon Appel découverte</ZcalLink>
             </Button>
           </div>
         </aside>

@@ -124,5 +124,5 @@ export const aboutSocial = {
   kicker: "Communauté & réseaux",
   title: "La Dolce Vita au",
   titleAccent: "quotidien.",
-  text: "Découvrez les coulisses de mon métier de Travel Planner. Autant de pépites et de savoir-faire partagés au quotidien pour vous inspirer et construire votre prochain séjour.",
+  text: "Découvrez les coulisses de mon métier de Travel Planner : autant de pépites et de savoir-faire partagés au quotidien.",
 } as const;

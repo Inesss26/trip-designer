@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
+import { ZcalLink } from "@/components/site/zcal-link";
 import { Button } from "@/components/ui/button";
 import { homeFormulas } from "@/lib/home-content";
 import { cn } from "@/lib/utils";
@@ -103,7 +104,7 @@ export function HomeFormulas() {
               size="cta"
               className="w-full"
             >
-              <Link href="/contact">Réserver mon appel</Link>
+              <ZcalLink>Réserver mon appel</ZcalLink>
             </Button>
           </article>
         ))}

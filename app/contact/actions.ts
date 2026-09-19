@@ -1,8 +1,12 @@
 "use server";
 
-import type { ContactFormState } from "@/app/contact/state";
+import {
+  CONTACT_FORM_SUCCESS_MESSAGE,
+  type ContactFormState,
+} from "@/app/contact/state";
 import { createLead } from "@/lib/data/leads";
 import { DataError } from "@/lib/data/utils";
+import { sendContactEmail } from "@/lib/send-contact-email";
 import { leadInputSchema, toFieldErrors } from "@/lib/validation/schemas";
 
 const FIELDS = [
@@ -57,7 +61,13 @@ export async function submitContactRequest(
   }
 
   try {
-    await createLead(parsed.data);
+    await sendContactEmail(parsed.data);
+
+    try {
+      await createLead(parsed.data);
+    } catch {
+      // L'e-mail est parti : la copie dans l'administration est secondaire.
+    }
   } catch (error) {
     return {
       status: "error",
@@ -72,7 +82,7 @@ export async function submitContactRequest(
 
   return {
     status: "success",
-    message: null,
+    message: CONTACT_FORM_SUCCESS_MESSAGE,
     fieldErrors: {},
     values: {},
   };

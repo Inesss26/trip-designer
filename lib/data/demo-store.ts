@@ -30,7 +30,7 @@ type DemoStore = {
 };
 
 declare global {
-  var __mytripdesignerDemoStore: DemoStore | undefined;
+  var __mtdDemoStoreEmail: DemoStore | undefined;
 }
 
 function createStore(): DemoStore {
@@ -48,12 +48,12 @@ function createStore(): DemoStore {
  * de Next.js en développement.
  */
 export function demoStore(): DemoStore {
-  globalThis.__mytripdesignerDemoStore ??= createStore();
-  return globalThis.__mytripdesignerDemoStore;
+  globalThis.__mtdDemoStoreEmail ??= createStore();
+  return globalThis.__mtdDemoStoreEmail;
 }
 
 export function resetDemoStore(): void {
-  globalThis.__mytripdesignerDemoStore = createStore();
+  globalThis.__mtdDemoStoreEmail = createStore();
 }
 
 export function demoTimestamp(): string {

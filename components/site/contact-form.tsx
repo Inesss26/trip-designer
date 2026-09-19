@@ -1,11 +1,16 @@
 "use client";
 
-import { useActionState, useEffect, useRef } from "react";
+import {
+  type FormEvent,
+  startTransition,
+  useActionState,
+  useEffect,
+  useRef,
+} from "react";
 
 import { submitContactRequest } from "@/app/contact/actions";
 import { contactInitialState } from "@/app/contact/state";
 import { FieldError } from "@/components/site/field-error";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -13,25 +18,21 @@ import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 
 type ContactFormProps = {
-  confirmationMessage: string;
   defaultDestination?: string;
 };
 
 const fieldClass =
   "h-[46px] rounded-[4px] border-brand-primary-30 bg-bg-default px-[17px] type-body-small text-text-brand placeholder:text-brand-primary-30 focus-visible:border-brand-primary focus-visible:ring-brand-primary/20";
 
-const labelClass =
-  "type-tag text-brand/50";
+const labelClass = "type-tag text-brand/50";
 
-export function ContactForm({
-  confirmationMessage,
-  defaultDestination = "",
-}: ContactFormProps) {
+export function ContactForm({ defaultDestination = "" }: ContactFormProps) {
   const [state, formAction, pending] = useActionState(
     submitContactRequest,
     contactInitialState,
   );
-  const errorRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const errorRef = useRef<HTMLParagraphElement>(null);
   const renderedAtRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -41,34 +42,36 @@ export function ContactForm({
   }, []);
 
   useEffect(() => {
+    if (state.status === "success") {
+      formRef.current?.reset();
+      if (renderedAtRef.current) {
+        renderedAtRef.current.value = String(Date.now());
+      }
+    }
+
     if (state.status === "error") {
       errorRef.current?.focus();
     }
   }, [state]);
 
-  if (state.status === "success") {
-    return (
-      <Alert>
-        <AlertTitle>Demande envoyée</AlertTitle>
-        <AlertDescription>{confirmationMessage}</AlertDescription>
-      </Alert>
-    );
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    startTransition(() => {
+      formAction(formData);
+    });
   }
 
   const value = (name: string, fallback = "") =>
     state.values[name] ?? fallback;
 
   return (
-    <form action={formAction} className="flex w-full flex-col gap-8" noValidate>
-      {state.message ? (
-        <div ref={errorRef} tabIndex={-1} aria-live="polite">
-          <Alert variant="destructive">
-            <AlertTitle>Envoi impossible</AlertTitle>
-            <AlertDescription>{state.message}</AlertDescription>
-          </Alert>
-        </div>
-      ) : null}
-
+    <form
+      ref={formRef}
+      onSubmit={handleSubmit}
+      className="flex w-full flex-col gap-8"
+      noValidate
+    >
       <input
         ref={renderedAtRef}
         type="hidden"
@@ -176,9 +179,25 @@ export function ContactForm({
           size="cta"
           className="w-full"
           disabled={pending}
+          aria-busy={pending}
         >
-          {pending ? "Envoi en cours…" : "Envoyer mon message"}
+          {pending ? "Envoi en cours..." : "Envoyer mon message"}
         </Button>
+        {!pending && state.status === "success" && state.message ? (
+          <p className="type-body-small text-accent-dark" role="status">
+            {state.message}
+          </p>
+        ) : null}
+        {!pending && state.status === "error" && state.message ? (
+          <p
+            ref={errorRef}
+            tabIndex={-1}
+            className="type-body-small text-brand-primary/70"
+            role="alert"
+          >
+            {state.message}
+          </p>
+        ) : null}
         <p className="text-center type-body-small text-brand/30">
           Toute donnée partagée est strictement confidentielle
         </p>

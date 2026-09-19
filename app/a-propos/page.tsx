@@ -33,7 +33,7 @@ export default async function AboutPage() {
         <AboutMap />
         <div>
           <MarqueeTape />
-          <AboutSocial instagram={content["site.instagram"]} />
+          <AboutSocial />
           <HomeCta />
         </div>
       </main>

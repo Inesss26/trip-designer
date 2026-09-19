@@ -43,7 +43,7 @@ export default async function HomePage() {
         <HomeAbout />
         <HomeReviews reviews={reviews} trips={trips} />
         <div>
-          <HomeCommunity instagram={content["site.instagram"]} />
+          <HomeCommunity />
           <HomeCta />
         </div>
       </main>

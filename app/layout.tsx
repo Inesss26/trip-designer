@@ -24,6 +24,11 @@ const montserrat = Montserrat({
 const rocaOne = localFont({
   src: [
     {
+      path: "./fonts/roca-one/RocaOne-Thin.woff2",
+      weight: "100",
+      style: "normal",
+    },
+    {
       path: "./fonts/roca-one/RocaOne-Rg.woff2",
       weight: "400",
       style: "normal",

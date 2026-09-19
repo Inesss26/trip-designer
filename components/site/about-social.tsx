@@ -2,18 +2,9 @@ import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
 import { aboutSocial } from "@/lib/about-content";
-import { instagramUrl, LINKEDIN_URL } from "@/lib/site";
+import { INSTAGRAM_URL, LINKEDIN_URL } from "@/lib/site";
 
-const tiles = [
-  { src: "/images/about/ig-1.png", position: "object-cover" },
-  { src: "/images/about/ig-feed.png", position: "object-cover object-[25%_center]" },
-  { src: "/images/about/ig-feed.png", position: "object-cover object-left" },
-  { src: "/images/about/ig-feed.png", position: "object-cover object-right" },
-];
-
-export function AboutSocial({ instagram }: { instagram?: string }) {
-  const instagramHref = instagramUrl(instagram);
-
+export function AboutSocial() {
   return (
     <section className="bg-bg-muted px-4 py-16 sm:px-8 sm:py-24 lg:px-11">
       <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-8">
@@ -23,7 +14,8 @@ export function AboutSocial({ instagram }: { instagram?: string }) {
               {aboutSocial.kicker}
             </p>
             <h2 className="type-h2 text-text-brand">
-              {aboutSocial.title}{" "}
+              {aboutSocial.title}
+              <br />
               <span className="type-h2-italic text-brand-secondary">
                 {aboutSocial.titleAccent}
               </span>
@@ -34,29 +26,31 @@ export function AboutSocial({ instagram }: { instagram?: string }) {
           </p>
         </div>
 
-        <div className="grid h-[360px] grid-cols-2 gap-px overflow-hidden border border-brand/30 bg-brand/30 sm:h-[450px] lg:grid-cols-4">
-          {tiles.map((tile, index) => (
-            <div key={`${tile.src}-${index}`} className="relative min-h-0">
-              <Image
-                src={tile.src}
-                alt=""
-                fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                className={tile.position}
-              />
-            </div>
-          ))}
-        </div>
+        <a
+          href={INSTAGRAM_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Voir le compte Instagram My Trip Designer"
+        >
+          <Image
+            src="/images/about/instagram-gallery.jpg"
+            alt="Publications Instagram My Trip Designer"
+            width={1024}
+            height={341}
+            sizes="100vw"
+            className="h-auto w-full"
+          />
+        </a>
 
-        <div className="flex flex-col items-start gap-4">
+        <div className="flex w-fit flex-col items-stretch gap-4 self-start">
           <Button asChild variant="primary" size="cta">
-            <a href={instagramHref} target="_blank" rel="noreferrer">
-              Suivre sur Instagram @my_trip_designer
+            <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
+              Suivre sur Instagram
             </a>
           </Button>
-          <Button asChild variant="tertiary" size="cta">
-            <a href={LINKEDIN_URL} target="_blank" rel="noreferrer">
-              retrouvez moi aussi sur linkedin
+          <Button asChild variant="tertiary" size="cta" className="bg-white">
+            <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">
+              retrouvez moi sur linkedin
             </a>
           </Button>
         </div>

@@ -38,6 +38,11 @@ export function isSupabaseWritable(): boolean {
 export const adminPassword = read("ADMIN_PASSWORD");
 export const adminSessionSecret = read("ADMIN_SESSION_SECRET");
 
+/** Clé Web3Forms, lue à chaque envoi pour rester testable. */
+export function web3formsAccessKey(): string | null {
+  return read("WEB3FORMS_ACCESS_KEY");
+}
+
 const DEVELOPMENT_SESSION_SECRET =
   "mytripdesigner-secret-de-developpement-uniquement";
 

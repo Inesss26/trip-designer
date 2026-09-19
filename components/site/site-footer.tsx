@@ -5,24 +5,32 @@ import { DiscoveryCta } from "@/components/site/discovery-cta";
 import { SiteIcon } from "@/components/site/site-icon";
 import { SiteNavLink } from "@/components/site/site-nav-link";
 import type { SiteContentMap } from "@/lib/data/types";
-import { instagramUrl, LINKEDIN_URL, siteNav } from "@/lib/site";
+import { INSTAGRAM_URL, LINKEDIN_URL, siteNav } from "@/lib/site";
 
-export function SiteFooter({ content }: { content: SiteContentMap }) {
-  const instagram = instagramUrl(content["site.instagram"]);
+export function SiteFooter(_props: { content: SiteContentMap }) {
 
   return (
     <footer className="mt-auto border-t border-bg-pink bg-bg-main">
-      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-4 py-16 sm:px-8 lg:px-11">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-4 pb-0 pt-24 sm:px-8 lg:px-11">
         <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
-          <Link href="/" className="inline-flex">
-            <Image
-              src="/images/footer-logo.png"
-              alt="MY TRIP DESIGNER — Créatrice de souvenirs"
-              width={198}
-              height={40}
-              sizes="276px"
-              className="h-auto w-[276px]"
-            />
+          <Link href="/" className="inline-flex shrink-0 items-center gap-2">
+            <span className="relative size-10 shrink-0 overflow-hidden rounded-full">
+              <Image
+                src="/images/home/logo.png"
+                alt=""
+                fill
+                sizes="40px"
+                className="object-cover"
+              />
+            </span>
+            <span className="flex flex-col items-start justify-center">
+              <span className="type-logo whitespace-nowrap text-[16px] text-brand-primary">
+                MY TRIP DESIGNER
+              </span>
+              <span className="font-body whitespace-nowrap text-[12px] font-light leading-[15px] text-brand-primary-50">
+                Créatrice de souvenirs
+              </span>
+            </span>
           </Link>
 
           <div className="grid flex-1 grid-cols-1 gap-6 sm:grid-cols-3 sm:gap-5 lg:max-w-[666px]">
@@ -43,7 +51,7 @@ export function SiteFooter({ content }: { content: SiteContentMap }) {
             <nav aria-label="Contact et réseaux">
               <ul className="flex flex-col gap-2">
                 <li>
-                  <SiteNavLink href={instagram} external>
+                  <SiteNavLink href={INSTAGRAM_URL} external>
                     Instagram
                   </SiteNavLink>
                 </li>
@@ -77,10 +85,6 @@ export function SiteFooter({ content }: { content: SiteContentMap }) {
           <p>© 2026 My Trip Designer - Agathe Virzi - Tous droits réservés</p>
           <p>Site conçu par inès mathorel</p>
           <p className="flex flex-wrap items-center gap-2">
-            <Link href="/admin" className="hover:opacity-70">
-              Administration
-            </Link>
-            <SiteIcon src="/icons/diamond-light.svg" width={6.912} height={6.912} />
             <span>Mentions légales</span>
             <SiteIcon src="/icons/diamond-light.svg" width={6.912} height={6.912} />
             <span>Politique de confidentialité</span>

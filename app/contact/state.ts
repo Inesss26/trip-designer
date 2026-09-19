@@ -13,6 +13,9 @@ export type ContactFormState = {
   values: Record<string, string>;
 };
 
+export const CONTACT_FORM_SUCCESS_MESSAGE =
+  "Merci ! Votre message a bien été envoyé à Agathe.";
+
 export const contactInitialState: ContactFormState = {
   status: "idle",
   message: null,

@@ -1,7 +1,11 @@
-import Link from "next/link";
-
 import { SiteIcon } from "@/components/site/site-icon";
+import { ZcalLink } from "@/components/site/zcal-link";
 import { Button } from "@/components/ui/button";
+import {
+  MAILTO_A_LA_CARTE,
+  MAILTO_NEGOTIATION,
+  ZCAL_ADVISOR_URL,
+} from "@/lib/site";
 
 function ExtraBullet({
   label,
@@ -96,7 +100,7 @@ export function HomeExtras() {
               </p>
             </div>
             <Button asChild variant="dark" size="cta" className="w-full">
-              <Link href="/contact">Réserver mon appel</Link>
+              <ZcalLink href={ZCAL_ADVISOR_URL}>Réserver mon appel</ZcalLink>
             </Button>
           </div>
         </article>
@@ -142,7 +146,7 @@ export function HomeExtras() {
               </p>
             </div>
             <Button asChild variant="tertiary" size="cta" className="w-full">
-              <Link href="/contact">Négocie pour moi</Link>
+              <a href={MAILTO_NEGOTIATION}>Négocie pour moi</a>
             </Button>
           </div>
         </article>
@@ -197,7 +201,7 @@ export function HomeExtras() {
           </div>
           <div className="flex min-w-0 w-full items-end justify-end lg:self-stretch">
             <Button asChild variant="tertiary" size="cta" className="w-full">
-              <Link href="/contact">envoyer ma demande</Link>
+              <a href={MAILTO_A_LA_CARTE}>envoyer ma demande</a>
             </Button>
           </div>
         </article>

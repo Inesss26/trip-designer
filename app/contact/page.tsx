@@ -45,7 +45,7 @@ export default async function ContactPage({
           id="formulaire"
           className="mx-auto flex w-full max-w-[1440px] scroll-mt-8 flex-col gap-8 px-4 sm:px-8 lg:px-[115px]"
         >
-          <div className="flex max-w-[665px] flex-col gap-5">
+          <div className="flex w-full flex-col gap-5">
             <h2 className="type-h2 text-text-brand">
               Parlez moi de
               <span className="block type-h2-italic text-brand-secondary">votre projet.</span>
@@ -68,19 +68,15 @@ export default async function ContactPage({
             </p>
           ) : null}
 
-          <div className="flex flex-col items-start gap-12 lg:flex-row lg:gap-[136px]">
-            <div className="w-full max-w-[665px]">
+          <div className="flex flex-col items-start gap-12 lg:flex-row lg:gap-12">
+            <div className="w-full min-w-0 flex-1">
               <ContactForm
-                confirmationMessage={
-                  content["contact.confirmation"] ||
-                  "Merci, votre demande est bien arrivée."
-                }
                 defaultDestination={
                   requestedCarnet?.title ?? requestedTrip?.destination ?? ""
                 }
               />
             </div>
-            <aside className="card-muted flex w-full flex-col gap-8 p-8 lg:max-w-[360px]">
+            <aside className="card-muted flex w-full shrink-0 flex-col gap-8 p-8 lg:w-[360px]">
               <h3 className="type-subtitle text-brand">
                 Contact direct & Infos
               </h3>
@@ -108,7 +104,7 @@ export default async function ContactPage({
           </div>
         </section>
 
-        <FormulesFaq contactHref="#formulaire" />
+        <FormulesFaq />
       </main>
     </SiteShell>
   );

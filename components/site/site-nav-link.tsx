@@ -45,11 +45,11 @@ export function SiteNavLink({
   if (external) {
     return (
       <a
+        {...props}
         href={href}
         target="_blank"
-        rel="noreferrer"
+        rel="noopener noreferrer"
         className={classes}
-        {...props}
       >
         {content}
       </a>

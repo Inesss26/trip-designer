@@ -17,32 +17,33 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { instagramUrl, isNavActive, siteNav } from "@/lib/site";
+import { INSTAGRAM_URL, isNavActive, siteNav } from "@/lib/site";
 
-export function SiteHeader({ instagram }: { instagram?: string }) {
+export function SiteHeader() {
   const pathname = usePathname();
 
   return (
-    <header className="relative z-20 bg-bg-main">
+    <header className="sticky top-0 z-50 w-full bg-bg-main">
       <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between px-4 py-4 sm:px-8 lg:px-11">
         <Link
           href="/"
-          className="type-logo text-brand-primary"
+          className="type-logo shrink-0 whitespace-nowrap text-brand-primary"
         >
           MY TRIP DESIGNER
         </Link>
 
         <nav
           aria-label="Navigation principale"
-          className="hidden items-stretch gap-10 lg:flex"
+          className="hidden shrink-0 items-stretch gap-10 lg:flex"
         >
           <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2">
+            <div className="flex items-stretch justify-center gap-2">
               {siteNav.map((item) => (
                 <SiteNavLink
                   key={item.href}
                   href={item.href}
                   active={isNavActive(pathname, item.href)}
+                  className="flex self-stretch items-center justify-center whitespace-nowrap text-center"
                 >
                   {item.label}
                 </SiteNavLink>
@@ -50,9 +51,9 @@ export function SiteHeader({ instagram }: { instagram?: string }) {
             </div>
             <div className="w-px self-stretch bg-brand-primary-30" />
             <a
-              href={instagramUrl(instagram)}
+              href={INSTAGRAM_URL}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               aria-label="Instagram"
               className="group inline-flex items-center"
             >

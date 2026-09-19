@@ -28,10 +28,11 @@ function trackOffset(viewport: HTMLElement, track: HTMLElement, index: number) {
   }
 
   const viewportWidth = viewport.clientWidth;
+  const endGutter = Number.parseFloat(getComputedStyle(viewport).marginLeft) || 0;
   const maxOffset = Math.max(0, track.scrollWidth - viewportWidth);
 
   if (index >= count - 1) {
-    return -maxOffset;
+    return -(maxOffset + endGutter);
   }
 
   return -Math.min(maxOffset, current.offsetLeft);
