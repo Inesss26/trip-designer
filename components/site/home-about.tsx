@@ -14,7 +14,7 @@ export function HomeAbout() {
       id="a-propos"
       className="mx-auto flex w-full max-w-[1440px] scroll-mt-8 flex-col gap-8 px-4 sm:px-8 lg:flex-row lg:items-end lg:justify-center lg:gap-5 lg:px-11"
     >
-      <div className="w-full min-w-0 lg:w-[321px]">
+      <div className="w-full min-w-0 self-start lg:w-[321px]">
         <h2 className="type-h2 text-text-brand">
           Ciao,
           <br />

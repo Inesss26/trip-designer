@@ -3,51 +3,127 @@ import { carnetsCompare } from "@/lib/carnets-content";
 import { cn } from "@/lib/utils";
 
 const compareRowStyle = {
-  gridTemplateColumns: "minmax(12rem, 1fr) 16rem 16rem 16rem",
+  gridTemplateColumns:
+    "minmax(0, 1.35fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr)",
+  columnGap: "16px",
 } as const;
+
+const extraFeature = "Programme détaillé jour par jour";
+const itineraryNote = "La Strada uniquement";
+
+const features = [
+  carnetsCompare.features[0],
+  carnetsCompare.features[1],
+  carnetsCompare.features[2],
+  carnetsCompare.features[3],
+  extraFeature,
+  carnetsCompare.features[4],
+];
+
+type CompareColumn = (typeof carnetsCompare.columns)[number];
+type CompareCell =
+  | CompareColumn["cells"][number]
+  | { type: "text"; value: string };
+
+function cellFor(column: CompareColumn, featureIndex: number): CompareCell {
+  if (featureIndex === 4) {
+    return column.featured ? { type: "check" } : { type: "dash" };
+  }
+
+  const sourceIndex = featureIndex > 4 ? 4 : featureIndex;
+
+  if (column.id === "sur-mesure" && featureIndex === 3) {
+    return { type: "text", value: itineraryNote };
+  }
+
+  return column.cells[sourceIndex];
+}
+
+function CompareCellView({
+  cell,
+  featured,
+}: {
+  cell: CompareCell;
+  featured: boolean;
+}) {
+  if (cell.type === "check") {
+    return (
+      <SiteIcon
+        src={featured ? "/icons/diamond-light.svg" : "/icons/diamond.svg"}
+        size={10}
+      />
+    );
+  }
+
+  if (cell.type === "text") {
+    return (
+      <span
+        className={cn(
+          "type-body",
+          featured ? "text-bg-main" : "text-accent-dark",
+        )}
+      >
+        {cell.value}
+      </span>
+    );
+  }
+
+  return (
+    <span
+      className={cn(
+        "type-body",
+        featured ? "text-brand-sand" : "text-brand/30",
+      )}
+    >
+      —
+    </span>
+  );
+}
 
 export function CarnetsCompare() {
   return (
-    <section className="mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-4 sm:px-8 lg:px-11">
+    <section className="mx-auto flex w-full min-w-0 max-w-[1440px] flex-col gap-8 px-4 sm:px-8 lg:px-11">
       <div className="flex flex-col gap-2">
-        <p className="type-tag text-brand/30">
-          {carnetsCompare.kicker}
-        </p>
-        <h2 className="type-h2 text-text-brand">
-          {carnetsCompare.title}
-        </h2>
-        <p className="type-body text-brand/50">
-          {carnetsCompare.subtitle}
-        </p>
+        <p className="type-tag text-brand/30">{carnetsCompare.kicker}</p>
+        <h2 className="type-h2 text-text-brand">{carnetsCompare.title}</h2>
+        <p className="type-body text-brand/50">{carnetsCompare.subtitle}</p>
       </div>
 
-      <div className="-mx-4 overflow-x-auto px-4 pt-4 sm:mx-0 sm:px-0">
+      <div className="min-w-0 w-full overflow-x-auto pt-8">
         <div
           role="table"
           aria-label="Comparatif du carnet prêt à l'emploi, du carnet sur-mesure et du carnet premium"
-          className="flex w-full min-w-[860px] flex-col"
+          className="flex w-full min-w-[36rem] flex-col sm:min-w-0"
         >
-          <div role="row" className="grid gap-x-2" style={compareRowStyle}>
-            <div role="columnheader" className="self-end" />
+          <div
+            role="row"
+            className="grid items-end"
+            style={compareRowStyle}
+          >
+            <div role="columnheader" className="min-w-0" />
             {carnetsCompare.columns.map((column) => (
               <div
                 key={column.id}
                 role="columnheader"
                 className={cn(
-                  "relative px-3 py-5 text-center",
+                  "relative flex min-w-0 flex-col items-center justify-center px-3 py-5 text-center sm:px-5",
+                  column.kicker && "gap-2",
                   column.featured && "bg-accent-dark",
                 )}
               >
                 {column.featured ? (
-                  <span className="absolute top-[-10px] left-1/2 -translate-x-1/2 bg-brand-primary px-3 py-1 type-tag text-text-on-dark">
-                    ✦ Populaire
+                  <span className="absolute top-[-10px] left-1/2 z-10 flex w-max -translate-x-1/2 flex-nowrap items-center gap-1 whitespace-nowrap bg-brand-primary px-3 py-1 type-tag text-text-on-dark">
+                    <span aria-hidden="true">✦</span>
+                    Populaire
                   </span>
                 ) : null}
                 {column.kicker ? (
                   <p
                     className={cn(
                       "type-tag",
-                      column.featured ? "text-text-on-dark" : "text-brand-secondary",
+                      column.featured
+                        ? "text-text-on-dark"
+                        : "text-brand-secondary",
                     )}
                   >
                     {column.kicker}
@@ -56,7 +132,6 @@ export function CarnetsCompare() {
                 <p
                   className={cn(
                     "type-subtitle",
-                    column.kicker && "mt-2",
                     column.featured ? "text-text-on-dark" : "text-accent-dark",
                   )}
                 >
@@ -65,16 +140,17 @@ export function CarnetsCompare() {
               </div>
             ))}
           </div>
-          {carnetsCompare.features.map((feature, index) => (
+
+          {features.map((feature, index) => (
             <div
               key={feature}
               role="row"
-              className="grid gap-x-2"
+              className="grid"
               style={compareRowStyle}
             >
               <div
                 role="rowheader"
-                className="flex h-14 items-center px-7 text-left type-body-small whitespace-nowrap text-brand/50"
+                className="flex min-h-14 min-w-0 items-center px-4 py-2 text-left type-body-small text-brand/50 sm:px-7"
               >
                 {feature}
               </div>
@@ -83,59 +159,48 @@ export function CarnetsCompare() {
                   key={column.id}
                   role="cell"
                   className={cn(
-                    "flex h-14 items-center justify-center px-3 text-center",
+                    "flex h-14 min-w-0 items-center justify-center px-3 text-center sm:px-5",
                     column.featured && "bg-accent-dark",
                   )}
                 >
-                  {column.cells[index].type === "check" ? (
-                    <SiteIcon
-                      src={
-                        column.featured
-                          ? "/icons/diamond-light.svg"
-                          : "/icons/diamond.svg"
-                      }
-                      size={10}
-                    />
-                  ) : (
-                    <span
-                      className={cn(
-                        "type-body",
-                        column.featured ? "text-brand-sand" : "text-brand/30",
-                      )}
-                    >
-                      —
-                    </span>
-                  )}
+                  <CompareCellView
+                    cell={cellFor(column, index)}
+                    featured={column.featured}
+                  />
                 </div>
               ))}
             </div>
           ))}
-          <div role="row" className="grid gap-x-2" style={compareRowStyle}>
-            <div
-              role="rowheader"
-              className="bg-bg-muted px-7 py-5 text-left type-tag text-accent-dark"
-            >
-              Tarif
-            </div>
-            {carnetsCompare.columns.map((column) => (
+
+          <div className="relative">
+            <div aria-hidden="true" className="absolute inset-0 bg-bg-muted" />
+            <div role="row" className="relative grid" style={compareRowStyle}>
               <div
-                key={column.id}
-                role="cell"
-                className={cn(
-                  "px-3 py-5 text-center",
-                  column.featured ? "bg-accent-dark" : "bg-bg-muted",
-                )}
+                role="rowheader"
+                className="flex h-[70px] min-w-0 items-center px-4 py-5 text-left type-tag text-accent-dark sm:px-7"
               >
-                <p
+                Tarif
+              </div>
+              {carnetsCompare.columns.map((column) => (
+                <div
+                  key={column.id}
+                  role="cell"
                   className={cn(
-                    "type-subtitle",
-                    column.featured ? "text-text-on-dark" : "text-accent-dark",
+                    "flex h-[70px] min-w-0 items-center justify-center px-3 py-5 text-center sm:px-5",
+                    column.featured && "bg-accent-dark",
                   )}
                 >
-                  {column.price}
-                </p>
-              </div>
-            ))}
+                  <p
+                    className={cn(
+                      "font-heading text-[20px] leading-[30px] font-bold",
+                      column.featured ? "text-text-on-dark" : "text-accent-dark",
+                    )}
+                  >
+                    {column.price}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

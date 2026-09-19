@@ -102,7 +102,7 @@ export function FormulesHero() {
                 <div className="flex flex-col gap-1 pt-8">
                   {formula.pricing.variant === "single" ? (
                     <>
-                      <p className="type-h2 text-brand">
+                      <p className="type-price text-brand">
                         {formula.pricing.price}
                       </p>
                       <p className="type-tag text-brand/50">
@@ -120,7 +120,7 @@ export function FormulesHero() {
                           <p className="type-tag text-brand/50">
                             {tier.label}
                           </p>
-                          <p className="type-h2 text-text-brand">
+                          <p className="type-price text-text-brand">
                             {tier.price}
                           </p>
                         </div>
@@ -129,8 +129,10 @@ export function FormulesHero() {
                   ) : null}
                   {formula.pricing.variant === "daily" ? (
                     <>
-                      <p className="type-h2 text-brand">
-                        {formula.pricing.price}
+                      <p className="text-brand">
+                        <span className="type-price">
+                          {formula.pricing.price}
+                        </span>
                         <span className="type-subtitle">
                           {" "}
                           {formula.pricing.suffix}

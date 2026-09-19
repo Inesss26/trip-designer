@@ -48,7 +48,7 @@ export default async function CarnetPage({
 
   return (
     <SiteShell content={content}>
-      <main className="flex flex-col gap-16 pb-0 lg:gap-24">
+      <main className="flex min-w-0 flex-col gap-16 pb-0 lg:gap-24">
         <CarnetPurchase carnet={carnet} related={related} />
         <HomeCta />
       </main>

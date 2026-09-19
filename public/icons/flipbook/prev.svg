@@ -1,0 +1,7 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Button - Page précédente" transform="translate(40 0) scale(-1 1)">
+<path d="M0 20C0 8.95431 8.95431 0 20 0V0C31.0457 0 40 8.95431 40 20V20C40 31.0457 31.0457 40 20 40V40C8.95431 40 0 31.0457 0 20V20Z" fill="white"/>
+<path d="M20 0.75C30.6315 0.75 39.25 9.36852 39.25 20C39.25 30.6315 30.6315 39.25 20 39.25C9.36852 39.25 0.75 30.6315 0.75 20C0.75 9.36852 9.36852 0.75 20 0.75Z" stroke="#3D0000" stroke-opacity="0.3" stroke-width="1.5"/>
+<path id="Vector" d="M17.75 24.5L22.25 20L17.75 15.5" stroke="#3D0000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>

@@ -96,11 +96,8 @@ export function HomeReviews({
   }
 
   return (
-    <section
-      id="avis"
-      className="mx-auto flex w-full max-w-[1440px] scroll-mt-8 flex-col gap-8 px-4 sm:px-8 lg:px-11"
-    >
-      <div className="flex flex-col gap-5">
+    <section id="avis" className="flex w-full scroll-mt-8 flex-col gap-8">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-5 px-4 sm:px-8 lg:px-11">
         <p className="type-tag text-brand/30">
           avis clients
         </p>
@@ -112,7 +109,10 @@ export function HomeReviews({
 
       {count > 0 ? (
         <div className="flex flex-col gap-8">
-          <div ref={viewportRef} className="overflow-hidden">
+          <div
+            ref={viewportRef}
+            className="ml-[max(1rem,calc((100%-1440px)/2+1rem))] overflow-x-clip overflow-y-visible sm:ml-[max(2rem,calc((100%-1440px)/2+2rem))] lg:ml-[max(2.75rem,calc((100%-1440px)/2+2.75rem))]"
+          >
             <div
               ref={trackRef}
               className="flex items-start gap-4 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none lg:items-center lg:gap-6"
@@ -152,7 +152,7 @@ export function HomeReviews({
             </div>
           </div>
 
-          <div className="flex items-center justify-between">
+          <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between px-4 sm:px-8 lg:px-11">
             <div className="flex items-center gap-2">
               {reviews.map((item, itemIndex) => (
                 <button
@@ -205,7 +205,7 @@ export function HomeReviews({
           </div>
         </div>
       ) : (
-        <p className="type-body text-brand/50">
+        <p className="mx-auto w-full max-w-[1440px] px-4 type-body text-brand/50 sm:px-8 lg:px-11">
           Les premiers avis seront publiés au retour des prochains voyageurs.
         </p>
       )}

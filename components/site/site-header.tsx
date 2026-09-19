@@ -24,7 +24,7 @@ export function SiteHeader({ instagram }: { instagram?: string }) {
 
   return (
     <header className="relative z-20 bg-bg-main">
-      <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between px-4 py-3 sm:px-8 lg:px-11">
+      <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between px-4 py-4 sm:px-8 lg:px-11">
         <Link
           href="/"
           className="type-logo text-brand-primary"

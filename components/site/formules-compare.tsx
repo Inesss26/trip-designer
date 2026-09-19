@@ -2,6 +2,11 @@ import { SiteIcon } from "@/components/site/site-icon";
 import { formulesCompare, formulesDisclaimer } from "@/lib/formules-content";
 import { cn } from "@/lib/utils";
 
+const compareRowStyle = {
+  gridTemplateColumns: "minmax(12rem, 1fr) 215px 215px 215px",
+  columnGap: "20px",
+} as const;
+
 function CompareCell({
   cell,
   featured,
@@ -22,7 +27,7 @@ function CompareCell({
     return (
       <span
         className={cn(
-            "type-body",
+          "type-body",
           featured ? "text-brand-sand" : "text-brand/30",
         )}
       >
@@ -37,7 +42,11 @@ function CompareCell({
     <span
       className={cn(
         strong ? "type-body-strong" : "type-body",
-        featured ? (strong ? "text-text-on-dark" : "text-text-on-dark") : "text-accent-dark",
+        featured
+          ? strong
+            ? "text-text-on-dark"
+            : "text-bg-main"
+          : "text-accent-dark",
       )}
     >
       {cell.value}
@@ -49,132 +58,127 @@ export function FormulesCompare() {
   return (
     <section className="mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-4 sm:px-8 lg:px-11">
       <div className="flex flex-col gap-2">
-        <p className="type-tag text-brand/30">
-          {formulesCompare.kicker}
-        </p>
-        <h2 className="type-h2 text-text-brand">
-          {formulesCompare.title}
-        </h2>
-        <p className="type-body text-brand/50">
-          {formulesCompare.subtitle}
-        </p>
+        <p className="type-tag text-brand/30">{formulesCompare.kicker}</p>
+        <h2 className="type-h2 text-text-brand">{formulesCompare.title}</h2>
+        <p className="type-body text-brand/50">{formulesCompare.subtitle}</p>
       </div>
 
       <div className="-mx-4 overflow-x-auto px-4 pt-4 sm:mx-0 sm:px-0">
-        <table className="w-full min-w-[860px] table-fixed border-separate border-spacing-0">
-          <caption className="sr-only">
-            Comparatif des formules Dolce Vita, La Strada et Far Niente
-          </caption>
-          <colgroup>
-            <col />
-            <col className="w-[215px]" />
-            <col className="w-[215px]" />
-            <col className="w-[215px]" />
-          </colgroup>
-          <thead>
-            <tr className="align-bottom">
-              <th />
-              {formulesCompare.columns.map((column) => (
-                <th
-                  key={column.id}
+        <div
+          role="table"
+          aria-label="Comparatif des formules Dolce Vita, La Strada et Far Niente"
+          className="flex w-full min-w-[900px] flex-col"
+        >
+          <div role="row" className="grid items-stretch" style={compareRowStyle}>
+            <div role="columnheader" />
+            {formulesCompare.columns.map((column) => (
+              <div
+                key={column.id}
+                role="columnheader"
+                className={cn(
+                  "relative flex flex-col items-center justify-start gap-2 px-5 py-5 text-center",
+                  column.featured && "bg-accent-dark",
+                )}
+              >
+                {column.featured ? (
+                  <span className="absolute top-[-10px] left-1/2 inline-flex -translate-x-1/2 items-center gap-1 whitespace-nowrap bg-brand-primary px-3 py-1 type-tag text-text-on-dark">
+                    ✦ Populaire
+                  </span>
+                ) : null}
+                <p
                   className={cn(
-                    "relative px-5 py-5 text-center",
+                    "type-tag",
+                    column.featured
+                      ? "text-text-on-dark"
+                      : "text-brand-secondary",
+                  )}
+                >
+                  {column.kicker}
+                </p>
+                <p
+                  className={cn(
+                    "type-subtitle",
+                    column.featured ? "text-text-on-dark" : "text-accent-dark",
+                  )}
+                >
+                  {column.name}
+                </p>
+                {column.subtitle ? (
+                  <p className="type-body-small text-accent-dark">
+                    {column.subtitle}
+                  </p>
+                ) : null}
+              </div>
+            ))}
+          </div>
+
+          {formulesCompare.features.map((feature, index) => (
+            <div
+              key={feature}
+              role="row"
+              className="grid"
+              style={compareRowStyle}
+            >
+              <div
+                role="rowheader"
+                className="flex h-[52px] items-center px-7 text-left type-body-small whitespace-nowrap text-accent-dark"
+              >
+                {feature}
+              </div>
+              {formulesCompare.columns.map((column) => (
+                <div
+                  key={column.id}
+                  role="cell"
+                  className={cn(
+                    "flex h-[52px] items-center justify-center px-5 text-center",
                     column.featured && "bg-accent-dark",
                   )}
                 >
-                  {column.featured ? (
-                    <span className="absolute top-[-10px] left-1/2 -translate-x-1/2 bg-brand-primary px-3 py-1 type-tag text-text-on-dark">
-                      ✦ Populaire
-                    </span>
-                  ) : null}
-                  <p
-                    className={cn(
-                      "type-tag",
-                      column.featured ? "text-text-on-dark" : "text-brand-secondary",
-                    )}
-                  >
-                    {column.kicker}
-                  </p>
-                  <p
-                    className={cn(
-                      "mt-2 type-subtitle",
-                      column.featured ? "text-text-on-dark" : "text-accent-dark",
-                    )}
-                  >
-                    {column.name}
-                  </p>
-                  {column.subtitle ? (
-                    <p className="mt-2 type-body-small text-accent-dark">
-                      {column.subtitle}
-                    </p>
-                  ) : null}
-                </th>
+                  <CompareCell
+                    cell={column.cells[index]}
+                    featured={column.featured}
+                  />
+                </div>
               ))}
-            </tr>
-          </thead>
-          <tbody>
-            {formulesCompare.features.map((feature, index) => (
-              <tr key={feature}>
-                <th
-                  scope="row"
-                  className="h-[52px] px-7 text-left type-body-small whitespace-nowrap text-accent-dark"
-                >
-                  {feature}
-                </th>
-                {formulesCompare.columns.map((column) => (
-                  <td
-                    key={column.id}
-                    className={cn(
-                      "h-[52px] px-5 text-center",
-                      column.featured && "bg-accent-dark",
-                    )}
-                  >
-                    <span className="flex items-center justify-center">
-                      <CompareCell
-                        cell={column.cells[index]}
-                        featured={column.featured}
-                      />
-                    </span>
-                  </td>
-                ))}
-              </tr>
-            ))}
-            <tr>
-              <th
-                scope="row"
-                className="bg-bg-muted px-7 py-5 text-left type-tag text-accent-dark"
+            </div>
+          ))}
+
+          <div role="row" className="grid" style={compareRowStyle}>
+            <div
+              role="rowheader"
+              className="flex min-h-[89px] items-center px-7 text-left type-tag text-accent-dark"
+            >
+              Tarif
+            </div>
+            {formulesCompare.columns.map((column) => (
+              <div
+                key={column.id}
+                role="cell"
+                className={cn(
+                  "flex min-h-[89px] flex-col items-center justify-center gap-1 px-5 py-5 text-center",
+                  column.featured && "bg-accent-dark",
+                )}
               >
-                Tarif
-              </th>
-              {formulesCompare.columns.map((column) => (
-                <td
-                  key={column.id}
+                <p
                   className={cn(
-                    "px-5 py-5 text-center",
-                    column.featured ? "bg-accent-dark" : "bg-bg-muted",
+                    "font-heading text-[20px] leading-[30px] font-bold",
+                    column.featured ? "text-text-on-dark" : "text-accent-dark",
                   )}
                 >
-                  <p
-                    className={cn(
-                      "type-subtitle",
-                      column.featured ? "text-text-on-dark" : "text-accent-dark",
-                    )}
-                  >
-                    {column.price}
-                  </p>
-                  <p
-                    className={cn(
-                      "type-tag",
-                      column.featured ? "text-text-on-dark" : "text-accent-dark",
-                    )}
-                  >
-                    {column.priceCaption}
-                  </p>
-                </td>
-              ))}
-            </tr>
-          </tbody>
-        </table>
+                  {column.price}
+                </p>
+                <p
+                  className={cn(
+                    "font-body text-[10px] leading-[15px] font-medium",
+                    column.featured ? "text-text-on-dark" : "text-accent-dark",
+                  )}
+                >
+                  {column.priceCaption}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
       <p className="mx-auto max-w-[672px] text-center type-body-small text-brand/30">

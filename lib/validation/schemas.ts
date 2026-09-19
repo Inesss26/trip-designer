@@ -181,13 +181,17 @@ export const leadInputSchema = z.object({
     .max(120, "Ce nom est trop long."),
   email: z.email("Cette adresse e-mail semble incorrecte."),
   phone: optionalText,
-  destination: optionalText,
+  destination: trimmed.min(
+    1,
+    "Indiquez votre destination ou le type de projet.",
+  ),
   travelPeriod: optionalText,
   partySize: optionalPositiveInteger,
   budgetRange: optionalText,
-  message: trimmed
-    .min(20, "Décrivez votre projet en 20 caractères au minimum.")
-    .max(4000, "Le message ne doit pas dépasser 4000 caractères."),
+  message: trimmed.max(
+    4000,
+    "Le message ne doit pas dépasser 4000 caractères.",
+  ),
 });
 
 export type LeadInput = z.output<typeof leadInputSchema>;

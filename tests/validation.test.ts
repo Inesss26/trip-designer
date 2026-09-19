@@ -118,11 +118,30 @@ describe("leadInputSchema", () => {
     expect(toFieldErrors(result.error!).email?.[0]).toContain("e-mail");
   });
 
-  it("rejette un message trop court", () => {
-    const result = leadInputSchema.safeParse({ ...validLead, message: "Bonjour" });
+  it("accepte un message vide", () => {
+    const result = leadInputSchema.safeParse({ ...validLead, message: "  " });
+
+    expect(result.success).toBe(true);
+    expect(result.data?.message).toBe("");
+  });
+
+  it("rejette un message trop long", () => {
+    const result = leadInputSchema.safeParse({
+      ...validLead,
+      message: "a".repeat(4001),
+    });
 
     expect(result.success).toBe(false);
     expect(toFieldErrors(result.error!).message).toBeDefined();
+  });
+
+  it("rejette une destination ou un type de projet vide", () => {
+    const result = leadInputSchema.safeParse({ ...validLead, destination: "  " });
+
+    expect(result.success).toBe(false);
+    expect(toFieldErrors(result.error!).destination?.[0]).toBe(
+      "Indiquez votre destination ou le type de projet.",
+    );
   });
 });
 
@@ -186,12 +205,16 @@ describe("toFieldErrors", () => {
       travelPeriod: "",
       partySize: "",
       budgetRange: "",
-      message: "court",
+      message: "",
     });
 
     const errors = toFieldErrors(result.error!);
 
-    expect(Object.keys(errors).sort()).toEqual(["email", "message", "name"]);
+    expect(Object.keys(errors).sort()).toEqual([
+      "destination",
+      "email",
+      "name",
+    ]);
     expect(errors.name).toHaveLength(1);
   });
 });

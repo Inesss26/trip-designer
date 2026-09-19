@@ -129,26 +129,31 @@ export function ContactForm({
 
       <div className="flex flex-col gap-2">
         <Label htmlFor="destination" className={labelClass}>
-          Destination / Type de projet
+          Destination / Type de projet *
         </Label>
         <Input
           id="destination"
           name="destination"
+          required
+          aria-required="true"
           placeholder="Italie, carnet sur-mesure, appel découverte…"
           defaultValue={value("destination", defaultDestination)}
           className={fieldClass}
+          aria-invalid={Boolean(state.fieldErrors.destination)}
+          aria-describedby={
+            state.fieldErrors.destination ? "destination-error" : undefined
+          }
         />
         <FieldError errors={state.fieldErrors} name="destination" />
       </div>
 
       <div className="flex flex-col gap-2">
         <Label htmlFor="message" className={labelClass}>
-          Votre message *
+          Votre message
         </Label>
         <Textarea
           id="message"
           name="message"
-          required
           rows={6}
           placeholder="Décrivez votre projet, vos envies, vos dates…"
           defaultValue={value("message")}

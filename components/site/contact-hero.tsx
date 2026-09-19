@@ -62,7 +62,7 @@ export function ContactHero() {
             fill
             priority
             sizes="323px"
-            className="object-cover object-top"
+            className="object-cover object-center"
           />
         </div>
       </div>

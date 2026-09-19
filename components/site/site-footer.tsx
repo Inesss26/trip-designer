@@ -12,7 +12,7 @@ export function SiteFooter({ content }: { content: SiteContentMap }) {
 
   return (
     <footer className="mt-auto border-t border-bg-pink bg-bg-main">
-      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-4 pt-[33px] pb-0 sm:px-8 lg:px-11">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-4 py-16 sm:px-8 lg:px-11">
         <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
           <Link href="/" className="inline-flex">
             <Image

@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Button">
+<mask id="path-1-inside-1_0_14" fill="white">
+<path d="M0 14C0 6.26801 6.26801 0 14 0V0C21.732 0 28 6.26801 28 14V14C28 21.732 21.732 28 14 28V28C6.26801 28 0 21.732 0 14V14Z"/>
+</mask>
+<path d="M0 14C0 6.26801 6.26801 0 14 0V0C21.732 0 28 6.26801 28 14V14C28 21.732 21.732 28 14 28V28C6.26801 28 0 21.732 0 14V14Z" fill="white"/>
+<path d="M0 14M28 14M28 14M0 14M14 0M28 14M14 28M0 14M14 28V27C6.8203 27 1 21.1797 1 14H0H-1C-1 22.2843 5.71573 29 14 29V28ZM28 14H27C27 21.1797 21.1797 27 14 27V28V29C22.2843 29 29 22.2843 29 14H28ZM14 0V1C21.1797 1 27 6.8203 27 14H28H29C29 5.71573 22.2843 -1 14 -1V0ZM14 0V-1C5.71573 -1 -1 5.71573 -1 14H0H1C1 6.8203 6.8203 1 14 1V0Z" fill="#3D0000" fill-opacity="0.3" mask="url(#path-1-inside-1_0_14)"/>
+<path id="Vector" d="M10.7917 14H17.2083M14 10.7917V17.2083" stroke="#3D0000" stroke-width="0.916667" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>

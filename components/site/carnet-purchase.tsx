@@ -44,7 +44,7 @@ export function CarnetPurchase({
       <section className="mx-auto flex w-full max-w-[1440px] flex-col gap-16 px-4 py-12 sm:px-8 lg:flex-row lg:items-start lg:justify-between lg:gap-16 lg:px-11 lg:py-16">
         <div className="flex min-w-0 flex-1 flex-col gap-11">
           <div className="flex flex-col gap-8">
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-8">
               <nav
                 aria-label="Fil d'Ariane"
                 className="flex flex-wrap items-center gap-2 type-tag text-brand/30"
@@ -131,16 +131,27 @@ export function CarnetPurchase({
           </div>
           <div className="upsell-box flex flex-col gap-6">
             <div className="flex items-center gap-3">
-              <SiteIcon src="/icons/carnets/sparkle.svg" size={20} />
-              <p className="type-body-strong text-brand">
-                Envie de cet itinéraire sur-mesure jour par jour ?
+              <span className="relative size-5 shrink-0 overflow-visible">
+                <SiteIcon
+                  src="/icons/carnets/sparkle.svg"
+                  width={21.5}
+                  height={21.5}
+                  className="absolute inset-[-3.75%]"
+                />
+              </span>
+              <p className="min-w-0 flex-1 type-body-strong text-brand">
+                Vous préférez un programme jour par jour 100 % sur mesure ?
               </p>
             </div>
             <p className="type-body text-brand/50">
-              Dans la formule Far Niente, je réadapte ce carnet à vos dates
-              exactes avec votre carte Google My Maps (à partir de 40 €/j).
+              Avec la formule Far Niente, j&apos;ajoute un itinéraire détaillé
+              jour par jour à votre carnet, personnalisé à vos dates, ainsi
+              qu&apos;une carte interactive My Maps.
             </p>
-            <Button asChild variant="tertiary" size="cta" className="w-full">
+            <p className="type-body-italic text-brand/50">
+              (Sur devis — selon le nombre de jours, dès 40 €/j)
+            </p>
+            <Button asChild variant="tertiary" size="cta" className="w-full bg-white">
               <Link href="/contact">réserver mon Appel découverte</Link>
             </Button>
           </div>

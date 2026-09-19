@@ -17,7 +17,7 @@ export function AboutMap() {
         </p>
       </div>
 
-      <div className="flex flex-col items-stretch gap-8 lg:flex-row lg:items-end lg:gap-4">
+      <div className="flex flex-col items-stretch gap-8 lg:flex-row lg:items-start lg:gap-4">
         <div className="relative min-h-[280px] flex-1 overflow-hidden sm:min-h-[420px] lg:min-h-[527px]">
           <img
             src="/images/about/map.svg"
