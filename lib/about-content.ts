@@ -9,8 +9,8 @@ export const aboutHero = {
 
 export const aboutStory = {
   kicker: "Mon Histoire",
-  title: "De stagiaire à fondatrice :",
-  titleAccent: "d'un coup de cœur.",
+  title: "De stagiaire à la tête de My Trip Designer :",
+  titleAccent: "d'un coup de cœur",
   titleMiddle: "l'histoire",
   paragraphs: [
     "Franco-italienne installée à Rome, j'ai été introduite très jeune au monde de l'événementiel grâce à mon parrain. J'y ai découvert la beauté d'un métier guidé par une passion : voir les sourires et l'émerveillement se transformer en souvenirs durables.",
@@ -28,7 +28,7 @@ export const aboutTraits = {
   kicker: "Agathe en quelques mots",
   title: "Ce qui me définit",
   quote:
-    "Je ne vous propose pas simplement de découvrir un pays. Je vous invite à le ressentir. Dans toute sa Dolce Vita.",
+    "Bien plus qu'un simple voyage, je vous invite à ressentir chaque destination. Dans toute sa Dolce Vita.",
   quoteAuthor: "— Agathe",
   left: [
     {
@@ -48,7 +48,7 @@ export const aboutTraits = {
   ],
   right: [
     {
-      title: "Sensible au beau",
+      title: "L'art du détail",
       text: "Un œil aiguisé pour l'architecture et les lieux de caractère.",
       icon: "/icons/about/beauty.svg",
       iconWidth: 24,
@@ -95,7 +95,7 @@ export const aboutMap = {
   subtitle: "17+ pays explorés à travers le monde, une curiosité sans fin.",
   groups: [
     {
-      label: "Europe (& Asie)",
+      label: "Europe & Asie",
       countries: [
         "Portugal",
         "Angleterre",

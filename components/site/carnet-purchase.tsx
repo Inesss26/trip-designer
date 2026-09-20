@@ -13,6 +13,7 @@ import {
   formatCarnetPrice,
   type Carnet,
 } from "@/lib/carnets-content";
+import { cn } from "@/lib/utils";
 
 export function CarnetPurchase({
   carnet,
@@ -33,7 +34,10 @@ export function CarnetPurchase({
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center"
+          className={cn(
+            "object-cover",
+            carnet.heroImageClassName ?? "object-center",
+          )}
         />
         <div
           aria-hidden
@@ -64,23 +68,34 @@ export function CarnetPurchase({
             <h2 className="type-subtitle text-text-brand">
               Infos clés
             </h2>
-            <dl className="grid gap-5 sm:grid-cols-3">
-              <div className="flex flex-col gap-2">
-                <dt className="type-tag text-brand/30">Saison</dt>
-                <dd className="type-body text-brand">{carnet.keyFacts.season}</dd>
-              </div>
-              <div className="flex flex-col gap-2">
-                <dt className="type-tag text-brand/30">Formalités</dt>
-                <dd className="type-body text-brand">
-                  {carnet.keyFacts.formalities}
-                </dd>
-              </div>
-              <div className="flex flex-col gap-2">
-                <dt className="type-tag text-brand/30">Transports</dt>
-                <dd className="type-body text-brand">
-                  {carnet.keyFacts.transport}
-                </dd>
-              </div>
+            <dl className="grid gap-8 sm:grid-cols-3 sm:gap-x-10">
+              {(
+                [
+                  {
+                    label: "Saison",
+                    value: carnet.keyFacts.season,
+                    icon: "/icons/carnets/season.svg",
+                  },
+                  {
+                    label: "Formalités",
+                    value: carnet.keyFacts.formalities,
+                    icon: "/icons/carnets/formalities.svg",
+                  },
+                  {
+                    label: "Transports",
+                    value: carnet.keyFacts.transport,
+                    icon: "/icons/carnets/transport.svg",
+                  },
+                ] as const
+              ).map((item) => (
+                <div key={item.label} className="flex min-w-0 flex-col gap-2">
+                  <dt className="flex items-center gap-1.5 type-tag text-brand/30">
+                    <SiteIcon src={item.icon} size={12} />
+                    {item.label}
+                  </dt>
+                  <dd className="type-body text-brand">{item.value}</dd>
+                </div>
+              ))}
             </dl>
           </div>
 
@@ -102,7 +117,7 @@ export function CarnetPurchase({
             </ul>
           </div>
 
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+          <div className="grid grid-cols-3 gap-2">
             {carnet.gallery.map((src, index) => (
               <div
                 key={src}
@@ -112,7 +127,7 @@ export function CarnetPurchase({
                   src={src}
                   alt={`${carnet.title} — aperçu ${index + 1}`}
                   fill
-                  sizes="(max-width: 1024px) 45vw, 280px"
+                  sizes="(max-width: 1024px) 30vw, 280px"
                   className="object-cover"
                 />
               </div>

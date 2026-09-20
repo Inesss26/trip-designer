@@ -1,0 +1,6 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M1.6 3.2h8.8c.45 0 .8.35.8.8v3.7H1.6V4c0-.45.35-.8.8-.8Z" stroke="#3D0000" stroke-opacity="0.4" stroke-linejoin="round"/>
+  <path d="M1.35 7.7h9.3M4.7 4.35h3.7v2.05H4.7zM2.85 10.2h-.7M9.85 10.2h-.7" stroke="#3D0000" stroke-opacity="0.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="3.35" cy="9.15" r=".95" stroke="#3D0000" stroke-opacity="0.4"/>
+  <circle cx="8.65" cy="9.15" r=".95" stroke="#3D0000" stroke-opacity="0.4"/>
+</svg>

@@ -17,7 +17,8 @@ export type Carnet = {
   highlights: [string, string, string];
   coverImage: string;
   heroImage: string;
-  gallery: string[];
+  heroImageClassName?: string;
+  gallery: [string, string, string];
   ctaLabel: string;
 };
 
@@ -79,8 +80,6 @@ export const carnets: Carnet[] = [
       "https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1579282240050-141d4ecef9e1?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1539037116277-4db20810953d?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1464790719320-516ecd75af6c?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?auto=format&fit=crop&w=1200&q=80",
     ],
     ctaLabel: "voir ce carnet",
   },
@@ -114,8 +113,6 @@ export const carnets: Carnet[] = [
       "https://images.unsplash.com/photo-1476362555312-ab9e108a0b7e?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1534113414509-0eec2bfb493f?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1775343969930-6dfde1a057e0?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1764509612305-654894e04a66?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1776377231754-d36928e6ee4d?auto=format&fit=crop&w=1200&q=80",
     ],
     ctaLabel: "voir ce carnet",
   },
@@ -145,12 +142,11 @@ export const carnets: Carnet[] = [
       "https://images.unsplash.com/photo-1761063814673-a9f0499d2081?auto=format&fit=crop&w=1600&q=80",
     heroImage:
       "https://images.unsplash.com/photo-1761063814673-a9f0499d2081?auto=format&fit=crop&w=1600&q=80",
+    heroImageClassName: "object-bottom",
     gallery: [
       "https://images.unsplash.com/photo-1526129318478-62ed807ebdf9?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1486299267070-83823f5448dd?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1766442784315-7011b13de2a6?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1569865867048-34cfce8d58fe?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1529655683826-aba9b3e77383?auto=format&fit=crop&w=1200&q=80",
     ],
     ctaLabel: "voir ce carnet",
   },
@@ -184,8 +180,6 @@ export const carnets: Carnet[] = [
       "https://images.unsplash.com/photo-1533105079780-fdcd5d5c0d0e?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1605723517503-3cadb0c4d325?auto=format&fit=crop&w=1200&q=80",
       "https://images.unsplash.com/photo-1570077188670-e3a8d69d2c8b?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1560707303-4e980ce876ad?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1555990793-da11153b24c0?auto=format&fit=crop&w=1200&q=80",
     ],
     ctaLabel: "voir ce carnet",
   },

@@ -18,4 +18,10 @@ describe("catalogue des carnets", () => {
     expect(countCarnets("europe")).toBe(4);
     expect(countCarnets("monde")).toBe(0);
   });
+
+  it("limite chaque galerie à trois photos", () => {
+    for (const carnet of carnets) {
+      expect(carnet.gallery).toHaveLength(3);
+    }
+  });
 });

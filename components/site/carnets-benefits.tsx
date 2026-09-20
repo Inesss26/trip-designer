@@ -16,8 +16,8 @@ export function CarnetsBenefits() {
             </span>
           </h2>
           <p className="type-body text-brand/50">
-            Exit les guides de 200 pages. Tout ce dont vous avez besoin est
-            réuni au même endroit, organisé pour voyager sans friction.
+            Tout ce dont vous avez besoin est réuni au même endroit, organisé
+            pour voyager sans friction.
           </p>
         </div>
 

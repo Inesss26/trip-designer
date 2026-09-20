@@ -48,7 +48,7 @@ export const homeBenefits = [
 export const homeEngagements = [
   {
     image: "/images/home/engagement-1.png",
-    imageClassName: "object-[center_40%]",
+    imageClassName: "object-[center_75%]",
     title: "01. Immersion",
     body: "Vivre votre voyage de l'intérieur, comme un local. Chaque étape vous plonge dans le quotidien et les rythmes réels des lieux traversés.",
   },

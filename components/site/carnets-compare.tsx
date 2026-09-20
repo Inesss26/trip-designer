@@ -187,7 +187,8 @@ export function CarnetsCompare() {
                   role="cell"
                   className={cn(
                     "flex h-[70px] min-w-0 items-center justify-center px-3 py-5 text-center sm:px-5",
-                    column.featured && "bg-accent-dark",
+                    column.featured &&
+                      "bg-[color-mix(in_srgb,var(--color-accent-dark)_78%,black)]",
                   )}
                 >
                   <p

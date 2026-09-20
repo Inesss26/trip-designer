@@ -1,9 +1,10 @@
 import Image from "next/image";
 
+import { SocialFollowCtas } from "@/components/site/social-follow-ctas";
 import { ZcalLink } from "@/components/site/zcal-link";
 import { Button } from "@/components/ui/button";
 import { aboutSocial } from "@/lib/about-content";
-import { INSTAGRAM_URL, LINKEDIN_URL } from "@/lib/site";
+import { INSTAGRAM_URL } from "@/lib/site";
 
 export function HomeCommunity() {
   return (
@@ -43,18 +44,7 @@ export function HomeCommunity() {
           />
         </a>
 
-        <div className="flex w-fit flex-col items-stretch gap-4 self-start">
-          <Button asChild variant="primary" size="cta">
-            <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
-              Suivre sur Instagram
-            </a>
-          </Button>
-          <Button asChild variant="tertiary" size="cta" className="bg-white">
-            <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">
-              retrouvez moi sur linkedin
-            </a>
-          </Button>
-        </div>
+        <SocialFollowCtas />
       </div>
     </section>
   );

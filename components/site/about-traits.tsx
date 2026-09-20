@@ -77,8 +77,8 @@ export function AboutTraits() {
           />
         </div>
         <p className="type-quote text-text-brand">
-          “Je ne vous propose pas simplement de découvrir un pays. Je vous invite
-          à le ressentir. Dans toute sa{" "}
+          “Bien plus qu'un simple voyage, je vous invite à ressentir chaque
+          destination. Dans toute sa{" "}
           <span className="text-brand-secondary">Dolce Vita.</span>”
         </p>
         <p className="type-tag text-brand/30">

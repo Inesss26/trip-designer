@@ -9,9 +9,7 @@ export function AboutStory() {
             {aboutStory.kicker}
           </p>
           <h2 className="type-h2 text-text-brand">
-            {aboutStory.title}
-            <br />
-            {aboutStory.titleMiddle}{" "}
+            {`${aboutStory.title} ${aboutStory.titleMiddle} `}
             <span className="type-h2-italic text-brand-secondary">{aboutStory.titleAccent}</span>
           </h2>
         </div>
