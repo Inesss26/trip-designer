@@ -78,8 +78,8 @@ export const carnets: Carnet[] = [
       "https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&w=1600&q=80",
     gallery: [
       "https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1579282240050-141d4ecef9e1?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1539037116277-4db20810953d?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1464790719320-516ecd75af6c?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1511527661048-7fe73d85e9a4?auto=format&fit=crop&w=1200&q=80",
     ],
     ctaLabel: "voir ce carnet",
   },

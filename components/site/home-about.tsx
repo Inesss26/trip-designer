@@ -29,19 +29,21 @@ export function HomeAbout() {
           alt="Agathe, fondatrice de My Trip Designer"
           fill
           sizes="(max-width: 1024px) 100vw, 437px"
-          className="object-cover object-top"
+          className="object-cover object-center"
         />
       </div>
 
       <div className="flex w-full min-w-0 flex-col items-start justify-end gap-6 lg:w-[321px]">
-        <div className="relative size-[95px]">
-          <Image
-            src="/images/home/logo.png"
-            alt=""
-            fill
-            sizes="95px"
-            className="object-cover"
-          />
+        <div className="relative z-10 -mt-20 pl-6 lg:mt-0 lg:pl-0">
+          <div className="relative size-[95px]">
+            <Image
+              src="/images/home/logo.png"
+              alt=""
+              fill
+              sizes="95px"
+              className="object-cover"
+            />
+          </div>
         </div>
         <div className="type-body text-text-brand">
           <p className="type-body-strong">Créatrice de souvenirs.</p>

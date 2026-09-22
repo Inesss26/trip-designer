@@ -233,7 +233,7 @@ export function FormulesFaq() {
             brefs délais.
           </p>
         </div>
-        <Button asChild variant="tertiary" size="cta">
+        <Button asChild variant="tertiary" size="cta" className="w-full sm:w-auto">
           <a href={MAILTO_FAQ}>contactez moi !</a>
         </Button>
       </div>

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { CarnetCard, CarnetMeta } from "@/components/site/carnet-card";
+import { CarnetFlipbook } from "@/components/site/carnet-flipbook-lazy";
 import { CarnetsBenefits } from "@/components/site/carnets-benefits";
 import { CarnetsCompare } from "@/components/site/carnets-compare";
 import { HomeCta } from "@/components/site/home-close";
@@ -90,7 +91,7 @@ export function CarnetPurchase({
               ).map((item) => (
                 <div key={item.label} className="flex min-w-0 flex-col gap-2">
                   <dt className="flex items-center gap-1.5 type-tag text-brand/30">
-                    <SiteIcon src={item.icon} size={12} />
+                    <SiteIcon src={item.icon} size={16} />
                     {item.label}
                   </dt>
                   <dd className="type-body text-brand">{item.value}</dd>
@@ -192,13 +193,14 @@ export function CarnetPurchase({
               (Sur devis — selon le nombre de jours, dès 40 €/j)
             </p>
             <Button asChild variant="tertiary" size="cta" className="w-full bg-white">
-              <ZcalLink>réserver mon Appel découverte</ZcalLink>
+              <ZcalLink>réserver mon Appel</ZcalLink>
             </Button>
           </div>
         </aside>
       </section>
       </div>
 
+      <CarnetFlipbook />
       <CarnetsCompare />
       <CarnetsBenefits />
 

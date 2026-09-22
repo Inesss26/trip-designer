@@ -8,16 +8,16 @@ import { useEffect, useState } from "react";
 import { DiscoveryCta } from "@/components/site/discovery-cta";
 import { SiteIcon } from "@/components/site/site-icon";
 import { SiteNavLink } from "@/components/site/site-nav-link";
-import { Button } from "@/components/ui/button";
 import {
   Sheet,
-  SheetClose,
   SheetContent,
+  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { INSTAGRAM_URL, isNavActive, siteNav } from "@/lib/site";
+import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -76,34 +76,28 @@ export function SiteHeader() {
   );
 }
 
-function MenuTrigger() {
-  return (
-    <Button
-      variant="ghost"
-      size="icon"
-      className="text-brand-primary"
-      aria-label="Ouvrir le menu"
-    >
-      <Menu />
-    </Button>
-  );
-}
-
 function MobileMenu({ pathname }: { pathname: string }) {
-  const [isMounted, setIsMounted] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) {
-    return <MenuTrigger />;
-  }
+    setOpen(false);
+  }, [pathname]);
 
   return (
-    <Sheet>
-      <SheetTrigger asChild>
-        <MenuTrigger />
+    <Sheet open={open} onOpenChange={setOpen}>
+      <SheetTrigger
+        aria-label="Ouvrir le menu"
+        className={cn(
+          "inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-bg-main text-brand-primary transition-colors",
+          "outline-none select-none",
+          "hover:bg-brand-primary hover:text-text-on-dark",
+          "active:bg-brand-primary active:text-text-on-dark",
+          "aria-expanded:bg-brand-primary aria-expanded:text-text-on-dark",
+          "data-[state=open]:bg-brand-primary data-[state=open]:text-text-on-dark",
+          "focus-visible:ring-3 focus-visible:ring-ring/50",
+        )}
+      >
+        <Menu className="size-6" aria-hidden />
       </SheetTrigger>
       <SheetContent
         side="right"
@@ -113,23 +107,25 @@ function MobileMenu({ pathname }: { pathname: string }) {
           <SheetTitle className="type-subtitle text-left text-brand-primary">
             MY TRIP DESIGNER
           </SheetTitle>
+          <SheetDescription className="sr-only">
+            Navigation du site
+          </SheetDescription>
         </SheetHeader>
-        <nav className="flex flex-col gap-1 px-4">
-          {siteNav.map((item) => (
-            <SheetClose asChild key={item.href}>
+        <nav className="flex flex-col gap-6 px-4">
+          <div className="flex flex-col gap-2.5">
+            {siteNav.map((item) => (
               <SiteNavLink
+                key={item.href}
                 href={item.href}
                 active={isNavActive(pathname, item.href)}
+                className="h-11 w-full py-0"
+                onClick={() => setOpen(false)}
               >
                 {item.label}
               </SiteNavLink>
-            </SheetClose>
-          ))}
-          <div className="mt-4">
-            <SheetClose asChild>
-              <DiscoveryCta />
-            </SheetClose>
+            ))}
           </div>
+          <DiscoveryCta className="h-11 py-0" onClick={() => setOpen(false)} />
         </nav>
       </SheetContent>
     </Sheet>

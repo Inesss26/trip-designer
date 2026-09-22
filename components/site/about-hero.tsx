@@ -5,8 +5,8 @@ import { aboutHero } from "@/lib/about-content";
 export function AboutHero() {
   return (
     <section className="mx-auto flex w-full max-w-[1440px] flex-col items-stretch gap-10 px-4 pt-12 sm:px-8 sm:pt-16 lg:flex-row lg:justify-between lg:px-11">
-      <div className="flex max-w-[518px] flex-col justify-between gap-12">
-        <div className="flex flex-col gap-8">
+      <div className="contents lg:flex lg:max-w-[518px] lg:flex-col lg:justify-between lg:gap-12">
+        <div className="order-1 flex flex-col gap-8">
           <p className="type-tag text-brand/30">
             {aboutHero.kicker}
           </p>
@@ -18,22 +18,24 @@ export function AboutHero() {
             {aboutHero.subtitle}
           </p>
         </div>
-        <div className="flex flex-col gap-5">
-          <div className="relative size-[95px]">
-            <Image
-              src="/images/home/logo.png"
-              alt=""
-              fill
-              sizes="95px"
-              className="object-cover"
-            />
+        <div className="order-3 flex flex-col gap-5 lg:order-none">
+          <div className="relative z-10 -mt-[88px] pl-6 lg:mt-0 lg:pl-0">
+            <div className="relative size-[95px]">
+              <Image
+                src="/images/home/logo.png"
+                alt=""
+                fill
+                sizes="95px"
+                className="object-cover"
+              />
+            </div>
           </div>
           <p className="type-body text-brand">
             {aboutHero.intro}
           </p>
         </div>
       </div>
-      <div className="relative h-[420px] w-full overflow-hidden sm:h-[550px] lg:w-[437px] lg:shrink-0">
+      <div className="relative order-2 h-[420px] w-full overflow-hidden sm:h-[550px] lg:order-none lg:w-[437px] lg:shrink-0">
         <Image
           src="/images/about/hero.png"
           alt="Agathe, fondatrice de My Trip Designer"

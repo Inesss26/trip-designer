@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import { aboutVision } from "@/lib/about-content";
+import { cn } from "@/lib/utils";
 
 export function AboutVision() {
   return (
@@ -27,7 +28,10 @@ export function AboutVision() {
                 alt=""
                 fill
                 sizes="(max-width: 1024px) 100vw, 33vw"
-                className="object-cover"
+                className={cn(
+                  "object-cover",
+                  "imageClassName" in pillar ? pillar.imageClassName : "object-center",
+                )}
               />
             </div>
             <div className="card-muted flex flex-1 flex-col gap-5 p-8 sm:p-10">

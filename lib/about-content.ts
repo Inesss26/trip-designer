@@ -75,6 +75,7 @@ export const aboutVision = {
       kicker: "01. Immersion",
       text: "Vivre votre voyage de l'intérieur, comme un local. Chaque étape vous plonge dans le quotidien et les rythmes réels des lieux traversés.",
       image: "/images/about/immersion.png",
+      imageClassName: "object-[center_85%]",
     },
     {
       kicker: "02. Authenticité",
