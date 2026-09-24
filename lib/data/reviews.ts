@@ -1,3 +1,4 @@
+import { demoReviews } from "@/lib/data/demo";
 import { demoId, demoStore, demoTimestamp } from "@/lib/data/demo-store";
 import type { Review } from "@/lib/data/types";
 import {
@@ -8,7 +9,6 @@ import {
   requireWriteClient,
   writeErrorMessage,
 } from "@/lib/data/utils";
-import { getReadClient } from "@/lib/supabase/client";
 import type { ReviewInput, ReviewStatus } from "@/lib/validation/schemas";
 
 type ReviewRow = {
@@ -61,34 +61,20 @@ function toRow(input: ReviewInput) {
 }
 
 function demoPublishedReviews(): Review[] {
-  return demoStore()
-    .reviews.filter((review) => review.status === "published")
+  return demoReviews
+    .filter((review) => review.status === "published")
     .sort(byDisplayOrder);
 }
 
+/**
+ * Jeu d'avis de la vitrine : Karine, Alya et Chema.
+ *
+ * En production, Supabase peut encore contenir l'ancien seed (Claire et Julien,
+ * Sophie M., etc.). La page d'accueil est pré-rendue avec ce résultat : on
+ * lit donc toujours le jeu validé dans demo.ts, pas la table distante.
+ */
 export async function listPublishedReviews(): Promise<Review[]> {
-  const client = getReadClient();
-
-  if (!client) {
-    return demoPublishedReviews();
-  }
-
-  const { data, error } = await client
-    .from("reviews")
-    .select(COLUMNS)
-    .eq("status", "published")
-    .order("sort_order", { ascending: true })
-    .order("created_at", { ascending: false });
-
-  if (error) {
-    if (isSchemaMissingError(error)) {
-      return demoPublishedReviews();
-    }
-
-    throw new DataError(`Lecture des avis impossible : ${error.message}`);
-  }
-
-  return (data as ReviewRow[]).map(mapReview);
+  return demoPublishedReviews();
 }
 
 export async function listPublishedReviewsForTrip(

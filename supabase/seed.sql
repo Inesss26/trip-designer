@@ -164,6 +164,8 @@ on conflict (id) do update set
 -- Avis
 -- ---------------------------------------------------------------------------
 
+delete from public.reviews;
+
 insert into public.reviews (
   id, author_name, author_location, rating, content, trip_id, travel_date,
   status, is_featured, sort_order
@@ -203,18 +205,6 @@ insert into public.reviews (
   'published',
   true,
   3
-),
-(
-  'bbbbbbb5-bbbb-4bbb-8bbb-bbbbbbbbbbb5',
-  'Marion L.',
-  'Toulouse',
-  5,
-  'Avis déposé après notre retour, à valider avant publication. Le voyage était magnifique et l''assistance par message pendant le séjour nous a sauvés lors d''une grève de train.',
-  null,
-  '2026-10-01',
-  'pending',
-  false,
-  4
 )
 on conflict (id) do update set
   author_name = excluded.author_name,

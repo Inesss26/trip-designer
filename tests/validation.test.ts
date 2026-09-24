@@ -147,8 +147,8 @@ describe("leadInputSchema", () => {
 
 describe("reviewInputSchema", () => {
   const validReview = {
-    authorName: "Sophie M.",
-    authorLocation: "Lyon",
+    authorName: "Karine",
+    authorLocation: "Florence",
     rating: "5",
     content: "Un accompagnement précis et des adresses que nous n'aurions pas trouvées.",
     tripId: "",

@@ -231,21 +231,6 @@ export const demoReviews: Review[] = [
     createdAt: now,
     updatedAt: now,
   },
-  {
-    id: "bbbbbbb5-bbbb-4bbb-8bbb-bbbbbbbbbbb5",
-    authorName: "Marion L.",
-    authorLocation: "Toulouse",
-    rating: 5,
-    content:
-      "Avis déposé après notre retour, à valider avant publication. Le voyage était magnifique et l'assistance par message pendant le séjour nous a sauvés lors d'une grève de train.",
-    tripId: null,
-    travelDate: "2026-10-01",
-    status: "pending",
-    isFeatured: false,
-    sortOrder: 4,
-    createdAt: now,
-    updatedAt: now,
-  },
 ];
 
 export const demoLeads: Lead[] = [
