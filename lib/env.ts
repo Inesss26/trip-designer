@@ -40,7 +40,7 @@ export const adminSessionSecret = read("ADMIN_SESSION_SECRET");
 
 /** Clé Web3Forms, lue à chaque envoi pour rester testable. */
 export function web3formsAccessKey(): string | null {
-  return read("WEB3FORMS_ACCESS_KEY");
+  return read("WEB3FORMS_ACCESS_KEY") ?? read("NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY");
 }
 
 const DEVELOPMENT_SESSION_SECRET =

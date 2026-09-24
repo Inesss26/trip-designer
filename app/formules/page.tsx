@@ -4,6 +4,7 @@ import { FormulesCompare } from "@/components/site/formules-compare";
 import { FormulesFaq } from "@/components/site/formules-faq";
 import { FormulesHero } from "@/components/site/formules-hero";
 import { HomeCta } from "@/components/site/home-close";
+import { HomeCarnetsBanner } from "@/components/site/home-carnets-banner";
 import { HomeExtras } from "@/components/site/home-extras";
 import { MarqueeTape } from "@/components/site/marquee-tape";
 import { SiteShell } from "@/components/site/site-shell";
@@ -23,10 +24,15 @@ export default async function FormulesPage() {
   return (
     <SiteShell content={content}>
       <main className="flex flex-col gap-16 pb-0 lg:gap-24">
-        <FormulesHero />
-        <FormulesCompare />
+        <div className="flex flex-col">
+          <FormulesHero />
+          <FormulesCompare />
+        </div>
         <MarqueeTape />
-        <HomeExtras />
+        <div className="flex flex-col gap-8 lg:gap-10">
+          <HomeExtras />
+          <HomeCarnetsBanner />
+        </div>
         <FormulesFaq />
         <HomeCta />
       </main>

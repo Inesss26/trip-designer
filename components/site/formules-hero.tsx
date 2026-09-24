@@ -39,7 +39,7 @@ export function FormulesHero() {
         </div>
       </div>
 
-      <div className="relative z-10 mx-auto flex w-full max-w-[1440px] -translate-y-10 flex-col gap-8 px-4 sm:-translate-y-[88px] sm:px-8 lg:px-11">
+      <div className="relative z-10 mx-auto mb-[-40px] flex w-full max-w-[1440px] -translate-y-10 flex-col gap-8 px-4 pb-24 sm:mb-[-88px] sm:-translate-y-[88px] sm:px-8 lg:px-11">
         <div className="grid gap-5 lg:grid-cols-3 lg:grid-rows-[145px_auto]">
           {formulesPageFormulas.map((formula) => (
             <article

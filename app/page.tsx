@@ -1,6 +1,7 @@
 import { HomeAbout } from "@/components/site/home-about";
 import { HomeCommunity, HomeCta } from "@/components/site/home-close";
 import { HomeEngagement } from "@/components/site/home-engagement";
+import { HomeCarnetsBanner } from "@/components/site/home-carnets-banner";
 import { HomeExtras } from "@/components/site/home-extras";
 import { HomeFormulas } from "@/components/site/home-formulas";
 import { HomeHero } from "@/components/site/home-hero";
@@ -37,7 +38,10 @@ export default async function HomePage() {
         </div>
         <HomeEngagement />
         <HomeFormulas />
-        <HomeExtras />
+        <div className="flex flex-col gap-8 lg:gap-10">
+          <HomeExtras />
+          <HomeCarnetsBanner />
+        </div>
         <HomeProcess />
         <MarqueeTape variant="rose" />
         <HomeAbout />

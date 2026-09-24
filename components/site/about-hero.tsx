@@ -18,7 +18,7 @@ export function AboutHero() {
             {aboutHero.subtitle}
           </p>
         </div>
-        <div className="order-3 flex flex-col gap-5 lg:order-none">
+        <div className="order-3 flex flex-col gap-5">
           <div className="relative z-10 -mt-[88px] pl-6 lg:mt-0 lg:pl-0">
             <div className="relative size-[95px]">
               <Image

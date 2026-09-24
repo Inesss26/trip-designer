@@ -47,7 +47,7 @@ export default async function ContactPage({
         >
           <div className="flex w-full flex-col gap-5">
             <h2 className="type-h2 text-text-brand">
-              Parlez moi de
+              Parlez-moi de
               <span className="block type-h2-italic text-brand-secondary">votre projet.</span>
             </h2>
             <p className="type-body text-brand/50">

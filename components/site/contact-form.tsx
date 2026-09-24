@@ -1,16 +1,7 @@
 "use client";
 
-import {
-  type FormEvent,
-  startTransition,
-  useActionState,
-  useEffect,
-  useRef,
-} from "react";
+import { type FormEvent, useEffect, useRef, useState } from "react";
 
-import { submitContactRequest } from "@/app/contact/actions";
-import { contactInitialState } from "@/app/contact/state";
-import { FieldError } from "@/components/site/field-error";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -26,69 +17,76 @@ const fieldClass =
 
 const labelClass = "type-tag text-brand/50";
 
+const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
+const SUCCESS_MESSAGE =
+  "Merci ! Votre message a bien été envoyé, nous vous répondrons sous 48h.";
+
 export function ContactForm({ defaultDestination = "" }: ContactFormProps) {
-  const [state, formAction, pending] = useActionState(
-    submitContactRequest,
-    contactInitialState,
-  );
   const formRef = useRef<HTMLFormElement>(null);
   const errorRef = useRef<HTMLParagraphElement>(null);
-  const renderedAtRef = useRef<HTMLInputElement>(null);
+  const [pending, setPending] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (renderedAtRef.current) {
-      renderedAtRef.current.value = String(Date.now());
-    }
-  }, []);
-
-  useEffect(() => {
-    if (state.status === "success") {
-      formRef.current?.reset();
-      if (renderedAtRef.current) {
-        renderedAtRef.current.value = String(Date.now());
-      }
-    }
-
-    if (state.status === "error") {
+    if (error) {
       errorRef.current?.focus();
     }
-  }, [state]);
+  }, [error]);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    startTransition(() => {
-      formAction(formData);
-    });
-  }
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
 
-  const value = (name: string, fallback = "") =>
-    state.values[name] ?? fallback;
+    setPending(true);
+    setSuccess(false);
+    setError(null);
+
+    if (!accessKey) {
+      setPending(false);
+      setError("L'envoi n'a pas pu aboutir. Réessayez dans un instant.");
+      return;
+    }
+
+    try {
+      const response = await fetch(WEB3FORMS_ENDPOINT, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: String(formData.get("name") ?? "").trim(),
+          email: String(formData.get("email") ?? "").trim(),
+          project_type: String(formData.get("destination") ?? "").trim(),
+          message: String(formData.get("message") ?? "").trim(),
+        }),
+      });
+
+      const payload = (await response.json()) as { success?: boolean };
+
+      if (!response.ok || payload.success !== true) {
+        throw new Error("Web3Forms rejected the submission");
+      }
+
+      form.reset();
+      setSuccess(true);
+    } catch {
+      setError("L'envoi n'a pas pu aboutir. Réessayez dans un instant.");
+    } finally {
+      setPending(false);
+    }
+  }
 
   return (
     <form
       ref={formRef}
       onSubmit={handleSubmit}
       className="flex w-full flex-col gap-8"
-      noValidate
     >
-      <input
-        ref={renderedAtRef}
-        type="hidden"
-        name="renderedAt"
-        defaultValue="0"
-      />
-      <div aria-hidden="true" className="hidden">
-        <label htmlFor="siteWeb">Site web</label>
-        <input
-          id="siteWeb"
-          name="siteWeb"
-          type="text"
-          tabIndex={-1}
-          autoComplete="off"
-        />
-      </div>
-
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="flex flex-col gap-2">
           <Label htmlFor="name" className={labelClass}>
@@ -100,12 +98,8 @@ export function ContactForm({ defaultDestination = "" }: ContactFormProps) {
             required
             autoComplete="name"
             placeholder="Camille Dupont"
-            defaultValue={value("name")}
             className={fieldClass}
-            aria-invalid={Boolean(state.fieldErrors.name)}
-            aria-describedby={state.fieldErrors.name ? "name-error" : undefined}
           />
-          <FieldError errors={state.fieldErrors} name="name" />
         </div>
 
         <div className="flex flex-col gap-2">
@@ -119,14 +113,8 @@ export function ContactForm({ defaultDestination = "" }: ContactFormProps) {
             required
             autoComplete="email"
             placeholder="camille@email.com"
-            defaultValue={value("email")}
             className={fieldClass}
-            aria-invalid={Boolean(state.fieldErrors.email)}
-            aria-describedby={
-              state.fieldErrors.email ? "email-error" : undefined
-            }
           />
-          <FieldError errors={state.fieldErrors} name="email" />
         </div>
       </div>
 
@@ -140,14 +128,9 @@ export function ContactForm({ defaultDestination = "" }: ContactFormProps) {
           required
           aria-required="true"
           placeholder="Italie, carnet sur-mesure, appel découverte…"
-          defaultValue={value("destination", defaultDestination)}
+          defaultValue={defaultDestination}
           className={fieldClass}
-          aria-invalid={Boolean(state.fieldErrors.destination)}
-          aria-describedby={
-            state.fieldErrors.destination ? "destination-error" : undefined
-          }
         />
-        <FieldError errors={state.fieldErrors} name="destination" />
       </div>
 
       <div className="flex flex-col gap-2">
@@ -159,17 +142,11 @@ export function ContactForm({ defaultDestination = "" }: ContactFormProps) {
           name="message"
           rows={6}
           placeholder="Décrivez votre projet, vos envies, vos dates…"
-          defaultValue={value("message")}
           className={cn(
             fieldClass,
             "h-[140px] min-h-[140px] py-[13px] field-sizing-fixed",
           )}
-          aria-invalid={Boolean(state.fieldErrors.message)}
-          aria-describedby={
-            state.fieldErrors.message ? "message-error" : undefined
-          }
         />
-        <FieldError errors={state.fieldErrors} name="message" />
       </div>
 
       <div className="flex flex-col gap-5">
@@ -183,19 +160,22 @@ export function ContactForm({ defaultDestination = "" }: ContactFormProps) {
         >
           {pending ? "Envoi en cours..." : "Envoyer mon message"}
         </Button>
-        {!pending && state.status === "success" && state.message ? (
-          <p className="type-body-small text-accent-dark" role="status">
-            {state.message}
+        {success ? (
+          <p
+            className="border-l-2 border-accent-dark pl-4 type-body-small text-accent-dark"
+            role="status"
+          >
+            {SUCCESS_MESSAGE}
           </p>
         ) : null}
-        {!pending && state.status === "error" && state.message ? (
+        {error ? (
           <p
             ref={errorRef}
             tabIndex={-1}
             className="type-body-small text-brand-primary/70"
             role="alert"
           >
-            {state.message}
+            {error}
           </p>
         ) : null}
         <p className="text-center type-body-small text-brand/30">
