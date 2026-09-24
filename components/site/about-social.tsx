@@ -31,14 +31,17 @@ export function AboutSocial() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Voir le compte Instagram My Trip Designer"
+          className="mx-auto block w-full"
         >
           <Image
-            src="/images/about/instagram-gallery.jpg"
+            src="/images/about/ig-feed.png"
             alt="Publications Instagram My Trip Designer"
-            width={1024}
-            height={341}
-            sizes="100vw"
-            className="h-auto w-full"
+            width={2156}
+            height={716}
+            quality={100}
+            unoptimized
+            sizes="(max-width: 1440px) 100vw, 1440px"
+            className="h-auto w-full object-contain"
           />
         </a>
 

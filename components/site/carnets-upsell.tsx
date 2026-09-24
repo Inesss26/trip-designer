@@ -56,7 +56,7 @@ export function CarnetsUpsell() {
                 <h3 className="type-h3 text-text-brand">
                   Carnet d&apos;itinéraire
                 </h3>
-                <p className="type-body-strong text-brand/50">
+                <p className="type-body-strong text-text-brand">
                   Inclus dans les formules Dolce Vita & La Strada
                 </p>
               </div>
@@ -101,7 +101,7 @@ export function CarnetsUpsell() {
           </p>
           <ul className="flex flex-col gap-2">
             <Bullet accent>Programme détaillé jour par jour</Bullet>
-            <Bullet accent>Réservation d&apos;activités & visites</Bullet>
+            <Bullet accent>Réservation d&apos;activités & Visites</Bullet>
             <Bullet accent>Carte interactive My Maps</Bullet>
           </ul>
           <p className="type-body-small text-brand/30">

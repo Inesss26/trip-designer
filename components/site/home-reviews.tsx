@@ -116,13 +116,13 @@ export function HomeReviews({
           >
             <div
               ref={trackRef}
-              className="flex items-start gap-4 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none lg:items-center lg:gap-6"
+              className="flex items-stretch gap-4 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none lg:items-center lg:gap-6"
               style={isMounted ? { transform: `translateX(${offset}px)` } : undefined}
             >
               {reviews.map((review, itemIndex) => (
                 <article
                   key={review.id}
-                  className="flex w-[calc(100%-3.5rem)] shrink-0 basis-[calc(100%-3.5rem)] flex-col items-stretch lg:h-[592px] lg:w-[min(895px,calc(100%-7.5rem))] lg:basis-[min(895px,calc(100%-7.5rem))] lg:flex-row lg:items-center"
+                  className="flex h-full w-[calc(100%-3.5rem)] shrink-0 basis-[calc(100%-3.5rem)] flex-col items-stretch lg:h-[592px] lg:w-[min(895px,calc(100%-7.5rem))] lg:basis-[min(895px,calc(100%-7.5rem))] lg:flex-row lg:items-center"
                   aria-hidden={itemIndex !== index}
                 >
                   <div className="relative h-[280px] w-full shrink-0 overflow-hidden lg:mr-[-94px] lg:h-full lg:w-[437px]">
@@ -134,12 +134,12 @@ export function HomeReviews({
                       className="object-cover"
                     />
                   </div>
-                  <blockquote className="relative z-10 flex flex-col gap-5 bg-bg-pink-muted p-6 lg:flex-1 lg:p-8">
+                  <blockquote className="relative z-10 flex min-h-[248px] flex-1 flex-col gap-5 bg-bg-pink-muted p-6 lg:min-h-[280px] lg:p-8">
                     <SiteIcon src="/icons/quote.svg" width={33} height={24} />
                     <p className="type-body-italic text-brand">
-                      {review.content}
+                      “{review.content}”
                     </p>
-                    <footer className="flex flex-col gap-1">
+                    <footer className="mt-auto flex flex-col gap-1">
                       <cite className="type-subtitle text-brand not-italic">
                         {review.authorName}
                       </cite>

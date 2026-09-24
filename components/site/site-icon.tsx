@@ -19,8 +19,6 @@ export function SiteIcon({
 }) {
   const w = width ?? size ?? 20;
   const h = height ?? size ?? 20;
-  const attrW = Math.round(w);
-  const attrH = Math.round(h);
 
   return (
     <span
@@ -30,16 +28,16 @@ export function SiteIcon({
       <img
         src={src}
         alt={alt}
-        width={attrW}
-        height={attrH}
-        className={cn("size-full", hoverSrc && "group-hover:opacity-0")}
+        width={w}
+        height={h}
+        className={cn(hoverSrc && "group-hover:opacity-0")}
       />
       {hoverSrc ? (
         <img
           src={hoverSrc}
           alt=""
-          width={attrW}
-          height={attrH}
+          width={w}
+          height={h}
           className="absolute inset-0 size-full opacity-0 group-hover:opacity-100"
         />
       ) : null}

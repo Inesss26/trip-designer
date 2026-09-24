@@ -64,8 +64,8 @@ export const carnets: Carnet[] = [
       "Barcelone se déguste entre mer et collines, du modernisme de Gaudí aux ruelles du Born. Ce carnet pose le rythme d'une escapade catalane : les incontournables sans la foule, les tapas au bon moment, les transports qui font gagner du temps. Un aperçu pour partir l'esprit léger — le détail se feuillette dans le carnet.",
     keyFacts: {
       season: "Mai (18-24 °C)",
-      formalities: "Carte d'identité/Passeport (Schengen)",
-      transport: "Métro, bus, pass T-casual ou Hola Barcelona",
+      formalities: "Carte d'identité / Passeport (Schengen)",
+      transport: "Métro, bus, pass T-Casual ou Hola Barcelona",
     },
     highlights: [
       "Les étapes incontournables (Sagrada Família, Parc Güell...)",
@@ -97,7 +97,7 @@ export const carnets: Carnet[] = [
       "Florence concentre cinq siècles d'art dans une ville que l'on parcourt à pied. Ce carnet ouvre le joyau de la Renaissance sans s'y perdre : Duomo, Offices, ateliers de cuir et cafés historiques, au bon tempo. L'essentiel pour savourer la douceur toscane — le programme complet est dans le carnet.",
     keyFacts: {
       season: "Printemps (10-25 °C)",
-      formalities: "Carte d'identité/Passeport (Schengen)",
+      formalities: "Carte d'identité / Passeport (Schengen)",
       transport: "À pied, réseau bus & tramway",
     },
     highlights: [
@@ -164,7 +164,7 @@ export const carnets: Carnet[] = [
       "Palerme est un carrefour : arabo-normand, baroque, marchés et mer à deux pas. Ce carnet vous y installe sans improvisation : patrimoine, street food, bus AMAT et escapades côtières. L'esprit méditerranéen en quelques pages — le reste se feuillette dans le carnet.",
     keyFacts: {
       season: "Juin (21-28 °C)",
-      formalities: "Carte d'identité/Passeport (Schengen)",
+      formalities: "Carte d'identité / Passeport (Schengen)",
       transport: "À pied, bus AMAT, train régional",
     },
     highlights: [

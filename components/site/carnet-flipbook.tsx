@@ -25,6 +25,8 @@ const ZOOM_STEP = 25;
 const BOOK_MAX_HEIGHT_CLASS =
   "h-[220px] sm:h-[360px] lg:h-[463px] [:fullscreen]:h-[min(80vh,720px)]";
 const SPREAD_MEDIA_QUERY = "(min-width: 1024px)";
+/** Fast Refresh throws if a useEffect deps array changes length. Keep this slot. */
+const PAGE_FLIP_HOOK_ARITY = true;
 
 function createFlipPageElements(images: string[]): HTMLElement[] {
   return images.map((src, index) => {
@@ -242,7 +244,7 @@ export function CarnetFlipbook() {
       pageFlipRef.current = null;
       loadedPageCountRef.current = 0;
     };
-  }, [hasPages, useSpread, pageWidth, pageHeight]);
+  }, [hasPages, useSpread, pageWidth, pageHeight, PAGE_FLIP_HOOK_ARITY]);
 
   useEffect(() => {
     const pageFlip = pageFlipRef.current;
@@ -352,7 +354,7 @@ export function CarnetFlipbook() {
 
   return (
     <section
-      className="mx-auto flex w-full max-w-[1440px] flex-col gap-10 px-4 py-16 sm:px-8 lg:px-11"
+      className="mx-auto flex w-full max-w-[1440px] flex-col gap-10 px-4 pt-24 pb-24 sm:px-8 lg:px-11"
     >
       <div className="flex flex-col gap-4">
         <p className="type-tag text-brand/30">Aperçu interactif</p>

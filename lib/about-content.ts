@@ -21,7 +21,7 @@ export const aboutStory = {
   turningPointStrong:
     "accompagner les voyageurs qui souhaitent découvrir une Italie authentique et voyager l'esprit tranquille.",
   closing:
-    "Aujourd'hui, je m'attache à concevoir chaque séjour comme un événement : avec cohérence, fluidité et un sens aigu du détail.",
+    "Aujourd'hui, je façonne chaque séjour comme une expérience unique : des itinéraires fluides, des adresses sélectionnées avec soin et une attention portée à chaque instant.",
 } as const;
 
 export const aboutTraits = {

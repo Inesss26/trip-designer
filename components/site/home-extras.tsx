@@ -146,7 +146,7 @@ export function HomeExtras() {
               </p>
             </div>
             <Button asChild variant="tertiary" size="cta" className="w-full">
-              <a href={MAILTO_NEGOTIATION}>Négocie pour moi</a>
+              <a href={MAILTO_NEGOTIATION}>négocier pour moi</a>
             </Button>
           </div>
         </article>

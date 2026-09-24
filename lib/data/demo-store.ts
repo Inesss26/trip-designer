@@ -31,7 +31,10 @@ type DemoStore = {
 
 declare global {
   var __mtdDemoStoreEmail: DemoStore | undefined;
+  var __mtdDemoStoreSeed: number | undefined;
 }
+
+const DEMO_STORE_SEED = 2;
 
 function createStore(): DemoStore {
   return {
@@ -48,6 +51,11 @@ function createStore(): DemoStore {
  * de Next.js en développement.
  */
 export function demoStore(): DemoStore {
+  if (globalThis.__mtdDemoStoreSeed !== DEMO_STORE_SEED) {
+    globalThis.__mtdDemoStoreEmail = createStore();
+    globalThis.__mtdDemoStoreSeed = DEMO_STORE_SEED;
+  }
+
   globalThis.__mtdDemoStoreEmail ??= createStore();
   return globalThis.__mtdDemoStoreEmail;
 }

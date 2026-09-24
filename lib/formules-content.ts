@@ -12,7 +12,7 @@ export const formulesPageFormulas = [
   {
     id: "dolce-vita",
     featured: false,
-    kicker: "Votre séjour dans un seul point de chute.",
+    kicker: "Votre séjour dans une seule destination.",
     kickerAccent: false,
     name: "DOLCE VITA",
     description:
@@ -83,9 +83,9 @@ export const formulesPageFormulas = [
     pricing: {
       variant: "tiers" as const,
       tiers: [
-        { label: "Jusqu'à 3 points de chute:", price: "430€" },
-        { label: "5 points de chute:", price: "680€" },
-        { label: "7 points de chute:", price: "930€" },
+        { label: "Jusqu'à 3 étapes :", price: "430€" },
+        { label: "5 étapes :", price: "680€" },
+        { label: "7 étapes :", price: "930€" },
       ],
     },
     ctaVariant: "primary" as const,
@@ -250,9 +250,10 @@ export type FormulesFaqItem =
       id: string;
       question: string;
       kind: "bullets";
+      intro?: string;
       items: {
-        title: string;
-        suffix: string;
+        title?: string;
+        suffix?: string;
         body: string;
       }[];
     };
@@ -468,6 +469,21 @@ export const formulesFaq: FormulesFaqItem[] = [
         title: "Le carnet Premium",
         suffix: " — inclus dans la formule Far Niente",
         body: "Le carnet sur-mesure, augmenté. En plus dans votre carnet, un programme détaillé jour par jour adapté à votre rythme, des propositions d'activités selon vos centres d'intérêt, et une carte interactive My Maps avec vos itinéraires, points d'intérêt et adresses.",
+      },
+    ],
+  },
+  {
+    id: "carnet-or-formule",
+    question:
+      "Carnet prêt à l'achat ou formule sur mesure : quelle option me convient le mieux ?",
+    kind: "bullets",
+    intro: "Tout dépend de vos besoins et de votre façon de voyager :",
+    items: [
+      {
+        body: "Choisissez un carnet prêt à l'achat (PDF) si vous partez sur l'une de mes destinations phares (Florence, Barcelone, Londres, Palerme), que vous aimez organiser vos journées en toute autonomie et que vous cherchez simplement un guide d'inspiration clé en main avec nos meilleures adresses et notre carte Google My Maps.",
+      },
+      {
+        body: "Optez pour la formule sur mesure si vous manquez de temps, si vous partez sur une autre destination, ou si vous souhaitez un itinéraire 100 % personnalisé qui s'adapte à vos dates exactes, votre budget, vos envies précises et la composition de votre groupe (famille, couple, amis). Je m'occupe de toute la recherche et de la logistique pour vous livrer un voyage sans stress.",
       },
     ],
   },

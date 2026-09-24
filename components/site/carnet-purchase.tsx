@@ -46,83 +46,34 @@ export function CarnetPurchase({
         />
       </section>
 
-      <section className="mx-auto flex w-full max-w-[1440px] flex-col gap-16 px-4 py-12 sm:px-8 lg:flex-row lg:items-start lg:justify-between lg:gap-16 lg:px-11 lg:py-16">
+      <section className="mx-auto flex w-full max-w-[1440px] flex-col gap-16 px-4 pt-12 pb-0 sm:px-8 lg:flex-row lg:items-start lg:justify-between lg:gap-16 lg:px-11 lg:pt-16 lg:pb-0">
         <div className="flex min-w-0 flex-1 flex-col gap-11">
           <div className="flex flex-col gap-8">
-            <CarnetMeta
-              location={carnet.location}
-              durationDays={carnet.durationDays}
-              durationClassName="text-brand"
-            />
-            <h1 className="type-h1 text-text-brand">
-              {carnet.title}
-            </h1>
-            <p className="type-body-strong text-brand/50">
-              {carnet.tagline}
-            </p>
-            <p className="type-body text-brand/50">
-              {carnet.description}
-            </p>
-          </div>
-
-          <div className="flex flex-col gap-8">
-            <h2 className="type-subtitle text-text-brand">
-              Infos clés
-            </h2>
-            <dl className="grid gap-8 sm:grid-cols-3 sm:gap-x-10">
-              {(
-                [
-                  {
-                    label: "Saison",
-                    value: carnet.keyFacts.season,
-                    icon: "/icons/carnets/season.svg",
-                  },
-                  {
-                    label: "Formalités",
-                    value: carnet.keyFacts.formalities,
-                    icon: "/icons/carnets/formalities.svg",
-                  },
-                  {
-                    label: "Transports",
-                    value: carnet.keyFacts.transport,
-                    icon: "/icons/carnets/transport.svg",
-                  },
-                ] as const
-              ).map((item) => (
-                <div key={item.label} className="flex min-w-0 flex-col gap-2">
-                  <dt className="flex items-center gap-1.5 type-tag text-brand/30">
-                    <SiteIcon src={item.icon} size={16} />
-                    {item.label}
-                  </dt>
-                  <dd className="type-body text-brand">{item.value}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-
-          <div className="flex flex-col gap-5">
-            <h2 className="type-subtitle text-text-brand">
-              Ce que vous trouverez dans ce carnet
-            </h2>
-            <ul className="flex flex-col gap-3">
-              {carnet.highlights.map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <SiteIcon
-                    src="/icons/diamond.svg"
-                    size={8}
-                    className="mt-2 shrink-0"
-                  />
-                  <p className="type-body text-brand/50">{item}</p>
-                </li>
-              ))}
-            </ul>
+            <div className="flex flex-col gap-6">
+              <CarnetMeta
+                location={carnet.location}
+                durationDays={carnet.durationDays}
+                durationClassName="text-brand"
+              />
+              <h1 className="type-h1 text-text-brand">
+                {carnet.title}
+              </h1>
+            </div>
+            <div className="flex flex-col gap-5">
+              <p className="type-body-strong text-text-brand">
+                {carnet.tagline}
+              </p>
+              <p className="type-body text-brand/50">
+                {carnet.description}
+              </p>
+            </div>
           </div>
 
           <div className="grid grid-cols-3 gap-2">
             {carnet.gallery.map((src, index) => (
               <div
                 key={src}
-                className="relative h-[120px] overflow-hidden bg-bg-muted sm:h-[160px]"
+                className="relative h-[144px] overflow-hidden bg-bg-muted"
               >
                 <Image
                   src={src}
@@ -133,6 +84,69 @@ export function CarnetPurchase({
                 />
               </div>
             ))}
+          </div>
+
+          <div className="flex flex-col gap-6">
+            <h2 className="type-h3 text-text-brand">
+              Informations clés
+            </h2>
+            <dl className="grid grid-cols-1 gap-5 sm:grid-cols-3">
+              {(
+                [
+                  {
+                    label: "Saison",
+                    value: carnet.keyFacts.season,
+                    icon: "/icons/carnets/season.svg",
+                    iconWidth: 19.5,
+                    iconHeight: 17.5,
+                  },
+                  {
+                    label: "Formalités",
+                    value: carnet.keyFacts.formalities,
+                    icon: "/icons/carnets/formalities.svg",
+                    iconWidth: 14.5,
+                    iconHeight: 17.5,
+                  },
+                  {
+                    label: "Transports",
+                    value: carnet.keyFacts.transport,
+                    icon: "/icons/carnets/transport.svg",
+                    iconWidth: 21.5,
+                    iconHeight: 15.5,
+                  },
+                ] as const
+              ).map((item) => (
+                <div key={item.label} className="flex min-w-0 flex-col gap-5">
+                  <dt className="flex items-center gap-3 type-tag text-brand/50">
+                    <SiteIcon
+                      src={item.icon}
+                      width={item.iconWidth}
+                      height={item.iconHeight}
+                    />
+                    {item.label}
+                  </dt>
+                  <dd className="type-body text-brand/50">{item.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+
+          <div className="flex flex-col gap-6">
+            <h2 className="type-h3 text-text-brand">
+              Ce que vous trouverez dans ce carnet
+            </h2>
+            <ul className="flex flex-col gap-3">
+              {carnet.highlights.map((item) => (
+                <li key={item} className="flex items-center gap-2.5">
+                  <SiteIcon
+                    src="/icons/diamond.svg"
+                    size={8}
+                    className="shrink-0"
+                  />
+                  <p className="type-body text-brand/50">{item}</p>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
@@ -198,10 +212,11 @@ export function CarnetPurchase({
           </div>
         </aside>
       </section>
-      </div>
 
       <CarnetFlipbook />
       <CarnetsCompare />
+      </div>
+
       <CarnetsBenefits />
 
       {related.length > 0 ? (

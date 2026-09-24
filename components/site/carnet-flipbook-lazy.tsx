@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 
 function CarnetFlipbookFallback() {
   return (
-    <section className="mx-auto flex w-full max-w-[1440px] flex-col gap-10 px-4 py-16 sm:px-8 lg:px-11">
+    <section className="mx-auto flex w-full max-w-[1440px] flex-col gap-10 px-4 pt-24 pb-24 sm:px-8 lg:px-11">
       <div className="flex flex-col gap-4">
         <p className="type-tag text-brand/30">Aperçu interactif</p>
         <h2 className="type-h2 text-text-brand">

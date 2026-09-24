@@ -192,7 +192,7 @@ export const demoReviews: Review[] = [
     authorLocation: "Roadtrip en Italie",
     rating: 5,
     content:
-      "Un voyage magnifique en compagnie de toute la tribu : 4 adultes et 5 enfants ! Nous revenons la tête remplie d'images, de couleurs, d'ambiances, d'aventures et surtout de souvenirs. My Trip Designer était aux petits soins et conseils, on a pu profiter de tellement de choses en si peu de temps et encore une fois un voyage réussi! On s'est régalé encore une fois du beau pays qu'est l'Italie. Un mix de culture, nature et gastronomie. Grâce à ses recommandations, on a pu non seulement éviter les restau attrape-touristes, mais aussi déguster les bonnes glaces chez les enseignes les plus connues, savourer les pâtes fraîches et les pizzas succulentes! Notre circuit pour cette fois-ci est : Pise - Montecatini Terme - Portofino - Cinque Terre - Florence - Verragio et son carnaval grandiose! - Rome. Encore une fois merci !! Vivement notre prochain voyage",
+      "Un voyage magnifique en famille ! Grâce aux recommandations d'Agathe, on a profité de tellement de choses en peu de temps et évité les pièges à touristes. Un mix parfait de culture, nature et gastronomie. Vivement notre prochain voyage !",
     tripId: null,
     travelDate: "2026-04-12",
     status: "published",
@@ -204,10 +204,10 @@ export const demoReviews: Review[] = [
   {
     id: "bbbbbbb2-bbbb-4bbb-8bbb-bbbbbbbbbbb2",
     authorName: "Karine",
-    authorLocation: "Road trip à florence",
+    authorLocation: "Family Trip à Florence",
     rating: 5,
     content:
-      "Agathe, je te remercie de tout cœur pour ce carnet qui m'a été plus que précieux. Quel temps de gagné ! Moi qui étais une adepte du Guide du Routard, je dois reconnaître que ce carnet est bien plus pratique : ultra complet, sans avoir à parcourir des centaines de pages. Les adresses ont été un sans faute, de véritables adresses Florentines aux saveurs locales inoubliables, et merci pour les pertinents conseils notamment à propos des musées. Encore merci pour ces recherches chronophages qui m'ont permis d'apprécier un séjour sur mesure sans aucune charge mentale ni stress en amont tout comme sur place !",
+      "Ce carnet m'a été précieux, quel temps de gagné ! C'est ultra-complet sans avoir à parcourir des centaines de pages. Les adresses ont été un sans-faute et de vraies pépite locales. Un séjour sur mesure sans aucune charge mentale ni stress !",
     tripId: null,
     travelDate: "2026-09-03",
     status: "published",
@@ -222,7 +222,7 @@ export const demoReviews: Review[] = [
     authorLocation: "Family & Friend Trip à Barcelone",
     rating: 5,
     content:
-      "Agathe a parfaitement compris notre besoin pour notre voyage en famille. Elle a su nous proposer un séjour alliant détente, découvertes culturelles et activités adaptées aux enfants, pour que chacun puisse en profiter pleinement. Un grand merci Agathe pour ton accompagnement et pour le joli carnet de voyage aussi utile qu'attentionné !",
+      "Agathe a parfaitement compris notre besoin pour ce voyage en famille. Elle a su allier détente, culture et activités adaptées aux enfants. Un grand merci pour ce joli carnet aussi utile qu'attentionné !",
     tripId: null,
     travelDate: "2026-07-20",
     status: "published",
@@ -338,7 +338,7 @@ export const demoContent: SiteContentEntry[] = [
     label: "Accueil — sous-titre",
     kind: "richtext",
     value:
-      "Spécialiste de l'Italie, je conçois des itinéraires uniques et immersifs en Europe et dans le monde entier. Confiez-moi votre projet et partez l'esprit léger.",
+      "Je conçois des itinéraires uniques et immersifs en Europe et dans le monde entier, avec une expertise toute particulière pour l'Italie. Confiez-moi votre projet et partez l'esprit léger.",
     sortOrder: 12,
     updatedAt: now,
   },

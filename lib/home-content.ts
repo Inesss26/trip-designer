@@ -1,7 +1,7 @@
 export const homeHeroCopy = {
   title: "Votre voyage sur-mesure, avec l'esprit Dolce Vita",
   subtitle:
-    "Spécialiste de l'Italie, je conçois des itinéraires uniques et immersifs en Europe et dans le monde entier.\nConfiez-moi votre projet et partez l'esprit léger.",
+    "Je conçois des itinéraires uniques et immersifs en Europe et dans le monde entier, avec une expertise toute particulière pour l'Italie.\nConfiez-moi votre projet et partez l'esprit léger.",
 } as const;
 
 export const homeStats = [
@@ -20,26 +20,36 @@ export const marqueeItems = [
 export const homeBenefits = [
   {
     icon: "/icons/benefit-savings.svg",
+    iconWidth: 21.5,
+    iconHeight: 21.5,
     title: "Des économies concrètes",
     body: "L'assurance de payer chaque prestation au juste prix, sans frais cachés.",
   },
   {
     icon: "/icons/benefit-circuits.svg",
+    iconWidth: 21.5,
+    iconHeight: 24.5,
     title: "Adieu aux circuits stéréotypés",
     body: "Aucun itinéraire préconçu, chaque voyage est créé à partir d'une page blanche.",
   },
   {
     icon: "/icons/benefit-support.svg",
+    iconWidth: 21.5,
+    iconHeight: 19.5,
     title: "Un accompagnement serein",
     body: "Partez l'esprit léger grâce à mes conseils d'experte et mes recommandations sur mesure.",
   },
   {
     icon: "/icons/benefit-time.svg",
+    iconWidth: 21.5,
+    iconHeight: 21.5,
     title: "Jusqu'à 40h de recherches gagnées",
     body: "Gagnez un temps précieux et libérez-vous de toute la charge mentale.",
   },
   {
     icon: "/icons/benefit-local.svg",
+    iconWidth: 21.5,
+    iconHeight: 18.5,
     title: "Zéro pièges à touristes",
     body: "Profitez d'adresses locales authentiques et évitez les erreurs coûteuses.",
   },
@@ -71,7 +81,7 @@ export const homeFormulas = [
     id: "dolce-vita",
     featured: false,
     name: "DOLCE VITA",
-    tagline: "Séjour fixe — un seul point de chute",
+    tagline: "Séjour fixe - une seule destination",
     description:
       "Idéal si vous posez vos valises dans un seul endroit et explorez en toute liberté.",
     features: [

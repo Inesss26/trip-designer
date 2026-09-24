@@ -8,39 +8,39 @@ export function HomeTrust() {
     <section className="flex flex-col lg:flex-row lg:items-stretch">
       <div className="flex w-full flex-col justify-center px-4 py-16 sm:px-8 lg:w-[min(100%,710px)] lg:py-[100px] lg:pl-[11vw] lg:pr-12">
         <div className="flex max-w-[552px] flex-col gap-[52px]">
-          <div className="flex flex-col gap-6">
-            <h2 className="type-h3 text-text-brand">
+          <div className="flex flex-col gap-6 text-text-brand">
+            <h2 className="type-h3">
               Vous rêvez de votre prochain voyage, mais ...
             </h2>
-            <p className="type-body text-brand">
-              Entre le{" "}
+            <p className="type-body">
+              Entre les heures passées à dénicher les bonnes adresses, la
+              gestion des transports et l&apos;optimisation du parcours,
+              planifier ses vacances devient vite une vraie{" "}
               <span className="type-body-strong text-brand-secondary">
-                manque de temps
-              </span>{" "}
-              pour chercher les bonnes adresses, la peur de tomber dans les{" "}
-              <span className="type-body-strong text-brand-secondary">
-                pièges à touristes
-              </span>{" "}
-              et la gestion de toute la logistique, planifier votre séjour se
-              transforme vite en{" "}
-              <span className="type-body-strong text-brand-secondary">stress.</span>
-            </p>
-            <p className="type-body text-brand">
-              Vous méritez bien mieux que le stress des préparatifs pour vos
-              vacances.
+                charge mentale.
+              </span>
             </p>
           </div>
+
+          <p className="type-quote text-brand/50">
+            “Vous méritez bien mieux que le stress des préparatifs pour vos
+            vacances.”
+          </p>
 
           <div className="flex flex-col gap-6">
             <h3 className="type-h3 text-text-brand">
               Et si vous faisiez confiance à un{" "}
-              <span className="text-brand-secondary">travel planner</span> ?
+              <span className="text-brand-secondary">travel planner ?</span>
             </h3>
             <ul className="flex flex-col gap-5">
               {homeBenefits.map((benefit) => (
-                <li key={benefit.title} className="flex items-start gap-5">
-                  <SiteIcon src={benefit.icon} size={20} className="mt-0.5" />
-                  <div className="flex flex-col gap-1 type-body text-text-brand">
+                <li key={benefit.title} className="flex items-center gap-5">
+                  <SiteIcon
+                    src={benefit.icon}
+                    width={benefit.iconWidth}
+                    height={benefit.iconHeight}
+                  />
+                  <div className="flex min-w-0 flex-1 flex-col gap-1 text-text-brand">
                     <p className="type-body-strong">{benefit.title}</p>
                     <p className="type-body">{benefit.body}</p>
                   </div>

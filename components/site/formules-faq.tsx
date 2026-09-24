@@ -127,18 +127,26 @@ function FaqAnswer({ item }: { item: FormulesFaqItem }) {
 
   return (
     <div className="flex w-full flex-col gap-6">
+      {item.intro ? (
+        <p className="type-body text-brand">{item.intro}</p>
+      ) : null}
       {item.items.map((bullet) => (
-        <div key={bullet.title} className="flex items-start gap-3">
+        <div
+          key={bullet.title ?? bullet.body.slice(0, 48)}
+          className="flex items-start gap-3"
+        >
           <span className="flex h-[22px] w-[10px] shrink-0 items-center justify-center">
             <SiteIcon src="/icons/diamond.svg" width={10} height={10} />
           </span>
           <div className="min-w-0 flex-1 type-body text-brand">
-            <p>
-              <span className="type-body-strong text-brand-secondary">
-                {bullet.title}
-              </span>
-              <span>{bullet.suffix}</span>
-            </p>
+            {bullet.title ? (
+              <p>
+                <span className="type-body-strong text-brand-secondary">
+                  {bullet.title}
+                </span>
+                {bullet.suffix ? <span>{bullet.suffix}</span> : null}
+              </p>
+            ) : null}
             <p>{bullet.body}</p>
           </div>
         </div>
@@ -229,8 +237,8 @@ export function FormulesFaq() {
             Une autre question ?
           </p>
           <p className="type-body">
-            Expliquez-moi votre projet ou doute, je vous répondrai dans les plus
-            brefs délais.
+            Posez-moi votre question ou décrivez-moi votre projet, je vous
+            recontacte dans les plus brefs délais.
           </p>
         </div>
         <Button asChild variant="tertiary" size="cta" className="w-full sm:w-auto">

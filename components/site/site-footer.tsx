@@ -84,7 +84,7 @@ export function SiteFooter(_props: { content: SiteContentMap }) {
         <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-3 px-4 py-4 font-body text-[10px] font-normal uppercase tracking-[0.12em] text-bg-main sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-11">
           <p>© 2026 My Trip Designer - Agathe Virzi - Tous droits réservés</p>
           <p>Site conçu par inès mathorel</p>
-          <p className="flex flex-wrap items-center gap-2">
+          <p className="flex flex-wrap items-center justify-end gap-2 text-right">
             <span>Mentions légales</span>
             <SiteIcon src="/icons/diamond-light.svg" width={6.912} height={6.912} />
             <span>Politique de confidentialité</span>
