@@ -43,6 +43,7 @@ declare module "page-flip" {
     flip(page: number, corner?: "top" | "bottom"): void;
     turnToNextPage(): void;
     turnToPrevPage(): void;
+    turnToPage(page: number): void;
     getCurrentPageIndex(): number;
     getPageCount(): number;
     getOrientation(): PageFlipOrientation;
