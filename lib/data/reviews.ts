@@ -68,10 +68,7 @@ function demoPublishedReviews(): Review[] {
 
 /**
  * Jeu d'avis de la vitrine : Karine, Alya et Chema.
- *
- * En production, Supabase peut encore contenir l'ancien seed (Claire et Julien,
- * Sophie M., etc.). La page d'accueil est pré-rendue avec ce résultat : on
- * lit donc toujours le jeu validé dans demo.ts, pas la table distante.
+ * Lu depuis demo.ts pour ne pas dépendre d'un seed Supabase périmé.
  */
 export async function listPublishedReviews(): Promise<Review[]> {
   return demoPublishedReviews();

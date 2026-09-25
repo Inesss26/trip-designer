@@ -34,7 +34,7 @@ declare global {
   var __mtdDemoStoreSeed: number | undefined;
 }
 
-const DEMO_STORE_SEED = 3;
+const DEMO_STORE_SEED = 4;
 
 function createStore(): DemoStore {
   return {

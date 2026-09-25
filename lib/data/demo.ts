@@ -188,13 +188,13 @@ export const demoServices: Service[] = [
 export const demoReviews: Review[] = [
   {
     id: "bbbbbbb1-bbbb-4bbb-8bbb-bbbbbbbbbbb1",
-    authorName: "Alya",
-    authorLocation: "Roadtrip en Italie",
+    authorName: "Karine",
+    authorLocation: "Voyage sur mesure",
     rating: 5,
     content:
-      "Un voyage magnifique en famille ! Grâce aux recommandations d'Agathe, on a profité de tellement de choses en peu de temps et évité les pièges à touristes. Un mix parfait de culture, nature et gastronomie. Vivement notre prochain voyage !",
+      "Une organisation sans faute ! Agathe a su cerner nos envies dès le premier échange. Les adresses recommandées étaient de vraies pépites hors des sentiers battus.",
     tripId: null,
-    travelDate: "2026-04-12",
+    travelDate: "2026-09-03",
     status: "published",
     isFeatured: true,
     sortOrder: 1,
@@ -203,13 +203,13 @@ export const demoReviews: Review[] = [
   },
   {
     id: "bbbbbbb2-bbbb-4bbb-8bbb-bbbbbbbbbbb2",
-    authorName: "Karine",
-    authorLocation: "Family Trip à Florence",
+    authorName: "Alya",
+    authorLocation: "Road trip & Carnet",
     rating: 5,
     content:
-      "Ce carnet m'a été précieux, quel temps de gagné ! C'est ultra-complet sans avoir à parcourir des centaines de pages. Les adresses ont été un sans-faute et de vraies pépite locales. Un séjour sur mesure sans aucune charge mentale ni stress !",
+      "Un gain de temps incroyable et zéro charge mentale. Le carnet de voyage était d'une précision exemplaire, nous n'avions plus qu'à profiter.",
     tripId: null,
-    travelDate: "2026-09-03",
+    travelDate: "2026-04-12",
     status: "published",
     isFeatured: true,
     sortOrder: 2,
@@ -219,10 +219,10 @@ export const demoReviews: Review[] = [
   {
     id: "bbbbbbb3-bbbb-4bbb-8bbb-bbbbbbbbbbb3",
     authorName: "Chema",
-    authorLocation: "Family & Friend Trip à Barcelone",
+    authorLocation: "Séjour personnalisé",
     rating: 5,
     content:
-      "Agathe a parfaitement compris notre besoin pour ce voyage en famille. Elle a su allier détente, culture et activités adaptées aux enfants. Un grand merci pour ce joli carnet aussi utile qu'attentionné !",
+      "Grâce à Agathe, nous avons évité tous les pièges à touristes. Un itinéraire parfaitement équilibré entre visites culturelles et moments de détente.",
     tripId: null,
     travelDate: "2026-07-20",
     status: "published",

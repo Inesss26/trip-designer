@@ -1,5 +1,4 @@
--- Remplace l'ancien seed (Claire et Julien, Sophie M., Famille Ferreira,
--- Antoine D., Marion L.) par les trois avis validés de la vitrine.
+-- Remplace l'intégralité des avis par le jeu validé de la vitrine.
 
 delete from public.reviews;
 
@@ -9,24 +8,24 @@ insert into public.reviews (
 ) values
 (
   'bbbbbbb1-bbbb-4bbb-8bbb-bbbbbbbbbbb1',
-  'Alya',
-  'Roadtrip en Italie',
+  'Karine',
+  'Voyage sur mesure',
   5,
-  $review1$Un voyage magnifique en famille ! Grâce aux recommandations d'Agathe, on a profité de tellement de choses en peu de temps et évité les pièges à touristes. Un mix parfait de culture, nature et gastronomie. Vivement notre prochain voyage !$review1$,
+  $review1$Une organisation sans faute ! Agathe a su cerner nos envies dès le premier échange. Les adresses recommandées étaient de vraies pépites hors des sentiers battus.$review1$,
   null,
-  '2026-04-12',
+  '2026-09-03',
   'published',
   true,
   1
 ),
 (
   'bbbbbbb2-bbbb-4bbb-8bbb-bbbbbbbbbbb2',
-  'Karine',
-  'Family Trip à Florence',
+  'Alya',
+  'Road trip & Carnet',
   5,
-  $review2$Ce carnet m'a été précieux, quel temps de gagné ! C'est ultra-complet sans avoir à parcourir des centaines de pages. Les adresses ont été un sans-faute et de vraies pépite locales. Un séjour sur mesure sans aucune charge mentale ni stress !$review2$,
+  $review2$Un gain de temps incroyable et zéro charge mentale. Le carnet de voyage était d'une précision exemplaire, nous n'avions plus qu'à profiter.$review2$,
   null,
-  '2026-09-03',
+  '2026-04-12',
   'published',
   true,
   2
@@ -34,9 +33,9 @@ insert into public.reviews (
 (
   'bbbbbbb3-bbbb-4bbb-8bbb-bbbbbbbbbbb3',
   'Chema',
-  'Family & Friend Trip à Barcelone',
+  'Séjour personnalisé',
   5,
-  $review3$Agathe a parfaitement compris notre besoin pour ce voyage en famille. Elle a su allier détente, culture et activités adaptées aux enfants. Un grand merci pour ce joli carnet aussi utile qu'attentionné !$review3$,
+  $review3$Grâce à Agathe, nous avons évité tous les pièges à touristes. Un itinéraire parfaitement équilibré entre visites culturelles et moments de détente.$review3$,
   null,
   '2026-07-20',
   'published',
