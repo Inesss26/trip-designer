@@ -27,7 +27,7 @@ function trackOffset(viewport: HTMLElement, track: HTMLElement, index: number) {
 }
 
 export function HomeReviews() {
-  const reviews = homeReviews;
+  const reviews = [...homeReviews];
   const [index, setIndex] = useState(0);
   const [offset, setOffset] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
