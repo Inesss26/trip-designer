@@ -1,5 +1,8 @@
+"use client"
+
 import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
+import { motion, useReducedMotion } from "framer-motion"
 import { Slot } from "radix-ui"
 
 import { cn } from "@/lib/utils"
@@ -67,8 +70,8 @@ function Button({
     asChild?: boolean
   }) {
   const Comp = asChild ? Slot.Root : "button"
-
-  return (
+  const reduceMotion = useReducedMotion()
+  const button = (
     <Comp
       data-slot="button"
       data-variant={variant}
@@ -76,6 +79,27 @@ function Button({
       className={cn(buttonVariants({ variant, size, className }))}
       {...props}
     />
+  )
+
+  if (size !== "cta") {
+    return button
+  }
+
+  return (
+    <motion.div
+      className={cn(
+        "inline-flex max-w-full",
+        className?.includes("w-full") && "w-full",
+        className?.includes("sm:w-auto") && "sm:w-auto",
+        className?.includes("self-start") && "self-start",
+        className?.includes("shrink-0") && "shrink-0",
+      )}
+      whileHover={reduceMotion ? undefined : { scale: 1.02 }}
+      whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+      transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {button}
+    </motion.div>
   )
 }
 

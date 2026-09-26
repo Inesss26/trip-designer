@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { Reveal } from "@/components/site/reveal";
 import { SocialFollowCtas } from "@/components/site/social-follow-ctas";
 import { ZcalLink } from "@/components/site/zcal-link";
 import { Button } from "@/components/ui/button";
@@ -15,13 +16,15 @@ export function HomeCommunity() {
             <p className="type-tag text-brand/30">
               {aboutSocial.kicker}
             </p>
-            <h2 className="type-h2 text-text-brand">
-              {aboutSocial.title}
-              <br />
-              <span className="type-h2-italic text-brand-secondary">
-                {aboutSocial.titleAccent}
-              </span>
-            </h2>
+            <Reveal>
+              <h2 className="type-h2 text-text-brand">
+                {aboutSocial.title}
+                <br />
+                <span className="type-h2-italic text-brand-secondary">
+                  {aboutSocial.titleAccent}
+                </span>
+              </h2>
+            </Reveal>
           </div>
           <p className="max-w-[437px] type-body text-brand">
             {aboutSocial.text}
@@ -81,11 +84,13 @@ export function HomeCta() {
         <p className="type-tag text-text-on-dark">
           Commençons l&apos;aventure
         </p>
-        <h2 className="type-h2 text-text-on-dark">
-          Votre dolce vita vous attend.
-          <br />
-          Parlons-en.
-        </h2>
+        <Reveal>
+          <h2 className="type-h2 text-text-on-dark">
+            Votre dolce vita vous attend.
+            <br />
+            Parlons-en.
+          </h2>
+        </Reveal>
         <p className="max-w-[448px] type-body text-text-on-dark">
           Un appel de 30 minutes, gratuit et sans engagement, pour comprendre
           vos envies et vous expliquer comment je peux les transformer en voyage

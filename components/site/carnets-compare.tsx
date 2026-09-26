@@ -1,3 +1,4 @@
+import { Reveal } from "@/components/site/reveal";
 import { SiteIcon } from "@/components/site/site-icon";
 import { carnetsCompare } from "@/lib/carnets-content";
 import { cn } from "@/lib/utils";
@@ -85,7 +86,9 @@ export function CarnetsCompare() {
     <section className="mx-auto flex w-full min-w-0 max-w-[1440px] flex-col gap-8 px-4 sm:px-8 lg:px-11">
       <div className="flex flex-col gap-2">
         <p className="type-tag text-brand/30">{carnetsCompare.kicker}</p>
-        <h2 className="type-h2 text-text-brand">{carnetsCompare.title}</h2>
+        <Reveal>
+          <h2 className="type-h2 text-text-brand">{carnetsCompare.title}</h2>
+        </Reveal>
         <p className="type-body text-brand/50">{carnetsCompare.subtitle}</p>
       </div>
 

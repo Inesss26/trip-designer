@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
+import { Reveal, Stagger, StaggerItem } from "@/components/site/reveal";
 import { ZcalLink } from "@/components/site/zcal-link";
 import { Button } from "@/components/ui/button";
 import { homeFormulas } from "@/lib/home-content";
@@ -29,22 +30,24 @@ export function HomeFormulas() {
             formules
           </p>
           <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
-            <h2 className="max-w-[450px] type-h2 text-text-on-dark">
-              Choisissez votre façon de voyager
-            </h2>
+            <Reveal>
+              <h2 className="max-w-[450px] type-h2 text-text-on-dark">
+                Choisissez votre façon de voyager
+              </h2>
+            </Reveal>
             <Button asChild variant="dark" size="cta">
               <Link href="/formules">voir toutes les formules</Link>
             </Button>
           </div>
         </div>
 
-        <div className="relative grid items-center gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.12fr)_minmax(0,1fr)]">
+        <Stagger className="relative grid items-center gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.12fr)_minmax(0,1fr)]">
         {homeFormulas.map((formula) => (
+          <StaggerItem key={formula.id} className={formula.featured ? "lg:z-[1]" : undefined}>
           <article
-            key={formula.id}
             className={cn(
-              "card flex flex-col gap-6 !p-[28px] shadow-[0_2px_4px_var(--color-accent-dark)]",
-              formula.featured && "lg:z-[1] lg:shadow-[0_6px_16px_var(--color-accent-dark)]",
+              "card flex h-full flex-col gap-6 !p-[28px] shadow-[0_2px_4px_var(--color-accent-dark)]",
+              formula.featured && "lg:shadow-[0_6px_16px_var(--color-accent-dark)]",
             )}
           >
             {formula.featured ? (
@@ -107,8 +110,9 @@ export function HomeFormulas() {
               <ZcalLink>Réserver mon appel</ZcalLink>
             </Button>
           </article>
+          </StaggerItem>
         ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );

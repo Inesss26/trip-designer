@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 
 import { CarnetCard } from "@/components/site/carnet-card";
+import { Stagger, StaggerItem } from "@/components/site/reveal";
 import {
   carnetFilters,
   carnets,
@@ -62,11 +63,13 @@ export function CarnetsCatalog() {
           Aucun carnet dans cette catégorie pour le moment.
         </p>
       ) : (
-        <div className="grid gap-px bg-brand/30 sm:grid-cols-2">
+        <Stagger key={filter} className="grid gap-px bg-brand/30 sm:grid-cols-2">
           {visible.map((carnet) => (
-            <CarnetCard key={carnet.slug} carnet={carnet} />
+            <StaggerItem key={carnet.slug}>
+              <CarnetCard carnet={carnet} />
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       )}
     </div>
   );

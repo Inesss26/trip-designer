@@ -1,3 +1,4 @@
+import { Reveal, Stagger, StaggerItem } from "@/components/site/reveal";
 import { SiteIcon } from "@/components/site/site-icon";
 import { carnetBenefits } from "@/lib/carnets-content";
 
@@ -9,23 +10,25 @@ export function CarnetsBenefits() {
           <p className="type-tag text-brand/30">
             dans votre carnet
           </p>
-          <h2 className="type-h2 text-text-brand">
-            Tout votre séjour
-            <span className="block type-h2-italic text-brand-secondary">
-              dans la poche.
-            </span>
-          </h2>
+          <Reveal>
+            <h2 className="type-h2 text-text-brand">
+              Tout votre séjour
+              <span className="block type-h2-italic text-brand-secondary">
+                dans la poche.
+              </span>
+            </h2>
+          </Reveal>
           <p className="type-body text-brand/50">
             Tout ce dont vous avez besoin est réuni au même endroit, organisé
             pour voyager sans friction.
           </p>
         </div>
 
-        <div className="grid w-full gap-px bg-brand/30 sm:grid-cols-2 lg:max-w-[664px]">
+        <Stagger className="grid w-full gap-px bg-brand/30 sm:grid-cols-2 lg:max-w-[664px]">
           {carnetBenefits.map((benefit) => (
+            <StaggerItem key={benefit.title}>
             <article
-              key={benefit.title}
-              className="card flex min-h-[250px] flex-col justify-between"
+              className="card flex min-h-[250px] h-full flex-col justify-between"
             >
               <SiteIcon
                 src={benefit.icon}
@@ -41,8 +44,9 @@ export function CarnetsBenefits() {
                 </p>
               </div>
             </article>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );

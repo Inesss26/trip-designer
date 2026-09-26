@@ -6,6 +6,7 @@ import { CarnetFlipbook } from "@/components/site/carnet-flipbook-lazy";
 import { CarnetsBenefits } from "@/components/site/carnets-benefits";
 import { CarnetsCompare } from "@/components/site/carnets-compare";
 import { HomeCta } from "@/components/site/home-close";
+import { Reveal, Stagger, StaggerItem } from "@/components/site/reveal";
 import { SiteIcon } from "@/components/site/site-icon";
 import { ZcalLink } from "@/components/site/zcal-link";
 import { Button } from "@/components/ui/button";
@@ -55,9 +56,11 @@ export function CarnetPurchase({
                 durationDays={carnet.durationDays}
                 durationClassName="text-brand"
               />
-              <h1 className="type-h1 text-text-brand">
-                {carnet.title}
-              </h1>
+              <Reveal>
+                <h1 className="type-h1 text-text-brand">
+                  {carnet.title}
+                </h1>
+              </Reveal>
             </div>
             <div className="flex flex-col gap-5">
               <p className="type-body-strong text-text-brand">
@@ -224,18 +227,22 @@ export function CarnetPurchase({
           <section className="bg-bg-muted px-4 py-16 sm:px-8 sm:py-16 lg:px-11">
             <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-10">
               <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
-                <h2 className="type-h2 text-text-brand">
-                  Explorez d&apos;autres destinations
-                </h2>
+                <Reveal>
+                  <h2 className="type-h2 text-text-brand">
+                    Explorez d&apos;autres destinations
+                  </h2>
+                </Reveal>
                 <Button asChild variant="tertiary" size="cta">
                   <Link href="/carnets">Voir les autres carnets</Link>
                 </Button>
               </div>
-              <div className="grid gap-px bg-brand/30 lg:grid-cols-3">
+              <Stagger className="grid gap-px bg-brand/30 lg:grid-cols-3">
                 {related.map((item) => (
-                  <CarnetCard key={item.slug} carnet={item} />
+                  <StaggerItem key={item.slug}>
+                    <CarnetCard carnet={item} />
+                  </StaggerItem>
                 ))}
-              </div>
+              </Stagger>
             </div>
           </section>
           <HomeCta />

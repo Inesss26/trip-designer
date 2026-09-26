@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { Reveal, Stagger, StaggerItem } from "@/components/site/reveal";
 import { SiteIcon } from "@/components/site/site-icon";
 import { ZcalLink } from "@/components/site/zcal-link";
 import { Button } from "@/components/ui/button";
@@ -30,9 +31,11 @@ export function FormulesHero() {
           <p className="type-tag text-text-on-dark">
             {formulesHeroCopy.kicker}
           </p>
-          <h1 className="type-h1 text-text-on-dark">
-            {formulesHeroCopy.title}
-          </h1>
+          <Reveal>
+            <h1 className="type-h1 text-text-on-dark">
+              {formulesHeroCopy.title}
+            </h1>
+          </Reveal>
           <p className="max-w-[448px] type-body-strong text-text-on-dark">
             {formulesHeroCopy.subtitle}
           </p>
@@ -40,17 +43,24 @@ export function FormulesHero() {
       </div>
 
       <div className="relative z-10 mx-auto mb-[-40px] flex w-full max-w-[1440px] -translate-y-10 flex-col gap-8 px-4 pb-24 sm:mb-[-88px] sm:-translate-y-[88px] sm:px-8 lg:px-11">
-        <div className="grid gap-5 lg:grid-cols-3 lg:grid-rows-[145px_auto]">
+        <Stagger className="grid gap-5 lg:grid-cols-3 lg:grid-rows-[145px_auto]">
           {formulesPageFormulas.map((formula) => (
-            <article
+            <StaggerItem
               key={formula.id}
               className={cn(
-                "card flex flex-col gap-9 pt-11 pb-10",
                 formula.featured
-                  ? "shadow-[0_4px_5.5px_var(--color-brand-primary-50)] lg:col-start-2 lg:row-span-2 lg:min-h-[1050px]"
-                  : "shadow-[0_4px_4px_color-mix(in_srgb,var(--color-accent-dark)_30%,transparent)] lg:row-start-2 lg:h-full",
+                  ? "lg:col-start-2 lg:row-span-2 lg:min-h-[1050px]"
+                  : "lg:row-start-2 lg:h-full",
                 formula.id === "dolce-vita" && "lg:col-start-1",
                 formula.id === "far-niente" && "lg:col-start-3",
+              )}
+            >
+            <article
+              className={cn(
+                "card flex h-full flex-col gap-9 pt-11 pb-10",
+                formula.featured
+                  ? "shadow-[0_4px_5.5px_var(--color-brand-primary-50)]"
+                  : "shadow-[0_4px_4px_color-mix(in_srgb,var(--color-accent-dark)_30%,transparent)]",
               )}
             >
               <div className="flex flex-col gap-4">
@@ -155,8 +165,9 @@ export function FormulesHero() {
                 </Button>
               </div>
             </article>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
 
         <p className="mx-auto max-w-[672px] text-center type-body-small text-brand/50">
           {formulesDisclaimer}

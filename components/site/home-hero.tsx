@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { Reveal } from "@/components/site/reveal";
 import { homeHeroCopy, homeStats } from "@/lib/home-content";
 
 export function HomeHero() {
@@ -33,12 +34,16 @@ export function HomeHero() {
             className="object-cover"
           />
         </div>
-        <h1 className="type-h3 text-text-brand">
-          {homeHeroCopy.title}
-        </h1>
-        <p className="max-w-xl type-body text-brand/50 whitespace-pre-line">
-          {homeHeroCopy.subtitle}
-        </p>
+        <Reveal>
+          <h1 className="type-h3 text-text-brand">
+            {homeHeroCopy.title}
+          </h1>
+        </Reveal>
+        <Reveal delay={0.08}>
+          <p className="max-w-xl type-body text-brand/50 whitespace-pre-line">
+            {homeHeroCopy.subtitle}
+          </p>
+        </Reveal>
       </div>
 
       <div className="grid w-full max-w-[1440px] grid-cols-1 gap-8 px-4 pb-8 text-center sm:grid-cols-3 sm:gap-16 sm:px-8 lg:gap-24 lg:px-16">

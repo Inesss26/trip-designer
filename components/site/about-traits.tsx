@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import { SiteIcon } from "@/components/site/site-icon";
+import { Reveal } from "@/components/site/reveal";
 import { aboutTraits } from "@/lib/about-content";
 
 function Trait({
@@ -38,9 +39,11 @@ export function AboutTraits() {
             <p className="type-tag text-brand-primary-30">
               {aboutTraits.kicker}
             </p>
-            <h2 className="type-h2 text-text-brand">
-              {aboutTraits.title}
-            </h2>
+            <Reveal>
+              <h2 className="type-h2 text-text-brand">
+                {aboutTraits.title}
+              </h2>
+            </Reveal>
           </div>
           <div className="flex flex-col gap-8">
             {aboutTraits.left.map((trait) => (

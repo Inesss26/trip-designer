@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { Reveal, Stagger, StaggerItem } from "@/components/site/reveal";
 import { homeEngagements } from "@/lib/home-content";
 import { cn } from "@/lib/utils";
 
@@ -11,20 +12,23 @@ export function HomeEngagement() {
           Mon engagement
         </p>
         <div className="type-h3 md:col-span-2">
-          <p className="text-brand">
-            Vous créer un voyage immersif et sur-mesure, pensé comme une
-            véritable expérience.
-          </p>
-          <p className="text-brand/50">
-            Bien plus qu&apos;un séjour : des émotions vraies et des souvenirs
-            qui restent.
-          </p>
+          <Reveal>
+            <p className="text-brand">
+              Vous créer un voyage immersif et sur-mesure, pensé comme une
+              véritable expérience.
+            </p>
+            <p className="text-brand/50">
+              Bien plus qu&apos;un séjour : des émotions vraies et des souvenirs
+              qui restent.
+            </p>
+          </Reveal>
         </div>
       </div>
 
-      <div className="grid gap-5 md:grid-cols-3">
+      <Stagger className="grid gap-5 md:grid-cols-3">
         {homeEngagements.map((item) => (
-          <article key={item.title} className="flex flex-col">
+          <StaggerItem key={item.title}>
+          <article className="flex h-full flex-col">
             <div className="relative h-[220px] w-full overflow-hidden sm:h-[272px]">
               <Image
                 src={item.image}
@@ -43,8 +47,9 @@ export function HomeEngagement() {
               </p>
             </div>
           </article>
+          </StaggerItem>
         ))}
-      </div>
+      </Stagger>
     </section>
   );
 }

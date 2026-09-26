@@ -2,7 +2,9 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 
+import { Reveal } from "@/components/site/reveal";
 import { SiteIcon } from "@/components/site/site-icon";
 import { homeReviews, reviewImages } from "@/lib/home-content";
 import { cn } from "@/lib/utils";
@@ -33,6 +35,7 @@ export function HomeReviews() {
   const [isMounted, setIsMounted] = useState(false);
   const viewportRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
   const count = reviews.length;
   const atStart = index <= 0;
   const atEnd = count === 0 || index >= count - 1;
@@ -85,10 +88,12 @@ export function HomeReviews() {
         <p className="type-tag text-brand/30">
           avis clients
         </p>
-        <h2 className="max-w-[458px] type-h2 text-text-brand">
-          Ils ont fait confiance à{" "}
-          <span className="type-h2-italic text-brand-secondary">My Trip Designer.</span>
-        </h2>
+        <Reveal>
+          <h2 className="max-w-[458px] type-h2 text-text-brand">
+            Ils ont fait confiance à{" "}
+            <span className="type-h2-italic text-brand-secondary">My Trip Designer.</span>
+          </h2>
+        </Reveal>
       </div>
 
       {count > 0 ? (
@@ -97,16 +102,26 @@ export function HomeReviews() {
             ref={viewportRef}
             className="ml-[max(1rem,calc((100%-1440px)/2+1rem))] overflow-x-clip overflow-y-visible sm:ml-[max(2rem,calc((100%-1440px)/2+2rem))] lg:ml-[max(2.75rem,calc((100%-1440px)/2+2.75rem))]"
           >
-            <div
+            <motion.div
               ref={trackRef}
-              className="flex items-stretch gap-4 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none lg:items-center lg:gap-6"
-              style={isMounted ? { transform: `translateX(${offset}px)` } : undefined}
+              className="flex items-stretch gap-4 lg:items-center lg:gap-6"
+              initial={false}
+              animate={isMounted ? { x: offset } : { x: 0 }}
+              transition={{
+                duration: reduceMotion ? 0 : 0.5,
+                ease: [0.22, 1, 0.36, 1],
+              }}
             >
               {reviews.map((review, itemIndex) => (
-                <article
+                <motion.article
                   key={review.id}
                   className="flex h-full w-[calc(100%-3.5rem)] shrink-0 basis-[calc(100%-3.5rem)] flex-col items-stretch lg:h-[592px] lg:w-[min(895px,calc(100%-7.5rem))] lg:basis-[min(895px,calc(100%-7.5rem))] lg:flex-row lg:items-center"
                   aria-hidden={itemIndex !== index}
+                  animate={{ opacity: itemIndex === index ? 1 : 0.45 }}
+                  transition={{
+                    duration: reduceMotion ? 0 : 0.45,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
                 >
                   <div className="relative h-[280px] w-full shrink-0 overflow-hidden lg:mr-[-94px] lg:h-full lg:w-[437px]">
                     <Image
@@ -131,9 +146,9 @@ export function HomeReviews() {
                       </p>
                     </footer>
                   </blockquote>
-                </article>
+                </motion.article>
               ))}
-            </div>
+            </motion.div>
           </div>
 
           <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between px-4 sm:px-8 lg:px-11">

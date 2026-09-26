@@ -1,4 +1,5 @@
 import { aboutMap } from "@/lib/about-content";
+import { Reveal } from "@/components/site/reveal";
 
 export function AboutMap() {
   return (
@@ -8,9 +9,11 @@ export function AboutMap() {
           <p className="type-tag text-brand/30">
             {aboutMap.kicker}
           </p>
-          <h2 className="type-h2 text-text-brand">
-            {aboutMap.title}
-          </h2>
+          <Reveal>
+            <h2 className="type-h2 text-text-brand">
+              {aboutMap.title}
+            </h2>
+          </Reveal>
         </div>
         <p className="max-w-[323px] type-body text-brand/50">
           {aboutMap.subtitle}

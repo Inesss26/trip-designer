@@ -6,6 +6,7 @@ import { CarnetsUpsell } from "@/components/site/carnets-upsell";
 import { FormulesFaq } from "@/components/site/formules-faq";
 import { HomeCta } from "@/components/site/home-close";
 import { MarqueeTape } from "@/components/site/marquee-tape";
+import { Reveal } from "@/components/site/reveal";
 import { SiteShell } from "@/components/site/site-shell";
 import { getContentMap } from "@/lib/data/content";
 
@@ -28,10 +29,12 @@ export default async function CarnetsPage() {
             <p className="type-tag text-brand/30">
               boutique
             </p>
-            <h1 className="type-h1 text-text-brand">
-              Vos carnets de voyage{" "}
-              <span className="type-h2-italic text-brand-secondary">prêts à l&apos;emploi.</span>
-            </h1>
+            <Reveal>
+              <h1 className="type-h1 text-text-brand">
+                Vos carnets de voyage{" "}
+                <span className="type-h2-italic text-brand-secondary">prêts à l&apos;emploi.</span>
+              </h1>
+            </Reveal>
             <p className="type-body text-brand">
               Des guides digitaux complets conçus par mes soins pour explorer
               différentes destinations en toute autonomie. Téléchargez votre

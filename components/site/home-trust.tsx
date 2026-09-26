@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { Reveal } from "@/components/site/reveal";
 import { SiteIcon } from "@/components/site/site-icon";
 import { homeBenefits } from "@/lib/home-content";
 
@@ -9,9 +10,11 @@ export function HomeTrust() {
       <div className="flex w-full flex-col justify-center px-4 py-16 sm:px-8 lg:w-[min(100%,710px)] lg:py-[100px] lg:pl-[11vw] lg:pr-12">
         <div className="flex max-w-[552px] flex-col gap-[52px]">
           <div className="flex flex-col gap-6 text-text-brand">
-            <h2 className="type-h3">
-              Vous rêvez de votre prochain voyage, mais ...
-            </h2>
+            <Reveal>
+              <h2 className="type-h3">
+                Vous rêvez de votre prochain voyage, mais ...
+              </h2>
+            </Reveal>
             <p className="type-body">
               Entre les heures passées à dénicher les bonnes adresses, la
               gestion des transports et l&apos;optimisation du parcours,
@@ -28,10 +31,12 @@ export function HomeTrust() {
           </p>
 
           <div className="flex flex-col gap-6">
-            <h3 className="type-h3 text-text-brand">
-              Et si vous faisiez confiance à un{" "}
-              <span className="text-brand-secondary">travel planner ?</span>
-            </h3>
+            <Reveal>
+              <h3 className="type-h3 text-text-brand">
+                Et si vous faisiez confiance à un{" "}
+                <span className="text-brand-secondary">travel planner ?</span>
+              </h3>
+            </Reveal>
             <ul className="flex flex-col gap-5">
               {homeBenefits.map((benefit) => (
                 <li key={benefit.title} className="flex items-center gap-5">

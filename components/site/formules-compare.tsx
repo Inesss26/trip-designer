@@ -1,3 +1,4 @@
+import { Reveal } from "@/components/site/reveal";
 import { SiteIcon } from "@/components/site/site-icon";
 import { formulesCompare, formulesDisclaimer } from "@/lib/formules-content";
 import { cn } from "@/lib/utils";
@@ -59,7 +60,9 @@ export function FormulesCompare() {
     <section className="mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-4 sm:px-8 lg:px-11">
       <div className="flex flex-col gap-2">
         <p className="type-tag text-brand/30">{formulesCompare.kicker}</p>
-        <h2 className="type-h2 text-text-brand">{formulesCompare.title}</h2>
+        <Reveal>
+          <h2 className="type-h2 text-text-brand">{formulesCompare.title}</h2>
+        </Reveal>
         <p className="type-body text-brand/50">{formulesCompare.subtitle}</p>
       </div>
 

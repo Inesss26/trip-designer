@@ -1,4 +1,5 @@
 import { aboutStory } from "@/lib/about-content";
+import { Reveal } from "@/components/site/reveal";
 
 export function AboutStory() {
   return (
@@ -8,10 +9,12 @@ export function AboutStory() {
           <p className="type-tag text-brand/30">
             {aboutStory.kicker}
           </p>
-          <h2 className="type-h2 text-text-brand">
-            {`${aboutStory.title} ${aboutStory.titleMiddle} `}
-            <span className="type-h2-italic text-brand-secondary">{aboutStory.titleAccent}</span>
-          </h2>
+          <Reveal>
+            <h2 className="type-h2 text-text-brand">
+              {`${aboutStory.title} ${aboutStory.titleMiddle} `}
+              <span className="type-h2-italic text-brand-secondary">{aboutStory.titleAccent}</span>
+            </h2>
+          </Reveal>
         </div>
         <div className="flex flex-col gap-6 type-body text-brand">
           {aboutStory.paragraphs.map((paragraph) => (

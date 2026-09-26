@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import { SiteIcon } from "@/components/site/site-icon";
 import { ZcalLink } from "@/components/site/zcal-link";
+import { Reveal } from "@/components/site/reveal";
 import { Button } from "@/components/ui/button";
 
 const perks = [
@@ -18,12 +19,14 @@ export function ContactHero() {
             <p className="type-tag text-text-on-dark/25">
               premier échange
             </p>
-            <h1 className="type-h2 text-text-on-dark">
-              Réservez votre
-              <span className="block type-h2-italic text-brand-secondary">
-                appel découverte.
-              </span>
-            </h1>
+            <Reveal>
+              <h1 className="type-h2 text-text-on-dark">
+                Réservez votre
+                <span className="block type-h2-italic text-brand-secondary">
+                  appel découverte.
+                </span>
+              </h1>
+            </Reveal>
           </div>
           <p className="type-body text-text-on-dark">
             Un appel de 30 minutes, gratuit et sans engagement, pour

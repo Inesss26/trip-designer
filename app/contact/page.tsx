@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { ContactForm } from "@/components/site/contact-form";
 import { ContactHero } from "@/components/site/contact-hero";
 import { FormulesFaq } from "@/components/site/formules-faq";
+import { Reveal } from "@/components/site/reveal";
 import { SiteShell } from "@/components/site/site-shell";
 import { getCarnetBySlug } from "@/lib/carnets-content";
 import { getContentMap } from "@/lib/data/content";
@@ -45,10 +46,12 @@ export default async function ContactPage({
           className="mx-auto flex w-full max-w-[1440px] scroll-mt-8 flex-col gap-8 px-4 sm:px-8 lg:px-[115px]"
         >
           <div className="flex w-full flex-col gap-5">
-            <h2 className="type-h2 text-text-brand">
-              Parlez-moi de
-              <span className="block type-h2-italic text-brand-secondary">votre projet.</span>
-            </h2>
+            <Reveal>
+              <h2 className="type-h2 text-text-brand">
+                Parlez-moi de
+                <span className="block type-h2-italic text-brand-secondary">votre projet.</span>
+              </h2>
+            </Reveal>
             <p className="type-body text-brand/50">
               Pour toute demande générale, projet de voyage ou simple
               curiosité — je lis chaque message et réponds sous 48h.

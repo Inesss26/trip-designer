@@ -1,12 +1,13 @@
 import Image from "next/image";
 
 import { aboutHero } from "@/lib/about-content";
+import { Reveal } from "@/components/site/reveal";
 
 export function AboutHero() {
   return (
     <section className="mx-auto flex w-full max-w-[1440px] flex-col items-stretch gap-10 px-4 pt-12 sm:px-8 sm:pt-16 lg:flex-row lg:justify-between lg:px-11">
       <div className="contents lg:flex lg:max-w-[518px] lg:flex-col lg:justify-between lg:gap-12">
-        <div className="order-1 flex flex-col gap-8">
+        <Reveal className="order-1 flex flex-col gap-8">
           <p className="type-tag text-brand/30">
             {aboutHero.kicker}
           </p>
@@ -17,7 +18,7 @@ export function AboutHero() {
           <p className="type-subtitle text-brand">
             {aboutHero.subtitle}
           </p>
-        </div>
+        </Reveal>
         <div className="order-3 flex flex-col gap-5">
           <div className="relative z-10 -mt-[88px] pl-6 lg:mt-0 lg:pl-0">
             <div className="relative size-[95px]">

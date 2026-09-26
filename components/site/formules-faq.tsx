@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
+import { Reveal } from "@/components/site/reveal";
 import { SiteIcon } from "@/components/site/site-icon";
 import {
   formulesFaq,
@@ -222,11 +223,13 @@ export function FormulesFaq() {
         <p className="type-tag text-brand/30">
           Questions fréquentes
         </p>
-        <h2 className="max-w-[513px] type-h2 text-text-brand">
-          Tout ce que vous
-          <br />
-          voulez <span className="type-h2-italic text-brand-secondary">savoir.</span>
-        </h2>
+        <Reveal>
+          <h2 className="max-w-[513px] type-h2 text-text-brand">
+            Tout ce que vous
+            <br />
+            voulez <span className="type-h2-italic text-brand-secondary">savoir.</span>
+          </h2>
+        </Reveal>
       </div>
 
       <FormulesFaqList />

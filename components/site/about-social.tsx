@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { Reveal } from "@/components/site/reveal";
 import { SocialFollowCtas } from "@/components/site/social-follow-ctas";
 import { aboutSocial } from "@/lib/about-content";
 import { INSTAGRAM_URL } from "@/lib/site";
@@ -13,13 +14,15 @@ export function AboutSocial() {
             <p className="type-tag text-brand/30">
               {aboutSocial.kicker}
             </p>
-            <h2 className="type-h2 text-text-brand">
-              {aboutSocial.title}
-              <br />
-              <span className="type-h2-italic text-brand-secondary">
-                {aboutSocial.titleAccent}
-              </span>
-            </h2>
+            <Reveal>
+              <h2 className="type-h2 text-text-brand">
+                {aboutSocial.title}
+                <br />
+                <span className="type-h2-italic text-brand-secondary">
+                  {aboutSocial.titleAccent}
+                </span>
+              </h2>
+            </Reveal>
           </div>
           <p className="max-w-[437px] type-body text-brand">
             {aboutSocial.text}

@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { Reveal } from "@/components/site/reveal";
 import { Button } from "@/components/ui/button";
 
 export function HomeCarnetsBanner() {
@@ -11,9 +12,11 @@ export function HomeCarnetsBanner() {
             <span aria-hidden="true">✦</span>
             Guides Prêts à l&apos;emploi
           </p>
-          <h2 className="type-h3 text-text-brand">
-            L&apos;esprit My Trip Designer dans votre poche
-          </h2>
+          <Reveal>
+            <h2 className="type-h3 text-text-brand">
+              L&apos;esprit My Trip Designer dans votre poche
+            </h2>
+          </Reveal>
           <p className="type-body text-brand/80">
             Mes meilleures adresses et itinéraires regroupés dans des carnets de
             voyage digitaux (PDF + carte interactive) pour visiter mes villes

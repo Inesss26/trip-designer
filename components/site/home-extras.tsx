@@ -1,3 +1,4 @@
+import { Reveal, Stagger, StaggerItem } from "@/components/site/reveal";
 import { SiteIcon } from "@/components/site/site-icon";
 import { ZcalLink } from "@/components/site/zcal-link";
 import { Button } from "@/components/ui/button";
@@ -36,12 +37,14 @@ export function HomeExtras() {
           Services complémentaires
         </p>
         <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-end">
-          <h2 className="max-w-[558px] type-h2 text-text-brand">
-            Vous préférez organiser{" "}
-            <span className="type-h2-italic text-brand-secondary">
-              votre voyage vous-même ?
-            </span>
-          </h2>
+          <Reveal>
+            <h2 className="max-w-[558px] type-h2 text-text-brand">
+              Vous préférez organiser{" "}
+              <span className="type-h2-italic text-brand-secondary">
+                votre voyage vous-même ?
+              </span>
+            </h2>
+          </Reveal>
           <p className="max-w-[386px] type-body text-brand">
             Mes services à la carte et conseils d&apos;experte, pour aller aussi
             loin que vous en avez besoin.
@@ -49,7 +52,8 @@ export function HomeExtras() {
         </div>
       </div>
 
-      <div className="flex flex-col gap-5">
+      <Stagger className="flex flex-col gap-5">
+        <StaggerItem>
         <article className="card grid grid-cols-1 items-start gap-8 border-l-[3px] border-brand-secondary lg:grid-cols-[32px_minmax(0,1fr)_minmax(0,1.2fr)_minmax(16.5rem,16.5rem)] lg:items-end">
           <SiteIcon
             src="/icons/extra-consult.svg"
@@ -104,7 +108,9 @@ export function HomeExtras() {
             </Button>
           </div>
         </article>
+        </StaggerItem>
 
+        <StaggerItem>
         <article className="card grid grid-cols-1 items-start gap-8 lg:grid-cols-[32px_minmax(0,1fr)_minmax(0,1.2fr)_minmax(16.5rem,16.5rem)] lg:items-end">
           <SiteIcon
             src="/icons/extra-hotel.svg"
@@ -150,7 +156,9 @@ export function HomeExtras() {
             </Button>
           </div>
         </article>
+        </StaggerItem>
 
+        <StaggerItem>
         <article className="card grid grid-cols-1 items-start gap-8 lg:grid-cols-[32px_minmax(0,1fr)_minmax(0,1.2fr)_minmax(16.5rem,16.5rem)] lg:items-end">
           <SiteIcon
             src="/icons/extra-carte.svg"
@@ -205,7 +213,8 @@ export function HomeExtras() {
             </Button>
           </div>
         </article>
-      </div>
+        </StaggerItem>
+      </Stagger>
     </section>
   );
 }

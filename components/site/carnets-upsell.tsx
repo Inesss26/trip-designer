@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
+import { Reveal } from "@/components/site/reveal";
 import { ZcalLink } from "@/components/site/zcal-link";
 
 function Bullet({
@@ -33,11 +34,13 @@ export function CarnetsUpsell() {
         <p className="type-tag text-brand/30">
           pour aller plus loin
         </p>
-        <h2 className="type-h2 text-text-brand">
-          Votre destination
-          <br />
-          n&apos;est pas dans la liste ?
-        </h2>
+        <Reveal>
+          <h2 className="type-h2 text-text-brand">
+            Votre destination
+            <br />
+            n&apos;est pas dans la liste ?
+          </h2>
+        </Reveal>
         <p className="type-body text-brand-primary-50">
           Vous ne trouvez pas votre bonheur dans mes carnets prêts à l&apos;emploi
           ? Je conçois votre carnet 100 % personnalisé selon vos dates, vos

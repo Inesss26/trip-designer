@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { Reveal } from "@/components/site/reveal";
 import { Button } from "@/components/ui/button";
 
 const aboutParagraphs = [
@@ -15,12 +16,14 @@ export function HomeAbout() {
       className="mx-auto flex w-full max-w-[1440px] scroll-mt-8 flex-col gap-8 px-4 sm:px-8 lg:flex-row lg:items-end lg:justify-center lg:gap-5 lg:px-11"
     >
       <div className="w-full min-w-0 self-start lg:w-[321px]">
-        <h2 className="type-h2 text-text-brand">
-          Ciao,
-          <br />
-          moi c&apos;est{" "}
-          <span className="type-h2-italic text-brand-secondary">Agathe !</span>
-        </h2>
+        <Reveal>
+          <h2 className="type-h2 text-text-brand">
+            Ciao,
+            <br />
+            moi c&apos;est{" "}
+            <span className="type-h2-italic text-brand-secondary">Agathe !</span>
+          </h2>
+        </Reveal>
       </div>
 
       <div className="relative h-[420px] w-full min-w-0 overflow-hidden sm:h-[520px] lg:h-[629px] lg:w-[437px]">
