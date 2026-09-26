@@ -11,8 +11,6 @@ import { HomeTrust } from "@/components/site/home-trust";
 import { MarqueeTape } from "@/components/site/marquee-tape";
 import { SiteShell } from "@/components/site/site-shell";
 import { getContentMap } from "@/lib/data/content";
-import { listPublishedReviews } from "@/lib/data/reviews";
-import { listPublishedTrips } from "@/lib/data/trips";
 
 /**
  * La page est régénérée à la demande après chaque modification dans
@@ -22,11 +20,7 @@ import { listPublishedTrips } from "@/lib/data/trips";
 export const revalidate = 3600;
 
 export default async function HomePage() {
-  const [content, trips, reviews] = await Promise.all([
-    getContentMap(),
-    listPublishedTrips(),
-    listPublishedReviews(),
-  ]);
+  const content = await getContentMap();
 
   return (
     <SiteShell content={content}>
@@ -45,7 +39,7 @@ export default async function HomePage() {
         <HomeProcess />
         <MarqueeTape variant="rose" />
         <HomeAbout />
-        <HomeReviews reviews={reviews} trips={trips} />
+        <HomeReviews />
         <div>
           <HomeCommunity />
           <HomeCta />

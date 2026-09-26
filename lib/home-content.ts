@@ -167,3 +167,27 @@ export const reviewImages = [
   "/images/home/review-2.png",
   "/images/home/review-3.png",
 ] as const;
+
+export const homeReviews = [
+  {
+    id: "karine",
+    authorName: "Karine",
+    authorLocation: "Voyage sur mesure",
+    content:
+      "Une organisation sans faute ! Agathe a su cerner nos envies dès le premier échange. Les adresses recommandées étaient de vraies pépites hors des sentiers battus.",
+  },
+  {
+    id: "alya",
+    authorName: "Alya",
+    authorLocation: "Road trip & Carnet",
+    content:
+      "Un gain de temps incroyable et zéro charge mentale. Le carnet de voyage était d'une précision exemplaire, nous n'avions plus qu'à profiter.",
+  },
+  {
+    id: "chema",
+    authorName: "Chema",
+    authorLocation: "Séjour personnalisé",
+    content:
+      "Grâce à Agathe, nous avons évité tous les pièges à touristes. Un itinéraire parfaitement équilibré entre visites culturelles et moments de détente.",
+  },
+] as const;

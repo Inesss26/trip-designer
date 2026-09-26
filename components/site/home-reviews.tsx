@@ -4,20 +4,8 @@ import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { SiteIcon } from "@/components/site/site-icon";
-import type { Review, Trip } from "@/lib/data/types";
-import { reviewImages } from "@/lib/home-content";
+import { homeReviews, reviewImages } from "@/lib/home-content";
 import { cn } from "@/lib/utils";
-
-function tripLine(review: Review, trips: Trip[]) {
-  const trip = trips.find((item) => item.id === review.tripId);
-  if (trip) {
-    return `- ${trip.title}`;
-  }
-  if (review.authorLocation) {
-    return `- ${review.authorLocation}`;
-  }
-  return null;
-}
 
 function trackOffset(viewport: HTMLElement, track: HTMLElement, index: number) {
   const slides = track.children;
@@ -38,13 +26,8 @@ function trackOffset(viewport: HTMLElement, track: HTMLElement, index: number) {
   return -Math.min(maxOffset, current.offsetLeft);
 }
 
-export function HomeReviews({
-  reviews,
-  trips = [],
-}: {
-  reviews: Review[];
-  trips?: Trip[];
-}) {
+export function HomeReviews() {
+  const reviews = homeReviews;
   const [index, setIndex] = useState(0);
   const [offset, setOffset] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
@@ -144,7 +127,7 @@ export function HomeReviews({
                         {review.authorName}
                       </cite>
                       <p className="type-body-small text-brand-secondary">
-                        {tripLine(review, trips)}
+                        - {review.authorLocation}
                       </p>
                     </footer>
                   </blockquote>
