@@ -34,7 +34,6 @@ export default async function ContactPage({
   const requestedCarnet = requestedCarnetSlug
     ? getCarnetBySlug(requestedCarnetSlug)
     : undefined;
-  const email = content["site.email"] || CONTACT_EMAIL;
 
   return (
     <SiteShell content={content}>
@@ -85,10 +84,10 @@ export default async function ContactPage({
                   Par Email
                 </p>
                 <a
-                  href={`mailto:${email}`}
+                  href={`mailto:${CONTACT_EMAIL}`}
                   className="type-body text-brand hover:opacity-70"
                 >
-                  {email}
+                  {CONTACT_EMAIL}
                 </a>
               </div>
               <div className="h-px w-full bg-brand/30" />
