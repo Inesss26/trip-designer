@@ -39,7 +39,7 @@ export function HomeHero() {
             {homeHeroCopy.title}
           </h1>
         </Reveal>
-        <Reveal delay={0.08}>
+        <Reveal delay={0.35}>
           <p className="max-w-xl type-body text-brand/50 whitespace-pre-line">
             {homeHeroCopy.subtitle}
           </p>

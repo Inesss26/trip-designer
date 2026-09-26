@@ -5,8 +5,9 @@ import { motion, useReducedMotion } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 
-const EASE = [0.22, 1, 0.36, 1] as const;
-const DURATION = 0.5;
+const EASE = "easeOut";
+const DURATION = 0.7;
+const VIEWPORT = { once: true, amount: 0.2 } as const;
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -19,7 +20,7 @@ type RevealProps = {
   delay?: number;
 };
 
-export function Reveal({ children, className, delay = 0 }: RevealProps) {
+export function Reveal({ children, className, delay = 0.2 }: RevealProps) {
   const reduceMotion = useReducedMotion();
 
   return (
@@ -27,9 +28,9 @@ export function Reveal({ children, className, delay = 0 }: RevealProps) {
       className={className}
       initial={reduceMotion ? false : "hidden"}
       whileInView="visible"
-      viewport={{ once: true, amount: 0.25 }}
+      viewport={VIEWPORT}
       variants={fadeUp}
-      transition={{ duration: DURATION, ease: EASE, delay }}
+      transition={{ duration: DURATION, delay, ease: EASE }}
     >
       {children}
     </motion.div>
@@ -49,11 +50,11 @@ export function Stagger({ children, className }: StaggerProps) {
       className={className}
       initial={reduceMotion ? false : "hidden"}
       whileInView="visible"
-      viewport={{ once: true, amount: 0.15 }}
+      viewport={VIEWPORT}
       variants={{
         hidden: {},
         visible: {
-          transition: { staggerChildren: 0.1 },
+          transition: { delayChildren: 0.2, staggerChildren: 0.15 },
         },
       }}
     >
@@ -68,6 +69,7 @@ export function StaggerItem({ children, className }: StaggerProps) {
   return (
     <motion.div
       className={cn("h-full min-w-0", className)}
+      viewport={VIEWPORT}
       variants={
         reduceMotion
           ? undefined

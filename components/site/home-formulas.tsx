@@ -41,13 +41,17 @@ export function HomeFormulas() {
           </div>
         </div>
 
-        <Stagger className="relative grid items-center gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.12fr)_minmax(0,1fr)]">
+        <Stagger className="relative grid items-center justify-center gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.12fr)_minmax(0,1fr)]">
         {homeFormulas.map((formula) => (
-          <StaggerItem key={formula.id} className={formula.featured ? "lg:z-[1]" : undefined}>
+          <StaggerItem
+            key={formula.id}
+            className={cn("h-auto", formula.featured && "lg:z-[1]")}
+          >
           <article
             className={cn(
-              "card flex h-full flex-col gap-6 !p-[28px] shadow-[0_2px_4px_var(--color-accent-dark)]",
-              formula.featured && "lg:shadow-[0_6px_16px_var(--color-accent-dark)]",
+              "card flex flex-col gap-6 !p-[28px] shadow-[0_2px_4px_var(--color-accent-dark)]",
+              formula.featured &&
+                "lg:!py-11 lg:shadow-[0_6px_16px_var(--color-accent-dark)]",
             )}
           >
             {formula.featured ? (
